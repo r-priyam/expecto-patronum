@@ -1,0 +1,61 @@
+name: CI
+
+on: [push, pull_request]
+jobs:
+  Linting:
+    name: Lint Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+
+      - name: User Node v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Run ESLint
+        run: yarn lint
+  TypeChecking:
+    name: Typecheck Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+
+      - name: User Node v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Run Typecheck
+        run: yarn typecheck
+  Building:
+    name: Build Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+
+      - name: User Node v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
