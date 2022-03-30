@@ -154,12 +154,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/decorators@npm:^3.1.4":
-  version: 3.1.6
-  resolution: "@sapphire/decorators@npm:3.1.6"
+"@sapphire/decorators@npm:^4.3.3":
+  version: 4.3.3
+  resolution: "@sapphire/decorators@npm:4.3.3"
   dependencies:
     tslib: ^2.3.1
-  checksum: 6e314717e3b9ac4cfdff40b74f73ce2a7ec06d37ee866ebee7c4954a1207875b13896985dd27c56f428973a1240016e674cf3339ff4e6dae257ece511aa69fa8
+  checksum: adcd62ee023744617a3b57f1bfb90199592cb2451140794d5222cac46f2560a493171bd7d00079f814029faa2c3669abd2a79abb4d7caf10b8314298d0e6a65a
   languageName: node
   linkType: hard
 
@@ -3258,7 +3258,7 @@ __metadata:
   resolution: "spectre@workspace:."
   dependencies:
     "@discordjs/collection": ^0.3.2
-    "@sapphire/decorators": ^3.1.4
+    "@sapphire/decorators": ^4.3.3
     "@sapphire/discord-utilities": ^2.2.3
     "@sapphire/discord.js-utilities": ^4.1.3
     "@sapphire/eslint-config": ^4.3.2
