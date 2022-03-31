@@ -1,5 +1,5 @@
 import '#lib/setup';
-import { GatewayIntentBits } from 'discord-api-types/v10';
+import { GatewayIntentBits } from 'discord-api-types/v9';
 import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { Config } from '#root/config';
 
@@ -11,7 +11,15 @@ const client = new SapphireClient({
 		depth: 2,
 		level: Config.isDev ? LogLevel.Debug : LogLevel.Info
 	},
-	intents: Object.values(GatewayIntentBits).filter((intent) => typeof intent !== 'string') as number[],
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMembers,
+		GatewayIntentBits.GuildBans,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.GuildMessageReactions,
+		GatewayIntentBits.DirectMessages,
+		GatewayIntentBits.DirectMessageReactions
+	],
 	presence: {
 		activities: [
 			{
