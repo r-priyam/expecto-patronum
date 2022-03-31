@@ -1,12 +1,12 @@
 {
 	"extends": ["github>sapphiredev/readme:sapphire-renovate", ":disableDependencyDashboard"],
 	"schedule": ["at any time"],
-    "rangeStrategy": "bump",
-    "packageRules": [
-        {
-            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-            "automerge": true,
-            "automergeStrategy": "squash"
-        }
-    ]
+	"rangeStrategy": "bump",
+	"packageRules": [
+		{
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"automerge": true,
+			"automergeStrategy": "squash"
+		}
+	]
 }
