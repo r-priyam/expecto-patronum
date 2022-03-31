@@ -8,7 +8,7 @@
 		"paths": {
 			"#root/*": ["*"],
 			"#lib/*": ["lib/*"],
-			"#utils/*": ["lib/util/*"]
+			"#utils/*": ["lib/utils/*"]
 		}
 	},
 	"include": ["."]
