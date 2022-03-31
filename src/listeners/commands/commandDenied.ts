@@ -20,8 +20,7 @@ export class MessageCommandDenied extends Listener<typeof Events.MessageCommandD
 export class ChatInputCommandDenied extends Listener<typeof Events.ChatInputCommandDenied> {
 	public override async run(error: UserError, { interaction }: ChatInputCommandDeniedPayload) {
 		if (interaction.replied || interaction.deferred) {
-			await interaction.editReply({ embeds: [EmbedBuilder.error(error.message)] });
-			return;
+			return interaction.editReply({ embeds: [EmbedBuilder.error(error.message)] });
 		}
 
 		return interaction.reply({ embeds: [EmbedBuilder.error(error.message)], ephemeral: true });
