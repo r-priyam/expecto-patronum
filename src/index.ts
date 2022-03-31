@@ -1,6 +1,7 @@
 import '#lib/setup';
 import { GatewayIntentBits } from 'discord-api-types/v10';
 import { LogLevel, SapphireClient } from '@sapphire/framework';
+import { Config } from '#root/config';
 
 const client = new SapphireClient({
 	shards: 'auto',
@@ -8,7 +9,7 @@ const client = new SapphireClient({
 	caseInsensitiveCommands: true,
 	logger: {
 		depth: 2,
-		level: process.env.NODE_ENV === 'development' ? LogLevel.Debug : LogLevel.Info
+		level: Config.isDev ? LogLevel.Debug : LogLevel.Info
 	},
 	intents: Object.values(GatewayIntentBits).filter((intent) => typeof intent !== 'string') as number[],
 	presence: {

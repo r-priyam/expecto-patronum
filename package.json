@@ -8,10 +8,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch --onSuccess \"yarn start\"",
+    "dev": "tsup --watch --onSuccess \"node --enable-source-maps dist/index.js\"",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint src --ext ts --fix",
-    "start": "node --enable-source-maps dist/index.js",
+    "start": "NODE_ENV=production node --enable-source-maps dist/index.js",
     "typecheck": "tsc -b src",
     "watch": "tsup --watch"
   },

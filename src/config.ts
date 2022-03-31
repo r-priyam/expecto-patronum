@@ -8,4 +8,14 @@ import { fileURLToPath } from 'url';
 
 config({ path: join(fileURLToPath(srcFolder), '.env') });
 
-export const OWNERS = ['419365927138754571'];
+class Env {
+	public get isDev(): boolean {
+		return process.env.NODE_ENV === 'development';
+	}
+
+	public get owner(): string {
+		return process.env.OWNER!;
+	}
+}
+
+export const Config = new Env();

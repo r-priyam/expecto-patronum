@@ -1,16 +1,13 @@
+import { Config } from '#root/config';
 import type { ListenerOptions, PieceContext } from '@sapphire/framework';
 import { Listener, Store } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 
 export class Ready extends Listener {
-	private readonly style = this.isDev ? yellow : blue;
+	private readonly style = Config.isDev ? yellow : blue;
 
 	public constructor(context: PieceContext, options?: ListenerOptions) {
 		super(context, { ...options, once: true });
-	}
-
-	private get isDev() {
-		return process.env.NODE_ENV === 'development';
 	}
 
 	public run() {
@@ -21,8 +18,8 @@ export class Ready extends Listener {
 	private printBanner() {
 		const success = green('+');
 
-		const llc = this.isDev ? magentaBright : white;
-		const blc = this.isDev ? magenta : blue;
+		const llc = Config.isDev ? magentaBright : white;
+		const blc = Config.isDev ? magenta : blue;
 
 		const line01 = llc('');
 		const line02 = llc('');
@@ -35,7 +32,7 @@ export class Ready extends Listener {
 			String.raw`
 ${line01} ${pad}${blc('1.0.0')}
 ${line02} ${pad}[${success}] Gateway
-${line03}${this.isDev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
+${line03}${Config.isDev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
 		`.trim()
 		);
 	}
