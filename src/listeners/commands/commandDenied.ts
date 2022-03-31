@@ -1,16 +1,28 @@
-import type { MessageCommandDeniedPayload, PieceContext } from '@sapphire/framework';
+import { ApplyOptions } from '@sapphire/decorators';
+import type { ChatInputCommandDeniedPayload, MessageCommandDeniedPayload } from '@sapphire/framework';
 import { Listener, UserError, Events } from '@sapphire/framework';
 
-export class UserEvent extends Listener<typeof Events.MessageCommandDenied> {
-	public constructor(context: PieceContext) {
-		super(context, { event: Events.MessageCommandDenied });
+@ApplyOptions<Listener.Options>({
+	name: 'MessageCommandDenied',
+	event: Events.MessageCommandDenied
+})
+export class MessageCommandDenied extends Listener<typeof Events.MessageCommandDenied> {
+	public override async run(error: UserError, { message }: MessageCommandDeniedPayload) {
+		await message.channel.send(error.message);
 	}
+}
 
-	public run({ context, message: content }: UserError, { message }: MessageCommandDeniedPayload) {
-		// `context: { silent: true }` should make UserError silent:
-		// Use cases for this are for example permissions error when running the `eval` command.
-		if (Reflect.get(Object(context), 'silent')) return;
+@ApplyOptions<Listener.Options>({
+	name: 'ChatInputCommandDenied',
+	event: Events.ChatInputCommandDenied
+})
+export class ChatInputCommandDenied extends Listener<typeof Events.ChatInputCommandDenied> {
+	public override async run(error: UserError, { interaction }: ChatInputCommandDeniedPayload) {
+		if (interaction.replied || interaction.deferred) {
+			await interaction.editReply({ content: error.message });
+			return;
+		}
 
-		return message.channel.send({ content, allowedMentions: { users: [message.author.id], roles: [] } });
+		return interaction.reply({ content: error.message, ephemeral: true });
 	}
 }
