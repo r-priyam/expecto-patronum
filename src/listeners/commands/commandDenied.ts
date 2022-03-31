@@ -9,6 +9,7 @@ import { Listener, UserError, Events } from '@sapphire/framework';
 })
 export class MessageCommandDenied extends Listener<typeof Events.MessageCommandDenied> {
 	public override async run(error: UserError, { message }: MessageCommandDeniedPayload) {
+		console.log('TESTING');
 		await message.channel.send({ embeds: [EmbedBuilder.error(error.message)] });
 	}
 }
