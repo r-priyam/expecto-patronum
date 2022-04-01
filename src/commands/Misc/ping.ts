@@ -2,6 +2,7 @@ import { MessageEmbed } from 'discord.js';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import type { Message } from 'discord.js';
+import { Colors } from '#root/lib/utils/constants';
 
 @ApplyOptions<Command.Options>({
 	description: 'Find out if Specter is alive and processing messages',
@@ -32,8 +33,8 @@ export class PingCommand extends Command {
 
 	private pingEmbed() {
 		return new MessageEmbed() //
-			.setColor(0x36a8fa)
+			.setColor(Colors.Info)
 			.setTitle('I am still alive! 🍺')
-			.setDescription(`Pong! Bot Latency ${Math.round(this.container.client.ws.ping)}ms (TESTING)`);
+			.setDescription(`Pong! Bot Latency ${Math.round(this.container.client.ws.ping)}ms`);
 	}
 }
