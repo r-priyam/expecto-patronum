@@ -5,7 +5,7 @@ import { Config } from '#root/config';
 
 const client = new SapphireClient({
 	shards: 'auto',
-	defaultPrefix: '!',
+	defaultPrefix: ['!', '.', '?'],
 	caseInsensitiveCommands: true,
 	logger: {
 		depth: 2,
