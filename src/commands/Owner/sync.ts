@@ -33,10 +33,12 @@ export class UserCommand extends Command {
 
 			exec('yarn build', async () => {
 				const status = await this.performReload(this.filterModules(stdout));
-				// delete thinking message after task is finished and edit the original message instead.
-				await prompt.confirmation.deleteReply();
-				return message.reply({
-					content: `${bold('Commands')}\n${status.commands.join('\n')}\n${bold('Listeners')}\n${status.listeners.join('\n')}`,
+				let message = '';
+				status.commands.length > 0 && (message += `${bold('Commands')}\n${status.commands.join('\n')}\n`);
+				status.listeners.length > 0 && (message += `${bold('Listeners')}\n${status.listeners.join('\n')}`);
+
+				return prompt.promptMessage.edit({
+					content: message,
 					allowedMentions: { parse: [] }
 				});
 			});
