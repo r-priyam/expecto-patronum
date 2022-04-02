@@ -5,29 +5,36 @@ import { Time } from '@sapphire/time-utilities';
 class UserPrompter {
 	public async messagePrompter(message: Message, content: string, timeout = 60) {
 		const promptMessage = await message.channel.send({ content, components: [this.promptComponents] });
-		const confirmation = await this.waitForClick(promptMessage!, message.author.id, timeout);
+		try {
+			const confirmation = await this.waitForClick(promptMessage!, message.author.id, timeout);
+			if (confirmation.customId === 'yes_button') {
+				// return confirmation so then the origianl message can be edited
+				// after performing any task
+				return { status: true, promptMessage };
+			}
 
-		if (confirmation.customId === 'yes_button') {
-			// return confirmation so then the origianl message can be edited
-			// after performing any task
-			return { status: true, confirmation };
+			await confirmation.editReply({ content: 'Aborting!', components: [] });
+			return false;
+		} catch (error: any) {
+			if (error.code === 'INTERACTION_COLLECTOR_ERROR') {
+				await promptMessage.edit({ content: 'You took too log to reply!', components: [] });
+				return false;
+			}
 		}
-
-		await confirmation.editReply({ content: 'Aborting!', components: [] });
-		return false;
 	}
 
-	public async interactionPrompter(interaction: CommandInteraction, content: string, timeout = 60) {
+	public async interactionPrompter(interaction: CommandInteraction<'cached'>, content: string, timeout = 60) {
 		const promptMessage = await interaction.reply({ content, components: [this.promptComponents], fetchReply: true });
-		if (!(promptMessage instanceof Message)) return;
-		const confirmation = await this.waitForClick(promptMessage, interaction.user.id, timeout);
+		try {
+			const confirmation = await this.waitForClick(promptMessage, interaction.user.id, timeout);
+			if (confirmation.customId === 'yes_button') return true;
 
-		if (confirmation.customId === 'yes_button') {
-			return true;
+			await interaction.editReply({ content: 'Aborting!', components: [] });
+			return false;
+		} catch (error) {
+			await interaction.editReply({ content: 'You took too log to reply!', components: [] });
+			return false;
 		}
-
-		await interaction.editReply({ content: 'Aborting!', components: [] });
-		return false;
 	}
 
 	private async verifyUser(interaction: ButtonInteraction, userId: string) {
