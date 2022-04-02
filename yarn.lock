@@ -250,30 +250,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-api@npm:^3.2.1":
-  version: 3.2.1
-  resolution: "@sapphire/plugin-api@npm:3.2.1"
-  dependencies:
-    "@types/node-fetch": 2.6.1
-    "@types/psl": ^1.1.0
-    "@types/ws": ^8.5.3
-    node-fetch: 2.6.7
-    psl: ^1.8.0
-    tslib: ^2.3.1
-  checksum: ed3997d1c488d317a1210766181cbf8aba1f60313cb51e17ec6943ce1175b9ce99c167081dd1224a47bd29364b1443f1a8b74f4698deab4dcc957e6ecfb4e8c8
-  languageName: node
-  linkType: hard
-
-"@sapphire/plugin-editable-commands@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@sapphire/plugin-editable-commands@npm:1.2.0"
-  dependencies:
-    "@skyra/editable-commands": ^2.1.2
-    tslib: ^2.3.1
-  checksum: 52267b7c0633d9c80bc8f74565cac903e308ffbfe89a5f397bdff3f6b2a57ef80ba17ab527de39de1a89eb02df34a218d298f92cdb8ec16ad166af5b7b6533f1
-  languageName: node
-  linkType: hard
-
 "@sapphire/plugin-logger@npm:^2.2.1":
   version: 2.2.1
   resolution: "@sapphire/plugin-logger@npm:2.2.1"
@@ -385,13 +361,6 @@ __metadata:
   version: 4.6.0
   resolution: "@sindresorhus/is@npm:4.6.0"
   checksum: 83839f13da2c29d55c97abc3bc2c55b250d33a0447554997a85c539e058e57b8da092da396e252b11ec24a0279a0bed1f537fa26302209327060643e327f81d2
-  languageName: node
-  linkType: hard
-
-"@skyra/editable-commands@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "@skyra/editable-commands@npm:2.1.2"
-  checksum: a0a853abe476d2f622bedfbf37a67aff10ab57d0bd742a0a214a907c77648273bf544da6491a4dc6e8e0528f9533aeb20028be792134e39fb07c34219596ae2c
   languageName: node
   linkType: hard
 
@@ -567,7 +536,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node-fetch@npm:2.6.1, @types/node-fetch@npm:^2.5.12":
+"@types/node-fetch@npm:^2.5.12":
   version: 2.6.1
   resolution: "@types/node-fetch@npm:2.6.1"
   dependencies:
@@ -581,13 +550,6 @@ __metadata:
   version: 17.0.23
   resolution: "@types/node@npm:17.0.23"
   checksum: a3517554737cbb042e76c30d0e5482192ac4d9bea0eeb086e2622d9cabf460a0eb52a696b99fcd18e7fcc93c96db6cc7ae507f6608f256ef0b5c1d8c87a5a470
-  languageName: node
-  linkType: hard
-
-"@types/psl@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@types/psl@npm:1.1.0"
-  checksum: 648a4a40827fb101a05616b9c448b04d40c467db9f09e08099274759fd5e032e7d276013296679765c7d7359f43f0479094c1d8b6a56a8f9445b84b5a9af1263
   languageName: node
   linkType: hard
 
@@ -3080,13 +3042,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"psl@npm:^1.8.0":
-  version: 1.8.0
-  resolution: "psl@npm:1.8.0"
-  checksum: 6150048ed2da3f919478bee8a82f3828303bc0fc730fb015a48f83c9977682c7b28c60ab01425a72d82a2891a1681627aa530a991d50c086b48a3be27744bde7
-  languageName: node
-  linkType: hard
-
 "punycode@npm:^2.1.0":
   version: 2.1.1
   resolution: "punycode@npm:2.1.1"
@@ -3427,8 +3382,6 @@ __metadata:
     "@sapphire/eslint-config": ^4.3.3
     "@sapphire/fetch": ^2.3.1
     "@sapphire/framework": next
-    "@sapphire/plugin-api": ^3.2.1
-    "@sapphire/plugin-editable-commands": ^1.2.0
     "@sapphire/plugin-logger": ^2.2.1
     "@sapphire/plugin-subcommands": ^2.2.0
     "@sapphire/prettier-config": ^1.4.2
