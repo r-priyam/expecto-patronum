@@ -1,17 +1,17 @@
 {
-	"name": "spectre",
+	"name": "expecto-patronum",
 	"version": "1.0.0",
 	"private": true,
 	"license": "MPL-2.0",
 	"author": "r-priyam <roy_priyam@outlook.com>",
 	"type": "module",
-	"main": "dist/Spectre.js",
+	"main": "dist/ExpectoPatronum.js",
 	"scripts": {
 		"build": "tsup",
-		"dev": "tsup --watch --onSuccess \"node --enable-source-maps dist/Spectre.js\"",
+		"dev": "tsup --watch --onSuccess \"node --enable-source-maps dist/ExpectoPatronum.js\"",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "eslint src --ext ts --fix",
-		"start": "NODE_ENV=production node --enable-source-maps dist/Spectre.js",
+		"start": "NODE_ENV=production node --enable-source-maps dist/ExpectoPatronum.js",
 		"typecheck": "tsc -b src",
 		"watch": "tsup --watch"
 	},

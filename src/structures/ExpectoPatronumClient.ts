@@ -3,7 +3,7 @@ import { GatewayIntentBits } from 'discord-api-types/v9';
 
 import { Config } from '#root/config';
 
-export class SpectreClient extends SapphireClient {
+export class ExpectoPatronumClient extends SapphireClient {
 	public constructor() {
 		super({
 			shards: 'auto',
@@ -23,7 +23,7 @@ export class SpectreClient extends SapphireClient {
 			presence: {
 				activities: [
 					{
-						name: " I won't be long!",
+						name: 'After all this time? Always.',
 						type: 'PLAYING'
 					}
 				]

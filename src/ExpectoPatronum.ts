@@ -1,8 +1,8 @@
 import '#lib/setup';
 
-import { SpectreClient } from '#structures/SpectreClient';
+import { ExpectoPatronumClient } from '#root/structures/ExpectoPatronumClient';
 
-const client = new SpectreClient();
+const client = new ExpectoPatronumClient();
 
 try {
 	await client.login();
