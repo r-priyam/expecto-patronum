@@ -512,24 +512,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:^8":
-  version: 8.4.1
-  resolution: "@types/eslint@npm:8.4.1"
-  dependencies:
-    "@types/estree": "*"
-    "@types/json-schema": "*"
-  checksum: b5790997ee9d3820d16350192d41849b0e2448c9e93650acac672ddf502e35c0a5a25547172a9eec840a96687cd94ba1cee672cbd86640f8f4ff1b65960d2ab9
-  languageName: node
-  linkType: hard
-
-"@types/estree@npm:*":
-  version: 0.0.51
-  resolution: "@types/estree@npm:0.0.51"
-  checksum: e56a3bcf759fd9185e992e7fdb3c6a5f81e8ff120e871641607581fb3728d16c811702a7d40fa5f869b7f7b4437ab6a87eb8d98ffafeee51e85bbe955932a189
-  languageName: node
-  linkType: hard
-
-"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.9":
+"@types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
   checksum: 527bddfe62db9012fccd7627794bd4c71beb77601861055d87e3ee464f2217c85fca7a4b56ae677478367bbd248dbde13553312b7d4dbc702a2f2bbf60c4018d
@@ -546,7 +529,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^17.0.0":
+"@types/node@npm:*, @types/node@npm:^17.0.23":
   version: 17.0.23
   resolution: "@types/node@npm:17.0.23"
   checksum: a3517554737cbb042e76c30d0e5482192ac4d9bea0eeb086e2622d9cabf460a0eb52a696b99fcd18e7fcc93c96db6cc7ae507f6608f256ef0b5c1d8c87a5a470
@@ -3025,6 +3008,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "prettier@npm:2.6.2"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 48d08dde8e9fb1f5bccdd205baa7f192e9fc8bc98f86e1b97d919de804e28c806b0e6cc685e4a88211aa7987fa9668f30baae19580d87ced3ed0f2ec6572106f
+  languageName: node
+  linkType: hard
+
 "promise-inflight@npm:^1.0.1":
   version: 1.0.1
   resolution: "promise-inflight@npm:1.0.1"
@@ -3390,8 +3382,7 @@ __metadata:
     "@sapphire/type": ^2.2.0
     "@sapphire/utilities": ^3.6.2
     "@swc/core": ^1.2.162
-    "@types/eslint": ^8
-    "@types/node": ^17.0.0
+    "@types/node": ^17.0.23
     "@types/ws": ^8.5.3
     discord-api-types: ^0.26.1
     discord.js: ^13.6.0
@@ -3400,9 +3391,9 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.0.0
     npm-run-all: ^4.1.5
-    prettier: ^2.6.1
+    prettier: ^2.6.2
     reflect-metadata: ^0.1.13
-    tsup: ^5.12.2
+    tsup: ^5.12.3
     typescript: ^4.6.3
   languageName: unknown
   linkType: soft
@@ -3631,9 +3622,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^5.12.2":
-  version: 5.12.2
-  resolution: "tsup@npm:5.12.2"
+"tsup@npm:^5.12.3":
+  version: 5.12.3
+  resolution: "tsup@npm:5.12.3"
   dependencies:
     bundle-require: ^3.0.2
     cac: ^6.7.12
@@ -3657,7 +3648,7 @@ __metadata:
   bin:
     tsup: dist/cli-default.js
     tsup-node: dist/cli-node.js
-  checksum: 7f1eb88727f2d967783af91fc4d6a94c1b4ead0173becf4fdd0eb30857d340352e8b624ae5697233db63fddc25e70e72814c00c2e25494fd9dfba25dd45874cb
+  checksum: 32fa464ef7f2e95eadfeb4d531620fda32b249749d45008081f86563c8b37966ef8bf0817d6cac204d1f5d10fc56d3f107f0af19252c604847f1f90c00606073
   languageName: node
   linkType: hard
 
