@@ -17,6 +17,6 @@ export class UserPrecondition extends AllFlowsPrecondition {
 	}
 
 	private async checkGuild(guild: boolean) {
-		return guild ? this.ok() : this.error({ message: "Commands in DM aren't supported" });
+		return guild ? this.ok() : this.error({ message: "Using commands in DM aren't supported, please run in any server instead." });
 	}
 }
