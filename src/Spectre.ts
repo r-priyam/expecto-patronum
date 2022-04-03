@@ -1,4 +1,5 @@
 import '#lib/setup';
+
 import { SpectreClient } from '#structures/SpectreClient';
 
 const client = new SpectreClient();

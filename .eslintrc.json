@@ -1,0 +1,13 @@
+{
+	"extends": ["@sapphire", "plugin:prettier/recommended"],
+	"plugins": ["prettier", "simple-import-sort", "import"],
+	"rules": {
+		"curly": [2, "all"], // to maintain the consistency of the code in conditonal statements
+		"import/first": "error",
+		"import/no-duplicates": "error",
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error",
+		"import/newline-after-import": "error",
+		"@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports", "disallowTypeAnnotations": false }]
+	}
+}

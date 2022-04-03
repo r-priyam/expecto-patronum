@@ -1,11 +1,12 @@
-import { EmbedBuilder } from '#root/lib/utils/embeds';
+import { bold } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
+import { Stopwatch } from '@sapphire/stopwatch';
 import { exec } from 'child_process';
 import type { Message } from 'discord.js';
-import { Stopwatch } from '@sapphire/stopwatch';
+
+import { EmbedBuilder } from '#root/lib/utils/embeds';
 import { MiscEmotes } from '#root/lib/utils/emotes';
-import { bold } from '@discordjs/builders';
 import { Prompter } from '#root/lib/utils/functions/prompter';
 
 @ApplyOptions<Command.Options>({
@@ -29,7 +30,9 @@ export class UserCommand extends Command {
 			}
 
 			const prompt = await Prompter.messagePrompter(message, 'Are you sure to proceed?');
-			if (!prompt) return;
+			if (!prompt) {
+				return;
+			}
 
 			exec('yarn build', async () => {
 				const status = await this.performReload(this.filterModules(stdout));

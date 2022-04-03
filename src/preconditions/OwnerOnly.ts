@@ -1,6 +1,7 @@
-import { Config } from '#root/config';
 import { AllFlowsPrecondition } from '@sapphire/framework';
 import type { CommandInteraction, ContextMenuInteraction, Message } from 'discord.js';
+
+import { Config } from '#root/config';
 
 export class UserPrecondition extends AllFlowsPrecondition {
 	public async chatInputRun(interaction: CommandInteraction) {

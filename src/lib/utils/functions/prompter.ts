@@ -1,6 +1,8 @@
-import { Message, MessageActionRow, MessageButton, CommandInteraction, ButtonInteraction } from 'discord.js';
-import { MiscEmotes } from '#utils/emotes';
 import { Time } from '@sapphire/time-utilities';
+import type { ButtonInteraction, CommandInteraction, Message } from 'discord.js';
+import { MessageActionRow, MessageButton } from 'discord.js';
+
+import { MiscEmotes } from '#utils/emotes';
 
 class UserPrompter {
 	public async messagePrompter(message: Message, content: string, timeout = 60) {
@@ -27,7 +29,9 @@ class UserPrompter {
 		const promptMessage = await interaction.reply({ content, components: [this.promptComponents], fetchReply: true });
 		try {
 			const confirmation = await this.waitForClick(promptMessage, interaction.user.id, timeout);
-			if (confirmation.customId === 'yes_button') return true;
+			if (confirmation.customId === 'yes_button') {
+				return true;
+			}
 
 			await interaction.editReply({ content: 'Aborting!', components: [] });
 			return false;
@@ -38,7 +42,9 @@ class UserPrompter {
 	}
 
 	private async verifyUser(interaction: ButtonInteraction, userId: string) {
-		if (!interaction.replied) await interaction.deferUpdate();
+		if (!interaction.replied) {
+			await interaction.deferUpdate();
+		}
 		if (interaction.user.id !== userId) {
 			await interaction.followUp({ content: "These buttons can't be controlled by you, sorry!", ephemeral: true });
 		}

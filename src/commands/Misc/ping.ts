@@ -1,7 +1,8 @@
-import { MessageEmbed } from 'discord.js';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import type { Message } from 'discord.js';
+import { MessageEmbed } from 'discord.js';
+
 import { Colors } from '#root/lib/utils/constants';
 
 @ApplyOptions<Command.Options>({

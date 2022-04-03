@@ -1,7 +1,8 @@
-import { Config } from '#root/config';
-import type { ListenerOptions, PieceContext } from '@sapphire/framework';
-import { Listener, Store } from '@sapphire/framework';
+import type { ListenerOptions, PieceContext, Store } from '@sapphire/framework';
+import { Listener } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
+
+import { Config } from '#root/config';
 
 export class Ready extends Listener {
 	private readonly style = Config.isDev ? yellow : blue;
@@ -42,7 +43,9 @@ ${line03}${Config.isDev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVEL
 		const stores = [...client.stores.values()];
 		const last = stores.pop()!;
 
-		for (const store of stores) logger.info(this.styleStore(store, false));
+		for (const store of stores) {
+			logger.info(this.styleStore(store, false));
+		}
 		logger.info(this.styleStore(last, true));
 	}
 

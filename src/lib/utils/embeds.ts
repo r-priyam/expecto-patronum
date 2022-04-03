@@ -1,4 +1,5 @@
 import { MessageEmbed } from 'discord.js';
+
 import { Colors } from '#utils/constants';
 
 class Embed {

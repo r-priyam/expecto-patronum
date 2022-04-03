@@ -1,8 +1,9 @@
-import { formatShardHeader } from '#root/lib/utils/functions/formatter';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Events, Listener } from '@sapphire/framework';
 import { red } from 'colorette';
 import type { CloseEvent } from 'discord.js';
+
+import { formatShardHeader } from '#root/lib/utils/functions/formatter';
 
 @ApplyOptions<Listener.Options>({
 	name: 'ShardDisconnect',

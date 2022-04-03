@@ -1,6 +1,7 @@
-import { Config } from '#root/config';
+import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { GatewayIntentBits } from 'discord-api-types/v9';
-import { SapphireClient, LogLevel } from '@sapphire/framework';
+
+import { Config } from '#root/config';
 
 export class SpectreClient extends SapphireClient {
 	public constructor() {
