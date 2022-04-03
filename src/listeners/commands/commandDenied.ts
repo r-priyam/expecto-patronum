@@ -20,7 +20,9 @@ export class MessageCommandDenied extends Listener<typeof Events.MessageCommandD
 export class ChatInputCommandDenied extends Listener<typeof Events.ChatInputCommandDenied> {
 	public override async run(error: UserError, { interaction }: ChatInputCommandDeniedPayload) {
 		if (interaction.replied || interaction.deferred) {
-			return interaction.editReply({ embeds: [EmbedBuilder.error(error.message)] });
+			// TODO: just remove useless return in future when types aren't colliding
+			await interaction.editReply({ embeds: [EmbedBuilder.error(error.message)] });
+			return;
 		}
 
 		return interaction.reply({ embeds: [EmbedBuilder.error(error.message)], ephemeral: true });
