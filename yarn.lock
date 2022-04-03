@@ -1162,7 +1162,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:0.26.1, discord-api-types@npm:^0.26.0":
+"discord-api-types@npm:0.30.0":
+  version: 0.30.0
+  resolution: "discord-api-types@npm:0.30.0"
+  checksum: c4b0afbc453b7ce6b570501f83a654591432eb2ce690681d2e6a9424d5f9687b7ef02dde02702e53562449c5cdcde500e92299a8158eb9bf67ad85c073788e72
+  languageName: node
+  linkType: hard
+
+"discord-api-types@npm:^0.26.0":
   version: 0.26.1
   resolution: "discord-api-types@npm:0.26.1"
   checksum: e53bfa7589b24108e6b403dbe213da34c4592f72e2b8fde6800dcb6c703065887ecbd644e1cdf694e4c7796954bc51462ced868f26ec45dc1e0dc4fa8d3c723c
@@ -3402,7 +3409,7 @@ __metadata:
     "@types/eslint": ^8
     "@types/node": ^17.0.23
     "@types/ws": ^8.5.3
-    discord-api-types: 0.26.1
+    discord-api-types: 0.30.0
     discord.js: ^13.6.0
     dotenv-cra: ^3.0.2
     eslint: ^8.12.0
