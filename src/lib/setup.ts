@@ -10,5 +10,5 @@ import { inspect } from 'util';
 // rather than warning in console.
 ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.Overwrite);
 
-inspect.defaultOptions.depth = 2;
+inspect.defaultOptions.depth = 1;
 colorette.createColors({ useColor: true });
