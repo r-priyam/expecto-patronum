@@ -1,15 +1,17 @@
-import type { ListenerOptions, PieceContext, Store } from '@sapphire/framework';
-import { Listener } from '@sapphire/framework';
+import { ApplyOptions } from '@sapphire/decorators';
+import type { Store } from '@sapphire/framework';
+import { Events, Listener } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 
 import { Config } from '#root/config';
 
+@ApplyOptions<Listener.Options>({
+	name: 'ClientReady',
+	event: Events.ClientReady,
+	once: true
+})
 export class Ready extends Listener {
 	private readonly style = Config.isDev ? yellow : blue;
-
-	public constructor(context: PieceContext, options?: ListenerOptions) {
-		super(context, { ...options, once: true });
-	}
 
 	public run() {
 		this.printBanner();

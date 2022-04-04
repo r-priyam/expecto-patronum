@@ -1,28 +1,22 @@
-import type { Command, ListenerOptions, MessageCommandSuccessPayload, PieceContext } from '@sapphire/framework';
-import { Events, Listener, LogLevel } from '@sapphire/framework';
+import { ApplyOptions } from '@sapphire/decorators';
+import type { Command, MessageCommandSuccessPayload } from '@sapphire/framework';
+import { container, Events, Listener, LogLevel } from '@sapphire/framework';
 import type { Logger } from '@sapphire/plugin-logger';
 import { blue, cyan, yellow } from 'colorette';
 import type { Guild, User } from 'discord.js';
 
+@ApplyOptions<Listener.Options>({
+	name: 'MessageCommandSuccess',
+	event: Events.MessageCommandSuccess,
+	enabled: (container.client.logger as Logger).level <= LogLevel.Info
+})
 export class UserEvent extends Listener<typeof Events.MessageCommandSuccess> {
-	public constructor(context: PieceContext, options?: ListenerOptions) {
-		super(context, {
-			...options,
-			event: Events.MessageCommandSuccess
-		});
-	}
-
 	public run({ message, command }: MessageCommandSuccessPayload) {
 		const shard = this.shard(message.guild?.shardId ?? 0);
 		const commandName = this.command(command);
 		const author = this.author(message.author);
 		const sentAt = message.guild ? this.guild(message.guild) : this.direct();
 		this.container.logger.debug(`${shard} » ${sentAt} » ${author} » ${commandName}`);
-	}
-
-	public override onLoad() {
-		this.enabled = (this.container.logger as Logger).level <= LogLevel.Debug;
-		return super.onLoad();
 	}
 
 	private shard(id: number) {
