@@ -24,7 +24,6 @@ export class UserCommand extends Command {
 			if (stdout.startsWith('Already up to date')) {
 				return message.reply({
 					embeds: [EmbedBuilder.warning('Already up to date')],
-					allowedMentions: { repliedUser: false },
 					components: []
 				});
 			}
@@ -41,8 +40,7 @@ export class UserCommand extends Command {
 				status.listeners.length > 0 && (message += `${bold('Listeners')}\n${status.listeners.join('\n')}`);
 
 				return prompt.promptMessage.edit({
-					content: message,
-					allowedMentions: { parse: [] }
+					content: message
 				});
 			});
 		});

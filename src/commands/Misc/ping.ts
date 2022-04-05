@@ -23,7 +23,7 @@ export class PingCommand extends Command {
 
 	protected async _sharedRun(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, isMessage: boolean) {
 		if (isMessage) {
-			await messageOrInteraction.reply({ embeds: [this.pingEmbed()], allowedMentions: { parse: [] } });
+			await messageOrInteraction.reply({ embeds: [this.pingEmbed()] });
 		} else {
 			await messageOrInteraction.reply({
 				embeds: [this.pingEmbed()],
