@@ -9,10 +9,7 @@ export class ExpectoPatronumClient extends SapphireClient {
 			shards: 'auto',
 			defaultPrefix: ['!', '.', '?'],
 			caseInsensitiveCommands: true,
-			logger: {
-				depth: 2,
-				level: Config.isDev ? LogLevel.Debug : LogLevel.Info
-			},
+			logger: { level: Config.isDev ? LogLevel.Debug : LogLevel.Info },
 			intents: [
 				GatewayIntentBits.Guilds,
 				GatewayIntentBits.GuildMembers,
@@ -28,7 +25,8 @@ export class ExpectoPatronumClient extends SapphireClient {
 					}
 				]
 			},
-			loadMessageCommandListeners: true
+			loadMessageCommandListeners: true,
+			loadDefaultErrorListeners: false
 		});
 	}
 }
