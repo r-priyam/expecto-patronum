@@ -37,7 +37,7 @@ export class UserCommand extends Command {
 		const output = success ? codeBlock('ts', result) : codeBlock('bash', result);
 		const typeFooter = `**Type**: ${codeBlock('ts', type)}`;
 
-		if (output.length > 2000) {
+		if (output.length > 4000) {
 			return message.channel.send({
 				content: `Result was too long... sent the result as a file.\n\n${typeFooter}`,
 				files: [{ attachment: Buffer.from(output), name: 'result.txt' }]
