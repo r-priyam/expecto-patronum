@@ -2,7 +2,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommandDeniedPayload, MessageCommandDeniedPayload, UserError } from '@sapphire/framework';
 import { Events, Listener } from '@sapphire/framework';
 
-import { EmbedBuilder } from '#root/lib/utils/embeds';
+import { EmbedBuilder } from '#utils/classes/embeds';
 
 @ApplyOptions<Listener.Options>({
 	name: 'MessageCommandDenied',

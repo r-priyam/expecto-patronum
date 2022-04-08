@@ -10,7 +10,7 @@ import type { Message } from 'discord.js';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { inspect } from 'node:util';
 
-import { EmbedBuilder } from '#utils/embeds';
+import { EmbedBuilder } from '#utils/classes/embeds';
 import { MiscEmotes } from '#utils/emotes';
 
 @ApplyOptions<Command.Options>({
