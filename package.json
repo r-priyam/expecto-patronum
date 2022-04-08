@@ -52,8 +52,7 @@
 	"imports": {
 		"#root/*": "./dist/*.js",
 		"#lib/*": "./dist/lib/*.js",
-		"#utils/*": "./dist/lib/utils/*.js",
-		"#structures/*": "./dist/structures/*.js"
+		"#utils/*": "./dist/lib/utils/*.js"
 	},
 	"packageManager": "yarn@3.2.0"
 }

@@ -1,6 +1,6 @@
 import '#lib/setup';
 
-import { ExpectoPatronumClient } from '#root/structures/ExpectoPatronumClient';
+import { ExpectoPatronumClient } from '#lib/structures/ExpectoPatronumClient';
 
 const client = new ExpectoPatronumClient();
 
