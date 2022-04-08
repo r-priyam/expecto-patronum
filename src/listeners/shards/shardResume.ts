@@ -10,6 +10,6 @@ import { formatShardHeader } from '#root/lib/utils/functions/formatter';
 })
 export class ShardResume extends Listener<typeof Events.ShardResume> {
 	public run(id: number, replayedEvents: number) {
-		this.container.logger.warn(`${formatShardHeader(id, yellowBright('Resumed'))}: Events replayed: ${magenta(replayedEvents)}`);
+		this.logger.warn(`${formatShardHeader(id, yellowBright('Resumed'))}: Events replayed: ${magenta(replayedEvents)}`);
 	}
 }

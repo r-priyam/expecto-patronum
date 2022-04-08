@@ -9,6 +9,6 @@ import { container, Events, Listener, LogLevel } from '@sapphire/framework';
 })
 export class ClientDebug extends Listener<typeof Events.Debug> {
 	public override run(message: string) {
-		this.container.client.logger.debug(message);
+		this.logger.debug(message);
 	}
 }

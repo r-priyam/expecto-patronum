@@ -16,7 +16,7 @@ export class UserEvent extends Listener<typeof Events.MessageCommandSuccess> {
 		const commandName = this.command(command);
 		const author = this.author(message.author);
 		const sentAt = message.guild ? this.guild(message.guild) : this.direct();
-		this.container.logger.debug(`${shard} » ${sentAt} » ${author} » ${commandName}`);
+		this.logger.debug(`${shard} » ${sentAt} » ${author} » ${commandName}`);
 	}
 
 	private shard(id: number) {

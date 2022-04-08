@@ -10,6 +10,6 @@ import { formatShardHeader } from '#root/lib/utils/functions/formatter';
 })
 export class ShardReconnecting extends Listener<typeof Events.ShardReconnecting> {
 	public run(id: number) {
-		this.container.logger.warn(`${formatShardHeader(id, yellow('Reconnecting'))}`);
+		this.logger.warn(`${formatShardHeader(id, yellow('Reconnecting'))}`);
 	}
 }

@@ -3,12 +3,15 @@ import 'reflect-metadata';
 import '@sapphire/plugin-logger/register';
 
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
-import { ApplicationCommandRegistries, container, RegisterBehavior } from '@sapphire/framework';
+import type { Logger } from '@sapphire/framework';
+import { ApplicationCommandRegistries, container, Piece, RegisterBehavior } from '@sapphire/framework';
 import * as colorette from 'colorette';
 import { blueBright, cyan, greenBright, redBright, yellow } from 'colorette';
 import type { Sql } from 'postgres';
 import postgres from 'postgres';
 import { inspect } from 'util';
+
+import type { ExpectoPatronumClient } from './structures/ExpectoPatronumClient';
 
 // set behavior to overwrite so that it can be overwritten by other changes
 // rather than warning in console.
@@ -39,8 +42,20 @@ container.sql = postgres({
 	}
 });
 
+// Inject quickly used container properties into pieces
+// this does - this.container.client -> this.client directly
+Object.defineProperty(Piece.prototype, 'client', { get: () => container.client });
+Object.defineProperty(Piece.prototype, 'sql', { get: () => container.sql });
+Object.defineProperty(Piece.prototype, 'logger', { get: () => container.logger });
+
 declare module '@sapphire/pieces' {
 	interface Container {
 		sql: Sql<any>;
+	}
+
+	interface Piece {
+		client: ExpectoPatronumClient;
+		sql: Sql<any>;
+		logger: Logger;
 	}
 }

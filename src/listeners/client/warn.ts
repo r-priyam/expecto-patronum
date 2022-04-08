@@ -7,6 +7,6 @@ import { Events, Listener } from '@sapphire/framework';
 })
 export class ClientWarn extends Listener<typeof Events.Warn> {
 	public override run(message: string) {
-		this.container.client.logger.warn(message);
+		this.logger.warn(message);
 	}
 }

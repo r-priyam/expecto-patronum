@@ -10,6 +10,6 @@ import { formatShardHeader } from '#root/lib/utils/functions/formatter';
 })
 export class ShardError extends Listener<typeof Events.ShardError> {
 	public run(error: Error, id: number) {
-		this.container.logger.error(`${formatShardHeader(id, red('Error'))}: ${error.stack ?? error.message}`);
+		this.logger.error(`${formatShardHeader(id, red('Error'))}: ${error.stack ?? error.message}`);
 	}
 }

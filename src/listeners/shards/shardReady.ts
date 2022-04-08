@@ -10,7 +10,7 @@ import { formatShardHeader } from '#root/lib/utils/functions/formatter';
 })
 export class ShardReady extends Listener<typeof Events.ShardReady> {
 	public override run(id: number, unavailableGuilds: Set<string> | undefined) {
-		this.container.logger.info(
+		this.logger.info(
 			`${formatShardHeader(id, green('Ready'))}: ${
 				unavailableGuilds?.size ? `${`${unavailableGuilds?.size} unavailable guilds`}` : 'So far so good 😎'
 			}`

@@ -11,6 +11,6 @@ import { formatShardHeader } from '#root/lib/utils/functions/formatter';
 })
 export class ShardDisconnect extends Listener<typeof Events.ShardDisconnect> {
 	public run(event: CloseEvent, id: number) {
-		this.container.logger.error(`${formatShardHeader(id, red('Disconnected'))}:\n\tCode: ${event.code}\n\tReason: ${event.reason}`);
+		this.logger.error(`${formatShardHeader(id, red('Disconnected'))}:\n\tCode: ${event.code}\n\tReason: ${event.reason}`);
 	}
 }

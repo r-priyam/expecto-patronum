@@ -36,6 +36,6 @@ export class PingCommand extends Command {
 		return new MessageEmbed() //
 			.setColor(Colors.Info)
 			.setTitle('I am still alive! 🍺')
-			.setDescription(`Pong! Bot Latency ${Math.round(this.container.client.ws.ping)}ms`);
+			.setDescription(`Pong! Bot Latency ${Math.round(this.client.ws.ping)}ms`);
 	}
 }
