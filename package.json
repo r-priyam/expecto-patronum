@@ -29,9 +29,11 @@
 		"@sapphire/utilities": "^3.6.2",
 		"discord.js": "^13.6.0",
 		"dotenv-cra": "^3.0.2",
+		"postgres": "^3.0.5",
 		"reflect-metadata": "^0.1.13"
 	},
 	"devDependencies": {
+		"@mikro-orm/sql-highlighter": "^1.0.1",
 		"@sapphire/eslint-config": "^4.3.3",
 		"@sapphire/prettier-config": "^1.4.2",
 		"@sapphire/ts-config": "^3.3.4",
