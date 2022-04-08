@@ -5,9 +5,9 @@ import { Stopwatch } from '@sapphire/stopwatch';
 import { exec } from 'child_process';
 import type { Message } from 'discord.js';
 
-import { EmbedBuilder } from '#root/lib/utils/embeds';
-import { MiscEmotes } from '#root/lib/utils/emotes';
-import { Prompter } from '#root/lib/utils/functions/prompter';
+import { Prompter } from '#utils/classes/prompter';
+import { EmbedBuilder } from '#utils/embeds';
+import { MiscEmotes } from '#utils/emotes';
 
 @ApplyOptions<Command.Options>({
 	description: 'Pulls code changes from github and reloads',
