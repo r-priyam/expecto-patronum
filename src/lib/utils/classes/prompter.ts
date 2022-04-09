@@ -35,7 +35,7 @@ class UserPrompter {
 
 			await interaction.editReply({ content: 'Aborting!', components: [] });
 			return false;
-		} catch (error) {
+		} catch {
 			await interaction.editReply({ content: 'You took too log to reply!', components: [] });
 			return false;
 		}

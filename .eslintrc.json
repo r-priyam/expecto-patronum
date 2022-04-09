@@ -1,5 +1,5 @@
 {
-	"extends": ["@sapphire", "plugin:prettier/recommended"],
+	"extends": ["@sapphire", "plugin:unicorn/all", "plugin:prettier/recommended"],
 	"plugins": ["prettier", "simple-import-sort", "import"],
 	"rules": {
 		"curly": [2, "all"], // to maintain the consistency of the code in conditonal statements
@@ -8,6 +8,14 @@
 		"simple-import-sort/imports": "error",
 		"simple-import-sort/exports": "error",
 		"import/newline-after-import": "error",
-		"@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports", "disallowTypeAnnotations": false }]
+		"@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports", "disallowTypeAnnotations": false }],
+		"unicorn/prevent-abbreviations": [
+			"error",
+			{
+				"allowList": {
+					"args": true
+				}
+			}
+		]
 	}
 }

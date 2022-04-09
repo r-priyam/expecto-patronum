@@ -1,15 +1,15 @@
 import { config } from 'dotenv-cra';
-import { join } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import { srcFolder } from '#utils/constants';
+import { sourceFolder } from '#utils/constants';
 
 // Unless explicitly defined, set NODE_ENV as development:
 process.env.NODE_ENV ??= 'development';
 
-config({ path: join(fileURLToPath(srcFolder), '.env') });
+config({ path: join(fileURLToPath(sourceFolder), '.env') });
 
-class Env {
+class Environment {
 	public get isDev(): boolean {
 		return process.env.NODE_ENV === 'development';
 	}
@@ -19,4 +19,4 @@ class Env {
 	}
 }
 
-export const Config = new Env();
+export const Config = new Environment();

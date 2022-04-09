@@ -22,14 +22,12 @@ export class PingCommand extends Command {
 	}
 
 	protected async _sharedRun(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, isMessage: boolean) {
-		if (isMessage) {
-			await messageOrInteraction.reply({ embeds: [this.pingEmbed()] });
-		} else {
-			await messageOrInteraction.reply({
-				embeds: [this.pingEmbed()],
-				ephemeral: true
-			});
-		}
+		await (isMessage
+			? messageOrInteraction.reply({ embeds: [this.pingEmbed()] })
+			: messageOrInteraction.reply({
+					embeds: [this.pingEmbed()],
+					ephemeral: true
+			  }));
 	}
 
 	private pingEmbed() {

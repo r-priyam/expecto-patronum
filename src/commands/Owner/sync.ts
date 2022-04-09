@@ -2,8 +2,8 @@ import { bold } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
-import { exec } from 'child_process';
 import type { Message } from 'discord.js';
+import { exec } from 'node:child_process';
 
 import { EmbedBuilder } from '#utils/classes/embeds';
 import { Prompter } from '#utils/classes/prompter';
@@ -69,7 +69,7 @@ export class UserCommand extends Command {
 		for (const key of modulesToReload.commands) {
 			const timer = new Stopwatch();
 			status.commands = [];
-			const result = await this.reload_command(key);
+			const result = await this.reloadCommand(key);
 			result
 				? status.commands.push(`${MiscEmotes.Success} \`${key}\` **\`${timer.stop().toString()}\`**`)
 				: status.commands.push(`${MiscEmotes.Error} \`${key}\` **\`${timer.stop().toString()}\`**`);
@@ -79,7 +79,7 @@ export class UserCommand extends Command {
 			for (const key of modulesToReload.listeners) {
 				const timer = new Stopwatch();
 				status.listeners = [];
-				const result = await this.reload_listener(key);
+				const result = await this.reloadListener(key);
 				result
 					? status.listeners.push(`${MiscEmotes.Success} \`${key}\`: ${result} **\`${timer.stop().toString()}\`**`)
 					: status.listeners.push(`${MiscEmotes.Error} \`${key}\` **\`${timer.stop().toString()}\`**`);
@@ -89,29 +89,29 @@ export class UserCommand extends Command {
 		return status;
 	}
 
-	private async reload_command(key: string) {
+	private async reloadCommand(key: string) {
 		try {
 			await this.container.stores.get('commands').get(key)!.reload();
 			return true;
 		} catch {
-			return null;
+			return false;
 		}
 	}
 
-	private async reload_listener(key: string) {
+	private async reloadListener(key: string) {
 		try {
 			// there can be multiple listeners in a file so it becomes a bit tricky
 			// to get the listener by name so instead getting by name let's get all
 			// the listeners inside a file and reload all of them one by one.
 			let reloadedNames = '';
-			const listeners = this.container.stores.get('listeners').filter((e) => e.location.full.includes(key));
+			const listeners = this.container.stores.get('listeners').filter((listener) => listener.location.full.includes(key));
 			for (const [name, value] of listeners) {
 				await value.reload();
 				reloadedNames += `\`${name}\` `;
 			}
 			return reloadedNames;
 		} catch {
-			return null;
+			return false;
 		}
 	}
 }

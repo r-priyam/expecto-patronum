@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/filename-case */
 import '#lib/setup';
 
 import { ExpectoPatronumClient } from '#lib/structures/ExpectoPatronumClient';
@@ -10,5 +11,5 @@ try {
 } catch (error) {
 	client.logger.fatal(error);
 	client.destroy();
-	process.exit(1);
+	process.exitCode = 1;
 }

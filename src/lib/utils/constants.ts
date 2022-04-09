@@ -2,7 +2,7 @@ import { Constants } from 'discord.js';
 import { URL } from 'node:url';
 
 export const rootFolder = new URL('../../../', import.meta.url);
-export const srcFolder = new URL('src/', rootFolder);
+export const sourceFolder = new URL('src/', rootFolder);
 
 export enum Colors {
 	Info = Constants.Colors.BLUE,

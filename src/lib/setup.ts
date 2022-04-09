@@ -7,9 +7,9 @@ import type { Logger } from '@sapphire/framework';
 import { ApplicationCommandRegistries, container, Piece, RegisterBehavior } from '@sapphire/framework';
 import * as colorette from 'colorette';
 import { blueBright, cyan, greenBright, redBright, yellow } from 'colorette';
+import { inspect } from 'node:util';
 import type { Sql } from 'postgres';
 import postgres from 'postgres';
-import { inspect } from 'util';
 
 import type { ExpectoPatronumClient } from './structures/ExpectoPatronumClient';
 
@@ -22,11 +22,11 @@ colorette.createColors({ useColor: true });
 
 const sqlHighlighter = new SqlHighlighter();
 container.sql = postgres({
-	debug: (connection, query, params, types) => {
+	debug: (connection, query, parameters, types) => {
 		container.logger.debug(
 			`${blueBright('Connections:')} ${yellow(connection)} » ${greenBright('Query:')} ${sqlHighlighter.highlight(query)} » ${redBright(
 				'Params:'
-			)} ${yellow(String(params || 'NULL'))} » ${cyan('Types:')} ${yellow(String(types || 'NULL'))}`
+			)} ${yellow(String(parameters || 'NULL'))} » ${cyan('Types:')} ${yellow(String(types || 'NULL'))}`
 		);
 	},
 	transform: {

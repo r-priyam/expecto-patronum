@@ -77,6 +77,7 @@ export class UserCommand extends Command {
 			}
 
 			// @ts-expect-error use as a variable if needed in eval
+			// eslint-disable-next-line unicorn/prevent-abbreviations
 			const msg = message;
 			// eslint-disable-next-line no-eval
 			result = eval(code);

@@ -4,7 +4,7 @@ import { Command } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
 import { codeBlock } from '@sapphire/utilities';
 import type { Message } from 'discord.js';
-import { inspect } from 'util';
+import { inspect } from 'node:util';
 
 import { TabularData } from '#utils/classes/table';
 
@@ -30,7 +30,7 @@ export class UserCommand extends Command {
 		table.addRows(result.map((r) => Object.values(r)));
 		const render = table.renderTable().split('\n');
 
-		while (render.length !== 0) {
+		while (render.length > 0) {
 			const toSend = render.splice(0, 12).join('\n');
 			await message.channel.send(
 				render.length === 0
@@ -55,11 +55,7 @@ export class UserCommand extends Command {
 			}
 
 			success = false;
-			if (error instanceof Error) {
-				result = error.message;
-			} else {
-				result = inspect(error, { depth: 0 });
-			}
+			result = error instanceof Error ? error.message : inspect(error, { depth: 0 });
 		}
 
 		stopwatch.stop();

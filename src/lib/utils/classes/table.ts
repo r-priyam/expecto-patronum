@@ -11,15 +11,15 @@ export class TabularData {
 	}
 
 	public addRow(row: any[]) {
-		const rows = row.map((r) => String(r));
+		const rows = row.map(String);
 		this._rows.push(rows);
 
-		rows.forEach((e, i) => {
-			const width = e.length + 2;
-			if (width > this._widths[i]) {
-				this._widths[i] = width;
+		for (const [index, entry] of rows.entries()) {
+			const width = entry.length + 2;
+			if (width > this._widths[index]) {
+				this._widths[index] = width;
 			}
-		});
+		}
 	}
 
 	public addRows(rows: any[]) {
@@ -31,24 +31,22 @@ export class TabularData {
 	public clearRows = () => (this._rows = []);
 
 	public renderTable() {
-		let sep = this._widths.map((w) => '-'.repeat(w)).join('+');
-		sep = `+${sep}+`;
+		let separator = this._widths.map((w) => '-'.repeat(w)).join('+');
+		separator = `+${separator}+`;
 
-		const toDraw = [sep];
-
-		function getEntry(widths: number[], data: string[]) {
-			const element = data.map((e, i) => centerAlign(e, widths[i])).join('|');
-			return `|${element}|`;
-		}
-
-		toDraw.push(getEntry(this._widths, this._columns));
-		toDraw.push(sep);
+		const toDraw = [separator];
+		toDraw.push(this.getEntry(this._columns), separator);
 
 		for (const row of this._rows) {
-			toDraw.push(getEntry(this._widths, row));
+			toDraw.push(this.getEntry(row));
 		}
 
-		toDraw.push(sep);
+		toDraw.push(separator);
 		return toDraw.join('\n');
+	}
+
+	private getEntry(data: string[]) {
+		const element = data.map((element, index) => centerAlign(element, this._widths[index])).join('|');
+		return `|${element}|`;
 	}
 }
