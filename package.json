@@ -11,7 +11,7 @@
 		"dev": "tsup --watch --onSuccess \"node --enable-source-maps dist/ExpectoPatronum.js\"",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "eslint src --ext ts --fix",
-		"start": "NODE_ENV=production node --enable-source-maps dist/ExpectoPatronum.js",
+		"start": "node --enable-source-maps dist/ExpectoPatronum.js",
 		"typecheck": "tsc -b src",
 		"watch": "tsup --watch"
 	},
@@ -28,9 +28,9 @@
 		"@sapphire/type": "^2.2.0",
 		"@sapphire/utilities": "^3.6.2",
 		"discord.js": "^13.6.0",
-		"dotenv-cra": "^3.0.2",
 		"postgres": "^3.0.5",
-		"reflect-metadata": "^0.1.13"
+		"reflect-metadata": "^0.1.13",
+		"yaml": "^2.0.0"
 	},
 	"devDependencies": {
 		"@mikro-orm/sql-highlighter": "^1.0.1",

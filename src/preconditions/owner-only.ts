@@ -17,7 +17,7 @@ export class UserPrecondition extends AllFlowsPrecondition {
 	}
 
 	private async checkOwner(userId: string) {
-		return Config.owner === userId ? this.ok() : this.error({ message: "You aren't my master 🤨" });
+		return Config.bot.owners.includes(userId) ? this.ok() : this.error({ message: "You aren't my master 🤨" });
 	}
 }
 

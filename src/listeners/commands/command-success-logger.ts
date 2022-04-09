@@ -1,14 +1,15 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import type { Command, MessageCommandSuccessPayload } from '@sapphire/framework';
-import { container, Events, Listener, LogLevel } from '@sapphire/framework';
-import type { Logger } from '@sapphire/plugin-logger';
+import { Events, Listener } from '@sapphire/framework';
 import { blue, cyan, yellow } from 'colorette';
 import type { Guild, User } from 'discord.js';
+
+import { Config } from '#root/config';
 
 @ApplyOptions<Listener.Options>({
 	name: 'MessageCommandSuccess',
 	event: Events.MessageCommandSuccess,
-	enabled: (container.client.logger as Logger).level <= LogLevel.Info
+	enabled: Config.debug
 })
 export class UserEvent extends Listener<typeof Events.MessageCommandSuccess> {
 	public run({ message, command }: MessageCommandSuccessPayload) {

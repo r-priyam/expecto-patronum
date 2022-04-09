@@ -11,7 +11,7 @@ import { Config } from '#root/config';
 	once: true
 })
 export class Ready extends Listener {
-	private readonly style = Config.isDev ? yellow : blue;
+	private readonly style = Config.development ? yellow : blue;
 
 	public run() {
 		this.printBanner();
@@ -21,8 +21,8 @@ export class Ready extends Listener {
 	private printBanner() {
 		const success = green('+');
 
-		const llc = Config.isDev ? magentaBright : white;
-		const blc = Config.isDev ? magenta : blue;
+		const llc = Config.development ? magentaBright : white;
+		const blc = Config.development ? magenta : blue;
 
 		const line01 = llc('');
 		const line02 = llc('');
@@ -35,7 +35,7 @@ export class Ready extends Listener {
 			String.raw`
 ${line01} ${pad}${blc('1.0.0')}
 ${line02} ${pad}[${success}] Gateway
-${line03}${Config.isDev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
+${line03}${Config.development ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
 		`.trim()
 		);
 	}

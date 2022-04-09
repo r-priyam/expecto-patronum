@@ -1,11 +1,12 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import type { Logger } from '@sapphire/framework';
-import { container, Events, Listener, LogLevel } from '@sapphire/framework';
+import { Events, Listener } from '@sapphire/framework';
+
+import { Config } from '#root/config';
 
 @ApplyOptions<Listener.Options>({
 	name: 'ClientDebug',
 	event: Events.Debug,
-	enabled: (container.client.logger as Logger).level <= LogLevel.Debug
+	enabled: Config.debug
 })
 export class ClientDebug extends Listener<typeof Events.Debug> {
 	public override run(message: string) {
