@@ -1,0 +1,14 @@
+{
+	"types": [
+		{ "type": "feat", "section": "Features" },
+		{ "type": "fix", "section": "Bug Fixes" },
+		{ "type": "chore", "hidden": true },
+		{ "type": "docs", "hidden": true },
+		{ "type": "style", "hidden": true },
+		{ "type": "refactor", "section": "Optimize" },
+		{ "type": "perf", "section": "Improvements" },
+		{ "type": "test", "hidden": true }
+	],
+	"commitUrlFormat": "https://github.com/r-priyam/expecto-patronum/commits/{{hash}}",
+	"compareUrlFormat": "https://github.com/r-priyam/expecto-patronum/compare/{{previousTag}}...{{currentTag}}"
+}

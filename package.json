@@ -1,6 +1,6 @@
 {
 	"name": "expecto-patronum",
-	"version": "1.0.0",
+	"version": "0.0.0",
 	"private": true,
 	"license": "MPL-2.0",
 	"author": "r-priyam <roy_priyam@outlook.com>",
@@ -11,6 +11,10 @@
 		"dev": "tsup --watch --onSuccess \"node --enable-source-maps dist/ExpectoPatronum.js\"",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "eslint src --ext ts --fix",
+		"release": "standard-version",
+		"release:major": "standard-version --release-as major",
+		"release:minor": "standard-version --release-as minor",
+		"release:patch": "standard-version --release-as patch",
 		"start": "node --enable-source-maps dist/ExpectoPatronum.js",
 		"typecheck": "tsc -b src",
 		"watch": "tsup --watch"
@@ -51,6 +55,7 @@
 		"eslint-plugin-unicorn": "^42.0.0",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^2.6.2",
+		"standard-version": "^9.3.2",
 		"tsup": "^5.12.4",
 		"typescript": "^4.6.3"
 	},
