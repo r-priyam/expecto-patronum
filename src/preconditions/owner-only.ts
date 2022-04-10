@@ -1,8 +1,12 @@
+import { ApplyOptions } from '@sapphire/decorators';
 import { AllFlowsPrecondition } from '@sapphire/framework';
 import type { CommandInteraction, ContextMenuInteraction, Message } from 'discord.js';
 
 import { Config } from '#root/config';
 
+@ApplyOptions<AllFlowsPrecondition.Options>({
+	name: 'OwnerOnly'
+})
 export class UserPrecondition extends AllFlowsPrecondition {
 	public async chatInputRun(interaction: CommandInteraction) {
 		return this.checkOwner(interaction.user.id);
