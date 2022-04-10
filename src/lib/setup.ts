@@ -1,4 +1,3 @@
-import '#root/config';
 import 'reflect-metadata';
 import '@sapphire/plugin-logger/register';
 
@@ -11,6 +10,8 @@ import { inspect } from 'node:util';
 import type { Sql } from 'postgres';
 import postgres from 'postgres';
 
+import { Config } from '#root/config';
+
 import type { ExpectoPatronumClient } from './structures/ExpectoPatronumClient';
 
 // set behavior to overwrite so that it can be overwritten by other changes
@@ -21,7 +22,14 @@ inspect.defaultOptions.depth = 1;
 colorette.createColors({ useColor: true });
 
 const sqlHighlighter = new SqlHighlighter();
+const { postgres: pg } = Config.database;
+
 container.sql = postgres({
+	host: pg.host,
+	port: pg.port,
+	user: pg.user,
+	password: pg.password,
+	database: pg.database,
 	debug: (connection, query, parameters, types) => {
 		container.logger.debug(
 			`${blueBright('Connections:')} ${yellow(connection)} » ${greenBright('Query:')} ${sqlHighlighter.highlight(query)} » ${redBright(

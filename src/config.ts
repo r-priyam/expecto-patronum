@@ -8,8 +8,8 @@ import { sourceFolder } from '#utils/constants';
 interface EnvironmentVariables {
 	development: boolean;
 	debug: boolean;
-	bot: { token: string; activity: string; type: string; owners: string[] };
-	database: { postgres: { host: string; port: string; user: string; password: string; database: string } };
+	bot: { token: string; activityMessage: string; owners: string[] };
+	database: { postgres: { host: string; port: number; user: string; password: string; database: string } };
 }
 
 const fileContents = fs.readFileSync(join(fileURLToPath(sourceFolder), 'config.yaml'), 'utf8');
