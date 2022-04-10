@@ -1,7 +1,6 @@
 /* eslint-disable unicorn/filename-case */
 import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { GatewayIntentBits } from 'discord-api-types/v9';
-import { env } from 'node:process';
 
 import { Config } from '#root/config';
 
