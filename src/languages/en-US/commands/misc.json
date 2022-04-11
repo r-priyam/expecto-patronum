@@ -1,0 +1,6 @@
+{
+	"ping": {
+		"title": "TEST",
+		"description": "Pong! Bot Latency {{latency}}ms"
+	}
+}
