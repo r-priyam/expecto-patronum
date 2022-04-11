@@ -1,0 +1,6 @@
+{
+	"ping": {
+		"title": "தேர்வாய்வு",
+		"description": "பாங்! பாட் தாமதம் {{latency}}ms"
+	}
+}
