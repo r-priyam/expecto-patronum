@@ -1,6 +1,6 @@
 {
 	"ping": {
-		"title": "I am still alive! 🍺",
-		"description": "Pong! Bot Latency {{latency}}ms"
+		"title": "मैं अभी भी जीवित हूँ! 🍺",
+		"description": "पोंग! एमएस {{latency}}बॉट विलंबता"
 	}
 }
