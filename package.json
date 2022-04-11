@@ -7,8 +7,9 @@
 	"type": "module",
 	"main": "dist/ExpectoPatronum.js",
 	"scripts": {
-		"build": "tsup",
-		"dev": "tsup --watch --onSuccess \"node --enable-source-maps dist/ExpectoPatronum.js\"",
+		"build": "rimraf dist tsc -b src",
+		"dev": "rimraf dist && yarn build && yarn start",
+		"dev:watch": "tsc-watch -b src --onSuccess \"yarn start\"",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "eslint src --ext ts --fix",
 		"push-release": "git push --follow-tags origin main",
@@ -17,8 +18,7 @@
 		"release:minor": "standard-version --release-as minor && yarn push-release",
 		"release:patch": "standard-version --release-as patch && yarn push-release",
 		"start": "node --enable-source-maps dist/ExpectoPatronum.js",
-		"typecheck": "tsc -b src",
-		"watch": "tsup --watch"
+		"watch": "tsc -b src -w"
 	},
 	"prettier": "@sapphire/prettier-config",
 	"dependencies": {
@@ -40,10 +40,11 @@
 	"devDependencies": {
 		"@mikro-orm/sql-highlighter": "^1.0.1",
 		"@sapphire/eslint-config": "^4.3.3",
+		"@sapphire/plugin-hmr": "^1.2.0",
 		"@sapphire/prettier-config": "^1.4.2",
 		"@sapphire/ts-config": "^3.3.4",
-		"@swc/core": "^1.2.165",
 		"@types/node": "^17.0.23",
+		"@types/rimraf": "^3",
 		"@types/ws": "^8.5.3",
 		"@typescript-eslint/eslint-plugin": "^5.18.0",
 		"@typescript-eslint/parser": "^5.18.0",
@@ -56,8 +57,9 @@
 		"eslint-plugin-unicorn": "^42.0.0",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^2.6.2",
+		"rimraf": "^3.0.2",
 		"standard-version": "^9.3.2",
-		"tsup": "^5.12.4",
+		"tsc-watch": "^5.0.3",
 		"typescript": "^4.6.3"
 	},
 	"imports": {

@@ -1,5 +1,6 @@
 /* eslint-disable unicorn/filename-case */
 import { LogLevel, SapphireClient } from '@sapphire/framework';
+import { Time } from '@sapphire/time-utilities';
 import { GatewayIntentBits } from 'discord-api-types/v9';
 
 import { Config } from '#root/config';
@@ -27,7 +28,13 @@ export class ExpectoPatronumClient extends SapphireClient {
 				]
 			},
 			loadMessageCommandListeners: true,
-			loadDefaultErrorListeners: false
+			loadDefaultErrorListeners: false,
+			hmr: {
+				enabled: Config.development,
+				usePolling: true,
+				// delay hmr by 3 seconds
+				interval: Time.Second * 3
+			}
 		});
 	}
 }

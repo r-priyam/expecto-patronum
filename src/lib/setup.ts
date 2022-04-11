@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import '@sapphire/plugin-hmr/register';
 import '@sapphire/plugin-logger/register';
 
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
