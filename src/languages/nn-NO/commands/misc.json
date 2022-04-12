@@ -1,6 +1,6 @@
 {
 	"ping": {
 		"title": "I am still alive! 🍺",
-		"description": "Pong! Bot Latency {{latency}}ms"
+		"description": "Testing again, if this works. Pong! Bot Latency {{latency}}ms"
 	}
 }
