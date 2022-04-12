@@ -5,8 +5,8 @@
 		{ "type": "chore", "hidden": true },
 		{ "type": "docs", "hidden": true },
 		{ "type": "style", "hidden": true },
-		{ "type": "refactor", "section": "Optimize" },
-		{ "type": "perf", "section": "Improvements" },
+		{ "type": "refactor", "section": "Improvements" },
+		{ "type": "perf", "section": "Optimized" },
 		{ "type": "test", "hidden": true }
 	],
 	"commitUrlFormat": "https://github.com/r-priyam/expecto-patronum/commits/{{hash}}",
