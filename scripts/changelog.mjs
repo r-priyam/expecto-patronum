@@ -10,7 +10,6 @@ const heading =
 const capital = (word) => word.replace(/^./, word[0].toUpperCase());
 const shortHash = (hash) => `\`${hash.slice(0, 7)}\``;
 const commitUrl = (hash) => `https://github.com/r-priyam/expecto-patronum/commits/${hash}`;
-const compareUrl = (previousTag, currentTag) => `https://github.com/r-priyam/expecto-patronum/compare/${previousTag}...${currentTag}`;
 
 async function generateChanegLog() {
 	const { version } = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
@@ -58,7 +57,9 @@ async function generateChanegLog() {
 		}
 	}
 
-	let changeLogNew = `## [${version}](${compareUrl(versionTag.slice(1), version)}) (${new Date().toISOString().split('T')[0]})\n\n`;
+	const compareUrl = `https://github.com/r-priyam/expecto-patronum/compare/${versionTag.slice(1)}...${version}`;
+	let changeLogNew = `## [${version}](${compareUrl.replace(/\r?\n|\r/, '')}) (${new Date().toISOString().split('T')[0]})\n\n`;
+	console.log(changeLogNew);
 
 	if (changeLog.features.length > 0) {
 		changeLogNew += `### Features\n\n`;
@@ -95,8 +96,6 @@ async function generateChanegLog() {
 	await (oldChangeLog
 		? writeFile(new URL('../CHANGELOG.md', import.meta.url), `${heading}\n\n${changeLogNew}${oldChangeLog}`)
 		: writeFile(new URL('../CHANGELOG.md', import.meta.url), `${heading}\n\n${changeLogNew}`));
-
-	await execute('git add CHANGELOG.md');
 }
 
 await generateChanegLog();
