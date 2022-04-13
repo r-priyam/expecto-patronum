@@ -13,7 +13,7 @@
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "eslint src --ext ts --fix",
 		"changelog": "node scripts/changelog.mjs",
-		"release": "bumpp --execute \"yarn changelog\" --commit 'chore(release): v' -a -t -p",
+		"release": "standard-version -a",
 		"start": "node --enable-source-maps dist/ExpectoPatronum.js",
 		"watch": "tsc -b src -w"
 	},
@@ -61,6 +61,14 @@
 		"#root/*": "./dist/*.js",
 		"#lib/*": "./dist/lib/*.js",
 		"#utils/*": "./dist/lib/utils/*.js"
+	},
+	"standard-version": {
+		"scripts": {
+			"precommit": "yarn changelog && git add CHANGELOG.md"
+		},
+		"skip": {
+			"changelog": true
+		}
 	},
 	"packageManager": "yarn@3.2.0"
 }
