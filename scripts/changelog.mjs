@@ -59,7 +59,6 @@ async function generateChanegLog() {
 
 	const compareUrl = `https://github.com/r-priyam/expecto-patronum/compare/${versionTag.slice(1)}...${version}`;
 	let changeLogNew = `## [${version}](${compareUrl.replace(/\r?\n|\r/, '')}) (${new Date().toISOString().split('T')[0]})\n\n`;
-	console.log(changeLogNew);
 
 	if (changeLog.features.length > 0) {
 		changeLogNew += `### Features\n\n`;
