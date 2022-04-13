@@ -1,6 +1,6 @@
 {
 	"name": "expecto-patronum",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"private": true,
 	"license": "MPL-2.0",
 	"author": "r-priyam <roy_priyam@outlook.com>",
@@ -13,7 +13,7 @@
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "eslint src --ext ts --fix",
 		"changelog": "node scripts/changelog.mjs",
-		"release": "bumpp --execute \"yarn changelog\" --commit 'chore(release): v' -a -p",
+		"release": "bumpp --execute \"yarn changelog\" --commit 'chore(release): v' -a -t -p",
 		"start": "node --enable-source-maps dist/ExpectoPatronum.js",
 		"watch": "tsc -b src -w"
 	},
@@ -53,6 +53,7 @@
 		"eslint-plugin-unicorn": "^42.0.0",
 		"prettier": "^2.6.2",
 		"rimraf": "^3.0.2",
+		"standard-version": "^9.3.2",
 		"tsc-watch": "^5.0.3",
 		"typescript": "^4.6.3"
 	},

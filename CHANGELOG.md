@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.1](https://github.com/r-priyam/expecto-patronum/compare/0.1.0...0.1.1) (2022-04-13)
+
+### Features
+
+* ✨ Use `bumpp` for version management [`4c149c4`](https://github.com/r-priyam/expecto-patronum/commits/4c149c4b82df655ac9f4e0a32198d818d4b2b67d)
+* ✨ Changelog generator script [`10736d4`](https://github.com/r-priyam/expecto-patronum/commits/10736d4d6c12d26463d4fbd16fab3e3992d61f0d)
+* ✨ **Crowdin**: Update localization files (#33) [`8b18ad4`](https://github.com/r-priyam/expecto-patronum/commits/8b18ad45f160a9b4f9c79b702af4006087e860c9)
+* ✨ Add `en_US` commands translation [`a91699d`](https://github.com/r-priyam/expecto-patronum/commits/a91699d5aabe6bd1c54a818549d8bafbce5b5907)
+* ✨ Setup crowdin [`40dd1b8`](https://github.com/r-priyam/expecto-patronum/commits/40dd1b8e9e1d3d4b3779a0d431bba84265adeb9f)
+* ✨ Add code analysis wokflow [`844cece`](https://github.com/r-priyam/expecto-patronum/commits/844cece1d78220e647e51b9490e24ccdfbb5c146)
+
+### Bug Fixes
+
+* 🐛 **Deps**: Remove unused packages [`a6f9b16`](https://github.com/r-priyam/expecto-patronum/commits/a6f9b16c3c0ad30fa487f7fbe33aeeb8e7511348)
+* 🐛 **Changelog-Script**: Compare link addition [`cc69fc2`](https://github.com/r-priyam/expecto-patronum/commits/cc69fc211b5797dfef290f6b26378d3861285d48)
+
+### Optimization
+
+* ⚒️  Use `plugin-hmr` instead of `tsup` [`1033937`](https://github.com/r-priyam/expecto-patronum/commits/1033937b3398a3948f7301cebdec32c89bc369b3)
+
 ## [0.1.0](https://github.com/r-priyam/expecto-patronum/compare/v0.1.0...HEAD) (2022-04-10)
 
 ### Features
