@@ -8,14 +8,29 @@
 	"main": "dist/ExpectoPatronum.js",
 	"scripts": {
 		"build": "rimraf dist && tsc -b src",
+		"changelog": "node scripts/changelog.mjs",
+		"commit": "git-cz",
 		"dev": "rimraf dist && yarn build && yarn start",
 		"dev:watch": "tsc-watch -b src --onSuccess \"yarn start\"",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "eslint src --ext ts --fix",
-		"changelog": "node scripts/changelog.mjs",
+		"prepare": "husky install",
 		"release": "standard-version -a",
 		"start": "node --enable-source-maps dist/ExpectoPatronum.js",
 		"watch": "tsc -b src -w"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*.{mjs,ts}": "eslint --fix --ext mjs,ts"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
 	},
 	"prettier": "@sapphire/prettier-config",
 	"dependencies": {
@@ -34,6 +49,8 @@
 		"yaml": "^2.0.0"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^16.2.3",
+		"@commitlint/config-conventional": "^16.2.1",
 		"@mikro-orm/sql-highlighter": "^1.0.1",
 		"@sapphire/eslint-config": "^4.3.3",
 		"@sapphire/plugin-hmr": "^1.2.0",
@@ -44,6 +61,8 @@
 		"@typescript-eslint/eslint-plugin": "^5.19.0",
 		"@typescript-eslint/parser": "^5.19.0",
 		"bumpp": "^7.1.1",
+		"commitizen": "^4.2.4",
+		"cz-conventional-changelog": "3.3.0",
 		"discord-api-types": "^0.31.1",
 		"eslint": "^8.13.0",
 		"eslint-config-prettier": "^8.5.0",
@@ -53,7 +72,10 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
 		"eslint-plugin-unicorn": "^42.0.0",
+		"husky": "^7.0.4",
+		"lint-staged": "^12.3.8",
 		"prettier": "^2.6.2",
+		"pretty-quick": "^3.1.3",
 		"rimraf": "^3.0.2",
 		"standard-version": "^9.3.2",
 		"tsc-watch": "^5.0.3",
@@ -64,6 +86,7 @@
 		"#lib/*": "./dist/lib/*.js",
 		"#utils/*": "./dist/lib/utils/*.js"
 	},
+	"packageManager": "yarn@3.2.0",
 	"standard-version": {
 		"scripts": {
 			"precommit": "yarn changelog && git add CHANGELOG.md"
@@ -71,6 +94,5 @@
 		"skip": {
 			"changelog": true
 		}
-	},
-	"packageManager": "yarn@3.2.0"
+	}
 }
