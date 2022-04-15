@@ -33,6 +33,9 @@
 		}
 	},
 	"prettier": "@sapphire/prettier-config",
+	"resolutions": {
+		"minimist": "^1.2.6"
+	},
 	"dependencies": {
 		"@sapphire/decorators": "^4.3.4",
 		"@sapphire/discord-utilities": "^2.10.3",
