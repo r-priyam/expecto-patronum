@@ -1,9 +1,8 @@
-/* eslint-disable unicorn/filename-case */
 import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { Time } from '@sapphire/time-utilities';
 import { GatewayIntentBits } from 'discord-api-types/v9';
 
-import { Config } from '#root/config';
+import { config } from '#root/config';
 
 export class ExpectoPatronumClient extends SapphireClient {
 	public constructor() {
@@ -11,7 +10,7 @@ export class ExpectoPatronumClient extends SapphireClient {
 			shards: 'auto',
 			defaultPrefix: ['!', '.', '?'],
 			caseInsensitiveCommands: true,
-			logger: { level: Config.development ? LogLevel.Debug : LogLevel.Info },
+			logger: { level: config.development ? LogLevel.Debug : LogLevel.Info },
 			intents: [
 				GatewayIntentBits.Guilds,
 				GatewayIntentBits.GuildMembers,
@@ -22,7 +21,7 @@ export class ExpectoPatronumClient extends SapphireClient {
 			presence: {
 				activities: [
 					{
-						name: Config.bot.activityMessage,
+						name: config.bot.activityMessage,
 						type: 'PLAYING'
 					}
 				]
@@ -30,9 +29,9 @@ export class ExpectoPatronumClient extends SapphireClient {
 			loadMessageCommandListeners: true,
 			loadDefaultErrorListeners: false,
 			hmr: {
-				enabled: Config.development,
+				enabled: config.development,
 				usePolling: true,
-				// delay hmr by 3 seconds
+				// Delay hmr by 3 seconds
 				interval: Time.Second * 3
 			}
 		});

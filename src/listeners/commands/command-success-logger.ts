@@ -4,12 +4,12 @@ import { Events, Listener } from '@sapphire/framework';
 import { blue, cyan, yellow } from 'colorette';
 import type { Guild, User } from 'discord.js';
 
-import { Config } from '#root/config';
+import { config } from '#root/config';
 
 @ApplyOptions<Listener.Options>({
 	name: 'MessageCommandSuccess',
 	event: Events.MessageCommandSuccess,
-	enabled: Config.debug
+	enabled: config.debug
 })
 export class UserEvent extends Listener<typeof Events.MessageCommandSuccess> {
 	public run({ message, command }: MessageCommandSuccessPayload) {

@@ -1,15 +1,14 @@
-/* eslint-disable unicorn/filename-case */
 import '#lib/setup';
 
 import { ExpectoPatronumClient } from '#lib/structures/ExpectoPatronumClient';
-import { Config } from '#root/config';
+import { config } from '#root/config';
 
 const client = new ExpectoPatronumClient();
 
 try {
-	await client.login(Config.bot.token);
+	await client.login(config.bot.token);
 	client.logger.info('Successfully logged in.');
-} catch (error) {
+} catch (error: unknown) {
 	client.logger.fatal(error);
 	client.destroy();
 	process.exitCode = 1;

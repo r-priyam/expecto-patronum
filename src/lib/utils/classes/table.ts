@@ -28,7 +28,9 @@ export class TabularData {
 		}
 	}
 
-	public clearRows = () => (this._rows = []);
+	public clearRows() {
+		this._rows = [];
+	}
 
 	public renderTable() {
 		let separator = this._widths.map((w) => '-'.repeat(w)).join('+');
@@ -46,7 +48,9 @@ export class TabularData {
 	}
 
 	private getEntry(data: string[]) {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		const element = data.map((element, index) => centerAlign(element, this._widths[index])).join('|');
+		console.log(element);
 		return `|${element}|`;
 	}
 }

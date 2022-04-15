@@ -20,4 +20,4 @@ class Embed {
 	}
 }
 
-export const EmbedBuilder = new Embed();
+export const embedBuilder = new Embed();

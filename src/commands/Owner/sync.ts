@@ -5,8 +5,8 @@ import { Stopwatch } from '@sapphire/stopwatch';
 import type { Message } from 'discord.js';
 import { exec } from 'node:child_process';
 
-import { EmbedBuilder } from '#utils/classes/embeds';
-import { Prompter } from '#utils/classes/prompter';
+import { embedBuilder } from '#utils/classes/embeds';
+import { prompter } from '#utils/classes/prompter';
 import { MiscEmotes } from '#utils/emotes';
 
 @ApplyOptions<Command.Options>({
@@ -23,12 +23,12 @@ export class UserCommand extends Command {
 		exec('git pull', async (_, stdout, __) => {
 			if (stdout.startsWith('Already up to date')) {
 				return message.reply({
-					embeds: [EmbedBuilder.warning('Already up to date')],
+					embeds: [embedBuilder.warning('Already up to date')],
 					components: []
 				});
 			}
 
-			const prompt = await Prompter.messagePrompter(message, 'Are you sure to proceed?');
+			const prompt = await prompter.messagePrompter(message, 'Are you sure to proceed?');
 			if (!prompt) {
 				return;
 			}
@@ -36,12 +36,15 @@ export class UserCommand extends Command {
 			exec('yarn build', async () => {
 				const status = await this.performReload(this.filterModules(stdout));
 				let message = '';
-				status.commands.length > 0 && (message += `${bold('Commands')}\n${status.commands.join('\n')}\n`);
-				status.listeners.length > 0 && (message += `${bold('Listeners')}\n${status.listeners.join('\n')}`);
+				if (status.commands.length > 0) {
+					message += `${bold('Commands')}\n${status.commands.join('\n')}\n`;
+				}
 
-				return prompt.promptMessage.edit({
-					content: message
-				});
+				if (status.listeners.length > 0) {
+					message += `${bold('Listeners')}\n${status.listeners.join('\n')}`;
+				}
+
+				prompt.promptMessage.edit({ content: message });
 			});
 		});
 	}
@@ -60,19 +63,23 @@ export class UserCommand extends Command {
 				modulesToReload.listeners.push(path.split('/').pop()!);
 			}
 		}
+
 		return modulesToReload;
 	}
 
 	private async performReload(modulesToReload: { commands: string[]; listeners: string[] }) {
-		const status: { [key: string]: string[] } = {};
+		const status: Record<string, string[]> = {};
 
 		for (const key of modulesToReload.commands) {
 			const timer = new Stopwatch();
 			status.commands = [];
 			const result = await this.reloadCommand(key);
-			result
-				? status.commands.push(`${MiscEmotes.Success} \`${key}\` **\`${timer.stop().toString()}\`**`)
-				: status.commands.push(`${MiscEmotes.Error} \`${key}\` **\`${timer.stop().toString()}\`**`);
+
+			if (result) {
+				status.commands.push(`${MiscEmotes.Success} \`${key}\` **\`${timer.stop().toString()}\`**`);
+			} else {
+				status.commands.push(`${MiscEmotes.Error} \`${key}\` **\`${timer.stop().toString()}\`**`);
+			}
 		}
 
 		if (modulesToReload.listeners.length > 0) {
@@ -80,9 +87,11 @@ export class UserCommand extends Command {
 				const timer = new Stopwatch();
 				status.listeners = [];
 				const result = await this.reloadListener(key);
-				result
-					? status.listeners.push(`${MiscEmotes.Success} \`${key}\`: ${result} **\`${timer.stop().toString()}\`**`)
-					: status.listeners.push(`${MiscEmotes.Error} \`${key}\` **\`${timer.stop().toString()}\`**`);
+				if (result) {
+					status.listeners.push(`${MiscEmotes.Success} \`${key}\`: ${result} **\`${timer.stop().toString()}\`**`);
+				} else {
+					status.listeners.push(`${MiscEmotes.Error} \`${key}\` **\`${timer.stop().toString()}\`**`);
+				}
 			}
 		}
 
@@ -100,7 +109,7 @@ export class UserCommand extends Command {
 
 	private async reloadListener(key: string) {
 		try {
-			// there can be multiple listeners in a file so it becomes a bit tricky
+			// There can be multiple listeners in a file so it becomes a bit tricky
 			// to get the listener by name so instead getting by name let's get all
 			// the listeners inside a file and reload all of them one by one.
 			let reloadedNames = '';
@@ -109,6 +118,7 @@ export class UserCommand extends Command {
 				await value.reload();
 				reloadedNames += `\`${name}\` `;
 			}
+
 			return reloadedNames;
 		} catch {
 			return false;

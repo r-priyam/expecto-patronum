@@ -13,11 +13,11 @@ import { Colors } from '#root/lib/utils/constants';
 	}
 })
 export class PingCommand extends Command {
-	public override messageRun(message: Message) {
+	public override async messageRun(message: Message) {
 		return this._sharedRun(message, true);
 	}
 
-	public override chatInputRun(interaction: Command.ChatInputInteraction<'cached'>) {
+	public override async chatInputRun(interaction: Command.ChatInputInteraction<'cached'>) {
 		return this._sharedRun(interaction, false);
 	}
 

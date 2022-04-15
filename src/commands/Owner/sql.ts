@@ -26,12 +26,14 @@ export class UserCommand extends Command {
 
 		const table = new TabularData();
 		table.setColumns(Object.keys(result[0]));
+
 		// @ts-expect-error result will be in array only
 		table.addRows(result.map((r) => Object.values(r)));
 		const render = table.renderTable().split('\n');
 
 		while (render.length > 0) {
 			const toSend = render.splice(0, 12).join('\n');
+
 			await message.channel.send(
 				render.length === 0
 					? `${codeBlock('ts', toSend)}\nReturned \`${result.length}\` rows. Executed in: \`${executionTime}\``
@@ -49,7 +51,7 @@ export class UserCommand extends Command {
 		try {
 			result = await this.sql.unsafe(query);
 			executionTime = stopwatch.toString();
-		} catch (error) {
+		} catch (error: unknown) {
 			if (!executionTime) {
 				executionTime = stopwatch.toString();
 			}

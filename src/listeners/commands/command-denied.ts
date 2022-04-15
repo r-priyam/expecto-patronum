@@ -2,7 +2,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommandDeniedPayload, MessageCommandDeniedPayload, UserError } from '@sapphire/framework';
 import { Events, Listener } from '@sapphire/framework';
 
-import { EmbedBuilder } from '#utils/classes/embeds';
+import { embedBuilder } from '#utils/classes/embeds';
 
 @ApplyOptions<Listener.Options>({
 	name: 'MessageCommandDenied',
@@ -10,7 +10,7 @@ import { EmbedBuilder } from '#utils/classes/embeds';
 })
 export class MessageCommandDenied extends Listener<typeof Events.MessageCommandDenied> {
 	public override async run(error: UserError, { message }: MessageCommandDeniedPayload) {
-		await message.channel.send({ embeds: [EmbedBuilder.error(error.message)] });
+		await message.channel.send({ embeds: [embedBuilder.error(error.message)] });
 	}
 }
 
@@ -21,11 +21,11 @@ export class MessageCommandDenied extends Listener<typeof Events.MessageCommandD
 export class ChatInputCommandDenied extends Listener<typeof Events.ChatInputCommandDenied> {
 	public override async run(error: UserError, { interaction }: ChatInputCommandDeniedPayload) {
 		if (interaction.replied || interaction.deferred) {
-			// TODO: just remove useless return in future when types aren't colliding
-			await interaction.editReply({ embeds: [EmbedBuilder.error(error.message)] });
+			// Just remove useless return in future when types aren't colliding
+			await interaction.editReply({ embeds: [embedBuilder.error(error.message)] });
 			return;
 		}
 
-		return interaction.reply({ embeds: [EmbedBuilder.error(error.message)], ephemeral: true });
+		return interaction.reply({ embeds: [embedBuilder.error(error.message)], ephemeral: true });
 	}
 }

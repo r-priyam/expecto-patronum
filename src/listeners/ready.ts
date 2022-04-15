@@ -3,7 +3,7 @@ import type { Store } from '@sapphire/framework';
 import { Events, Listener } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 
-import { Config } from '#root/config';
+import { config } from '#root/config';
 
 @ApplyOptions<Listener.Options>({
 	name: 'ClientReady',
@@ -11,7 +11,7 @@ import { Config } from '#root/config';
 	once: true
 })
 export class Ready extends Listener {
-	private readonly style = Config.development ? yellow : blue;
+	private readonly style = config.development ? yellow : blue;
 
 	public run() {
 		this.printBanner();
@@ -21,8 +21,8 @@ export class Ready extends Listener {
 	private printBanner() {
 		const success = green('+');
 
-		const llc = Config.development ? magentaBright : white;
-		const blc = Config.development ? magenta : blue;
+		const llc = config.development ? magentaBright : white;
+		const blc = config.development ? magenta : blue;
 
 		const line01 = llc('');
 		const line02 = llc('');
@@ -35,7 +35,7 @@ export class Ready extends Listener {
 			String.raw`
 ${line01} ${pad}${blc('1.0.0')}
 ${line02} ${pad}[${success}] Gateway
-${line03}${Config.development ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
+${line03}${config.development ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
 		`.trim()
 		);
 	}
@@ -48,6 +48,7 @@ ${line03}${Config.development ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc(
 		for (const store of stores) {
 			logger.info(this.styleStore(store, false));
 		}
+
 		logger.info(this.styleStore(last, true));
 	}
 

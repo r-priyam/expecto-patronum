@@ -13,4 +13,4 @@ interface EnvironmentVariables {
 }
 
 const fileContents = fs.readFileSync(join(fileURLToPath(sourceFolder), 'config.yaml'), 'utf8');
-export const Config: EnvironmentVariables = YAML.parse(fileContents);
+export const config = YAML.parse(fileContents) as EnvironmentVariables;

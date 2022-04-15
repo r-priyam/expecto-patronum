@@ -5,12 +5,11 @@ import { Command } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
 import { Time } from '@sapphire/time-utilities';
 import { Type } from '@sapphire/type';
-import { isThenable } from '@sapphire/utilities';
 import type { Message } from 'discord.js';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { inspect } from 'node:util';
 
-import { EmbedBuilder } from '#utils/classes/embeds';
+import { embedBuilder } from '#utils/classes/embeds';
 import { MiscEmotes } from '#utils/emotes';
 
 @ApplyOptions<Command.Options>({
@@ -44,7 +43,7 @@ export class UserCommand extends Command {
 			});
 		}
 
-		const embed = success ? EmbedBuilder.success(output) : EmbedBuilder.error(output);
+		const embed = success ? embedBuilder.success(output) : embedBuilder.error(output);
 		embed
 			.setTitle(success ? `Eval Result ${MiscEmotes.Success}` : `Eval Error ${MiscEmotes.Error}`)
 			.addField('Result Type', codeBlock('ts', type), true)
@@ -77,12 +76,12 @@ export class UserCommand extends Command {
 			}
 
 			// @ts-expect-error use as a variable if needed in eval
-			// eslint-disable-next-line unicorn/prevent-abbreviations
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			const msg = message;
 			// eslint-disable-next-line no-eval
 			result = eval(code);
 			executionTime = stopwatch.toString();
-		} catch (error) {
+		} catch (error: unknown) {
 			if (!executionTime) {
 				executionTime = stopwatch.toString();
 			}
@@ -94,7 +93,7 @@ export class UserCommand extends Command {
 		stopwatch.stop();
 
 		const type = new Type(result).toString();
-		if (isThenable(result)) {
+		if (typeof result.then === 'function' && typeof result.catch === 'function') {
 			await result;
 		}
 
@@ -109,6 +108,7 @@ export class UserCommand extends Command {
 		if (code.startsWith('```')) {
 			return code.split('\n').slice(1, -1).join('\n');
 		}
+
 		return code;
 	}
 }

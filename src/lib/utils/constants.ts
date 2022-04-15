@@ -1,12 +1,11 @@
-import { Constants } from 'discord.js';
 import { URL } from 'node:url';
 
 export const rootFolder = new URL('../../../', import.meta.url);
 export const sourceFolder = new URL('src/', rootFolder);
 
 export enum Colors {
-	Info = Constants.Colors.BLUE,
-	Success = Constants.Colors.GREEN,
-	Warning = Constants.Colors.YELLOW,
-	Error = Constants.Colors.RED
+	Info = 0x3498db,
+	Success = 0x57f287,
+	Warning = 0xfee75c,
+	Error = 0xed4245
 }
