@@ -47,6 +47,8 @@
 		"discord-api-types": "^0.31.1",
 		"eslint": "^8.13.0",
 		"eslint-config-prettier": "^8.5.0",
+		"eslint-config-xo": "^0.40.0",
+		"eslint-config-xo-typescript": "^0.50.0",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
@@ -55,7 +57,7 @@
 		"rimraf": "^3.0.2",
 		"standard-version": "^9.3.2",
 		"tsc-watch": "^5.0.3",
-		"typescript": "^4.6.3"
+		"typescript": "next"
 	},
 	"imports": {
 		"#root/*": "./dist/*.js",

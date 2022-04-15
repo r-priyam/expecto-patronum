@@ -1246,6 +1246,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"confusing-browser-globals@npm:1.0.11":
+  version: 1.0.11
+  resolution: "confusing-browser-globals@npm:1.0.11"
+  checksum: 3afc635abd37e566477f610e7978b15753f0e84025c25d49236f1f14d480117185516bdd40d2a2167e6bed8048641a9854964b9c067e3dcdfa6b5d0ad3c3a5ef
+  languageName: node
+  linkType: hard
+
 "console-control-strings@npm:^1.0.0, console-control-strings@npm:^1.1.0":
   version: 1.1.0
   resolution: "console-control-strings@npm:1.1.0"
@@ -1800,6 +1807,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-config-xo-typescript@npm:^0.50.0":
+  version: 0.50.0
+  resolution: "eslint-config-xo-typescript@npm:0.50.0"
+  peerDependencies:
+    "@typescript-eslint/eslint-plugin": ">=5.8.0"
+    eslint: ">=8.0.0"
+    typescript: ">=4.4"
+  checksum: 9b9d908f3396b1dd3ec591b1c7ab33e226747b565b007608c8801a7ec2276a7b28936a7627b37cb0a7c75f6559855b9f37585782ae14bf041f5d4982a93f9c21
+  languageName: node
+  linkType: hard
+
+"eslint-config-xo@npm:^0.40.0":
+  version: 0.40.0
+  resolution: "eslint-config-xo@npm:0.40.0"
+  dependencies:
+    confusing-browser-globals: 1.0.11
+  peerDependencies:
+    eslint: ">=8.6.0"
+  checksum: 6a968879727a7c698aa8e91bc4f7e1e76c24bec4d17c1aaffae7c83d09fa72adcf58dc51e11bbc3e1da78af87fc2a3e602cd7d6a6f02ef458ab674ce24ac6757
+  languageName: node
+  linkType: hard
+
 "eslint-import-resolver-node@npm:^0.3.6":
   version: 0.3.6
   resolution: "eslint-import-resolver-node@npm:0.3.6"
@@ -2118,6 +2147,8 @@ __metadata:
     discord.js: ^13.6.0
     eslint: ^8.13.0
     eslint-config-prettier: ^8.5.0
+    eslint-config-xo: ^0.40.0
+    eslint-config-xo-typescript: ^0.50.0
     eslint-plugin-import: ^2.26.0
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-simple-import-sort: ^7.0.0
@@ -2128,7 +2159,7 @@ __metadata:
     rimraf: ^3.0.2
     standard-version: ^9.3.2
     tsc-watch: ^5.0.3
-    typescript: ^4.6.3
+    typescript: next
     yaml: ^2.0.0
   languageName: unknown
   linkType: soft
@@ -4737,6 +4768,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:next":
+  version: 4.7.0-dev.20220408
+  resolution: "typescript@npm:4.7.0-dev.20220408"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 7d2c4efe9d340812127384fd4923dfbcd87dcec3d77044475c997b5eb56bd10b17781a924eecfd032d4040765531096afee74a7fb9c533f4fd958c188bb895ec
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@^4.6.3#~builtin<compat/typescript>":
   version: 4.6.3
   resolution: "typescript@patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=bda367"
@@ -4744,6 +4785,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 6bf45caf847062420592e711bc9c28bf5f9a9a7fa8245343b81493e4ededae33f1774009d1234d911422d1646a2c839f44e1a23ecb111b40a60ac2ea4c1482a8
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@next#~builtin<compat/typescript>":
+  version: 4.7.0-dev.20220408
+  resolution: "typescript@patch:typescript@npm%3A4.7.0-dev.20220408#~builtin<compat/typescript>::version=4.7.0-dev.20220408&hash=bda367"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 13824851061df08d4cd72b18f6a5d2cad1546644135d6cdd00631b5226d21e7ad5e032c214784766a45df37084b2cb688ed314ec57bc1e8cd11379ba8ab74584
   languageName: node
   linkType: hard
 
