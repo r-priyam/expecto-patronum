@@ -2772,7 +2772,7 @@ __metadata:
     standard-version: ^9.3.2
     tsc-watch: ^5.0.3
     typescript: next
-    yaml: ^2.0.0
+    yaml: ^2.0.1
   languageName: unknown
   linkType: soft
 
@@ -6371,10 +6371,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "yaml@npm:2.0.0"
-  checksum: 6335cbead8a9658dc14918db254433630383d7f2db6373da1aa44050e3f344459d1b47f77dcbdbb7c18d581f96adf67493c57af4a940496df592f1ccceafda80
+"yaml@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "yaml@npm:2.0.1"
+  checksum: 23f95ff0d646c894048ac5072b5b6d393a398af1b2553916f0de276d62dbb3279ae3c969d7fcefe7a213be4efc9b4aa3ae1439c97095d3d3765fc6bc424807ac
   languageName: node
   linkType: hard
 
