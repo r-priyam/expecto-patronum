@@ -5,8 +5,7 @@ import '@sapphire/plugin-logger/register';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 import type { Logger } from '@sapphire/framework';
 import { ApplicationCommandRegistries, container, Piece, RegisterBehavior } from '@sapphire/framework';
-import * as colorette from 'colorette';
-import { blueBright, cyan, greenBright, redBright, yellow } from 'colorette';
+import { blueBright, createColors, cyan, greenBright, redBright, yellow } from 'colorette';
 import { inspect } from 'node:util';
 import type { Sql } from 'postgres';
 import postgres from 'postgres';
@@ -20,7 +19,7 @@ import type { ExpectoPatronumClient } from './structures/ExpectoPatronumClient';
 ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.Overwrite);
 
 inspect.defaultOptions.depth = 1;
-colorette.createColors({ useColor: true });
+createColors({ useColor: true });
 
 const sqlHighlighter = new SqlHighlighter();
 const { postgres: pg } = config.database;
