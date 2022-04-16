@@ -8,7 +8,7 @@ import { sourceFolder } from '#utils/constants';
 interface EnvironmentVariables {
 	development: boolean;
 	debug: boolean;
-	bot: { token: string; activityMessage: string; owners: string[] };
+	bot: { token: string; activityMessage: string; owners: string[]; testingGuilds: string[] };
 	database: { postgres: { host: string; port: number; user: string; password: string; database: string } };
 }
 

@@ -3,13 +3,15 @@ import { Command } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
 
+import { config } from '#root/config';
 import { Colors } from '#root/lib/utils/constants';
 
 @ApplyOptions<Command.Options>({
 	description: 'Find out if Specter is alive and processing messages',
 	chatInputCommand: {
 		register: true,
-		idHints: ['958767465750474803']
+		idHints: ['958767465750474803'],
+		guildIds: config.bot.testingGuilds
 	}
 })
 export class PingCommand extends Command {
