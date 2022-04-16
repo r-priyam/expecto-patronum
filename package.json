@@ -63,7 +63,6 @@
 		"@types/ws": "^8.5.3",
 		"@typescript-eslint/eslint-plugin": "^5.19.0",
 		"@typescript-eslint/parser": "^5.19.0",
-		"bumpp": "^7.1.1",
 		"commitizen": "^4.2.4",
 		"cz-conventional-changelog": "3.3.0",
 		"discord-api-types": "^0.31.1",
@@ -74,7 +73,6 @@
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
-		"eslint-plugin-unicorn": "^42.0.0",
 		"husky": "^7.0.4",
 		"lint-staged": "^12.3.8",
 		"prettier": "^2.6.2",
@@ -82,7 +80,7 @@
 		"rimraf": "^3.0.2",
 		"standard-version": "^9.3.2",
 		"tsc-watch": "^5.0.3",
-		"typescript": "next"
+		"typescript": "^4.6.3"
 	},
 	"imports": {
 		"#root/*": "./dist/*.js",
