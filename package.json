@@ -5,6 +5,11 @@
 	"license": "MPL-2.0",
 	"author": "r-priyam <roy_priyam@outlook.com>",
 	"type": "module",
+	"imports": {
+		"#root/*": "./dist/*.js",
+		"#lib/*": "./dist/lib/*.js",
+		"#utils/*": "./dist/lib/utils/*.js"
+	},
 	"main": "dist/ExpectoPatronum.js",
 	"scripts": {
 		"build": "rimraf dist && tsc -b src",
@@ -81,11 +86,6 @@
 		"standard-version": "^9.3.2",
 		"tsc-watch": "^5.0.3",
 		"typescript": "^4.6.3"
-	},
-	"imports": {
-		"#root/*": "./dist/*.js",
-		"#lib/*": "./dist/lib/*.js",
-		"#utils/*": "./dist/lib/utils/*.js"
 	},
 	"packageManager": "yarn@3.2.0",
 	"standard-version": {
