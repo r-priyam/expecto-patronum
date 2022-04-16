@@ -647,6 +647,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/figlet@npm:^1.5.4":
+  version: 1.5.4
+  resolution: "@types/figlet@npm:1.5.4"
+  checksum: 25390eaa1a24233b05ec85771cd1a134477ee56717cf564b625cd2133fda963dc78942cfd2303e364406ee0126e722e94761d8c577d74a25820e6b33090a0e32
+  languageName: node
+  linkType: hard
+
+"@types/gradient-string@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@types/gradient-string@npm:1.1.2"
+  dependencies:
+    "@types/tinycolor2": "*"
+  checksum: 8bc665bcf277b4da9d30eb1dc5d83990678145700df991a24441948cb86b8e9c453cb701a370d3363dddafdd365748ef3190140601c82916ea70ee577de98dc3
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -710,6 +726,13 @@ __metadata:
   version: 4.0.0
   resolution: "@types/parse-json@npm:4.0.0"
   checksum: fd6bce2b674b6efc3db4c7c3d336bd70c90838e8439de639b909ce22f3720d21344f52427f1d9e57b265fcb7f6c018699b99e5e0c208a1a4823014269a6bf35b
+  languageName: node
+  linkType: hard
+
+"@types/tinycolor2@npm:*, @types/tinycolor2@npm:^1.4.0":
+  version: 1.4.3
+  resolution: "@types/tinycolor2@npm:1.4.3"
+  checksum: 61984b2825d4ee902016ef24777787bb2fb9e4999ccd4f7e5a709442c00cf90ba4afa510b9c78f18dcc83c03305d597d5fe3825a6aad38354f95c68af70ebc1b
   languageName: node
   linkType: hard
 
@@ -1378,7 +1401,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0":
+"chalk@npm:^4.0.0, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -2644,6 +2667,8 @@ __metadata:
     "@sapphire/ts-config": ^3.3.4
     "@sapphire/type": ^2.2.0
     "@sapphire/utilities": ^3.6.2
+    "@types/figlet": ^1.5.4
+    "@types/gradient-string": ^1.1.2
     "@types/node": ^17.0.23
     "@types/ws": ^8.5.3
     "@typescript-eslint/eslint-plugin": ^5.19.0
@@ -2659,6 +2684,8 @@ __metadata:
     eslint-plugin-import: ^2.26.0
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-simple-import-sort: ^7.0.0
+    figlet: ^1.5.2
+    gradient-string: ^2.0.0
     husky: ^7.0.4
     lint-staged: ^12.3.8
     postgres: ^3.0.5
@@ -2731,6 +2758,13 @@ __metadata:
   dependencies:
     reusify: ^1.0.4
   checksum: 32cf15c29afe622af187d12fc9cd93e160a0cb7c31a3bb6ace86b7dea3b28e7b72acde89c882663f307b2184e14782c6c664fa315973c03626c7d4bff070bb0b
+  languageName: node
+  linkType: hard
+
+"figlet@npm:^1.5.2":
+  version: 1.5.2
+  resolution: "figlet@npm:1.5.2"
+  checksum: cc860391669b44e119871d589e09a2814aa86351726a5791e0d3e2d098e4fc37171c85fcfed13f4e9000995bd004dc6dbf848da5fe458cf1477e776b7318986f
   languageName: node
   linkType: hard
 
@@ -3213,6 +3247,16 @@ __metadata:
   version: 4.2.9
   resolution: "graceful-fs@npm:4.2.9"
   checksum: 68ea4e07ff2c041ada184f9278b830375f8e0b75154e3f080af6b70f66172fabb4108d19b3863a96b53fc068a310b9b6493d86d1291acc5f3861eb4b79d26ad6
+  languageName: node
+  linkType: hard
+
+"gradient-string@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "gradient-string@npm:2.0.0"
+  dependencies:
+    chalk: ^4.1.2
+    tinygradient: ^1.1.5
+  checksum: 829a55436d7859631c61d969d8a41be23cf4545ed813b4c285c33c1e2daf699a8d611497add823eebb0fab9692df65bb7b2b2acc8ecbf75c614772384261f02c
   languageName: node
   linkType: hard
 
@@ -5708,6 +5752,23 @@ __metadata:
   version: 2.3.8
   resolution: "through@npm:2.3.8"
   checksum: a38c3e059853c494af95d50c072b83f8b676a9ba2818dcc5b108ef252230735c54e0185437618596c790bbba8fcdaef5b290405981ffa09dce67b1f1bf190cbd
+  languageName: node
+  linkType: hard
+
+"tinycolor2@npm:^1.0.0":
+  version: 1.4.2
+  resolution: "tinycolor2@npm:1.4.2"
+  checksum: 57ed262e08815a4ab0ed933edafdbc6555a17081781766149813b44a080ecbe58b3ee281e81c0e75b42e4d41679f138cfa98eabf043f829e0683c04adb12c031
+  languageName: node
+  linkType: hard
+
+"tinygradient@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "tinygradient@npm:1.1.5"
+  dependencies:
+    "@types/tinycolor2": ^1.4.0
+    tinycolor2: ^1.0.0
+  checksum: d41771d553fff884830f60029ba32163066221f1c6ea28ddf9751b10d54015fa47597bdefa164e20434ba3018e499dbd17b465fd43a095c587cac28bb7de5a0e
   languageName: node
   linkType: hard
 

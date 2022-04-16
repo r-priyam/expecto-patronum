@@ -2,6 +2,9 @@ import { ApplyOptions } from '@sapphire/decorators';
 import type { Store } from '@sapphire/framework';
 import { Events, Listener } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
+import figlet from 'figlet';
+import gradient from 'gradient-string';
+import { readFile } from 'node:fs/promises';
 
 import { config } from '#root/config';
 
@@ -13,12 +16,12 @@ import { config } from '#root/config';
 export class Ready extends Listener {
 	private readonly style = config.development ? yellow : blue;
 
-	public run() {
-		this.printBanner();
+	public async run() {
+		await this.printBanner();
 		this.printStoreDebugInformation();
 	}
 
-	private printBanner() {
+	private async printBanner() {
 		const success = green('+');
 
 		const llc = config.development ? magentaBright : white;
@@ -30,10 +33,12 @@ export class Ready extends Listener {
 
 		// Offset Pad
 		const pad = ' '.repeat(7);
+		const { version } = JSON.parse(await readFile(new URL('../../package.json', import.meta.url), 'utf8'));
 
 		console.log(
 			String.raw`
-${line01} ${pad}${blc('1.0.0')}
+${gradient.atlas.multiline(figlet.textSync('Expecto Patronum'))}
+${line01} ${pad}${blc(version)}
 ${line02} ${pad}[${success}] Gateway
 ${line03}${config.development ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
 		`.trim()
