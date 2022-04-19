@@ -1,26 +1,21 @@
 {
 	"name": "expecto-patronum",
-	"version": "0.1.1",
+	"version": "0.0.0",
 	"private": true,
 	"license": "MPL-2.0",
 	"author": "r-priyam <roy_priyam@outlook.com>",
 	"type": "module",
-	"imports": {
-		"#root/*": "./dist/*.js",
-		"#lib/*": "./dist/lib/*.js",
-		"#utils/*": "./dist/lib/utils/*.js"
-	},
 	"main": "dist/ExpectoPatronum.js",
 	"scripts": {
 		"build": "rimraf dist && tsc -b src",
-		"changelog": "node scripts/changelog.mjs",
 		"commit": "git-cz",
 		"dev": "rimraf dist && yarn build && yarn start",
 		"dev:watch": "tsc-watch -b src --onSuccess \"yarn start\"",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "eslint src --ext ts --fix",
 		"prepare": "husky install",
-		"release": "standard-version -a",
+		"release": "cliff-jumper",
+		"release:test": "cliff-jumper --dry-run",
 		"start": "node --enable-source-maps dist/ExpectoPatronum.js",
 		"watch": "tsc -b src -w"
 	},
@@ -61,6 +56,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^16.2.3",
 		"@commitlint/config-conventional": "^16.2.1",
+		"@favware/cliff-jumper": "^1.1.3",
 		"@mikro-orm/sql-highlighter": "^1.0.1",
 		"@sapphire/eslint-config": "^4.3.4",
 		"@sapphire/plugin-hmr": "^1.2.0",
@@ -87,17 +83,13 @@
 		"prettier": "^2.6.2",
 		"pretty-quick": "^3.1.3",
 		"rimraf": "^3.0.2",
-		"standard-version": "^9.3.2",
 		"tsc-watch": "^5.0.3",
 		"typescript": "^4.6.3"
 	},
-	"packageManager": "yarn@3.2.0",
-	"standard-version": {
-		"scripts": {
-			"precommit": "yarn changelog && git add CHANGELOG.md"
-		},
-		"skip": {
-			"changelog": true
-		}
-	}
+	"imports": {
+		"#root/*": "./dist/*.js",
+		"#lib/*": "./dist/lib/*.js",
+		"#utils/*": "./dist/lib/utils/*.js"
+	},
+	"packageManager": "yarn@3.2.0"
 }
