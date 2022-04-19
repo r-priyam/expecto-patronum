@@ -48,8 +48,8 @@
 		"@sapphire/utilities": "^3.6.2",
 		"discord.js": "^13.6.0",
 		"figlet": "^1.5.2",
-		"gradient-string": "^2.0.0",
-		"postgres": "^3.0.5",
+		"gradient-string": "^2.0.1",
+		"postgres": "^3.0.6",
 		"reflect-metadata": "^0.1.13",
 		"yaml": "^2.0.1"
 	},
