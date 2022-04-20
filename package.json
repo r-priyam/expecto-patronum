@@ -17,6 +17,7 @@
 		"release": "cliff-jumper",
 		"release:test": "cliff-jumper --dry-run",
 		"start": "node --enable-source-maps dist/ExpectoPatronum.js",
+		"upgrade": "yarn upgrade-interactive",
 		"watch": "tsc -b src -w"
 	},
 	"commitlint": {
