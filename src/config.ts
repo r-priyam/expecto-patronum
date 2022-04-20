@@ -1,9 +1,5 @@
-import fs from 'node:fs';
-import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readFile } from 'node:fs/promises';
 import YAML from 'yaml';
-
-import { sourceFolder } from '#utils/constants';
 
 interface EnvironmentVariables {
 	development: boolean;
@@ -12,5 +8,5 @@ interface EnvironmentVariables {
 	database: { postgres: { host: string; port: number; user: string; password: string; database: string } };
 }
 
-const fileContents = fs.readFileSync(join(fileURLToPath(sourceFolder), 'config.yaml'), 'utf8');
+const fileContents = await readFile(new URL('../config.yaml', import.meta.url), 'utf8');
 export const config = YAML.parse(fileContents) as EnvironmentVariables;
