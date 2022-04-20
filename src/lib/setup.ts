@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import 'reflect-metadata';
 import '@sapphire/plugin-hmr/register';
 import '@sapphire/plugin-logger/register';
@@ -10,7 +11,7 @@ import { inspect } from 'node:util';
 import type { Sql } from 'postgres';
 import postgres from 'postgres';
 
-import { config } from '#root/config';
+import { Config } from '#root/config';
 
 import type { ExpectoPatronumClient } from './structures/ExpectoPatronumClient';
 
@@ -22,7 +23,7 @@ inspect.defaultOptions.depth = 1;
 createColors({ useColor: true });
 
 const sqlHighlighter = new SqlHighlighter();
-const { postgres: pg } = config.database;
+const { postgres: pg } = Config.database;
 
 container.sql = postgres({
 	host: pg.host,

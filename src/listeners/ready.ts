@@ -6,7 +6,7 @@ import figlet from 'figlet';
 import gradient from 'gradient-string';
 import { readFile } from 'node:fs/promises';
 
-import { config } from '#root/config';
+import { Config } from '#root/config';
 
 @ApplyOptions<Listener.Options>({
 	name: 'ClientReady',
@@ -14,7 +14,7 @@ import { config } from '#root/config';
 	once: true
 })
 export class Ready extends Listener {
-	private readonly style = config.development ? yellow : blue;
+	private readonly style = Config.isDevelopment ? yellow : blue;
 
 	public async run() {
 		await this.printBanner();
@@ -24,8 +24,8 @@ export class Ready extends Listener {
 	private async printBanner() {
 		const success = green('+');
 
-		const llc = config.development ? magentaBright : white;
-		const blc = config.development ? magenta : blue;
+		const llc = Config.isDevelopment ? magentaBright : white;
+		const blc = Config.isDevelopment ? magenta : blue;
 
 		const line01 = llc('');
 		const line02 = llc('');
@@ -40,7 +40,7 @@ export class Ready extends Listener {
 ${gradient.atlas.multiline(figlet.textSync('Expecto Patronum'))}
 ${line01} ${pad}${blc(version)}
 ${line02} ${pad}[${success}] Gateway
-${line03}${config.development ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
+${line03}${Config.isDevelopment ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
 		`.trim()
 		);
 	}

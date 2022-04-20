@@ -1,12 +1,12 @@
 import '#lib/setup';
 
 import { ExpectoPatronumClient } from '#lib/structures/ExpectoPatronumClient';
-import { config } from '#root/config';
+import { Config } from '#root/config';
 
 const client = new ExpectoPatronumClient();
 
 try {
-	await client.login(config.bot.token);
+	await client.login(Config.bot.token);
 	client.logger.info('Successfully logged in.');
 } catch (error: unknown) {
 	client.logger.fatal(error);

@@ -1,12 +1,12 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Events, Listener } from '@sapphire/framework';
 
-import { config } from '#root/config';
+import { Config } from '#root/config';
 
 @ApplyOptions<Listener.Options>({
 	name: 'ClientDebug',
 	event: Events.Debug,
-	enabled: config.debug
+	enabled: Config.isDebug
 })
 export class ClientDebug extends Listener<typeof Events.Debug> {
 	public override run(message: string) {

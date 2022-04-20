@@ -1848,6 +1848,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "dotenv@npm:16.0.0"
+  checksum: 664cebb51f0a9a1d1b930f51f0271e72e26d62feaecc9dc03df39453dd494b4e724809ca480fb3ec3213382b1ed3f791aaeb83569a137f9329ce58efd4853dbf
+  languageName: node
+  linkType: hard
+
 "duplexer@npm:~0.1.1":
   version: 0.1.2
   resolution: "duplexer@npm:0.1.2"
@@ -2315,6 +2322,7 @@ __metadata:
     cz-conventional-changelog: 3.3.0
     discord-api-types: ^0.31.2
     discord.js: ^13.6.0
+    dotenv: ^16.0.0
     eslint: ^8.13.0
     eslint-config-prettier: ^8.5.0
     eslint-config-xo: ^0.40.0
@@ -2333,7 +2341,6 @@ __metadata:
     rimraf: ^3.0.2
     tsc-watch: ^5.0.3
     typescript: ^4.6.3
-    yaml: ^2.0.1
   languageName: unknown
   linkType: soft
 
@@ -5533,13 +5540,6 @@ __metadata:
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
-  languageName: node
-  linkType: hard
-
-"yaml@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "yaml@npm:2.0.1"
-  checksum: 23f95ff0d646c894048ac5072b5b6d393a398af1b2553916f0de276d62dbb3279ae3c969d7fcefe7a213be4efc9b4aa3ae1439c97095d3d3765fc6bc424807ac
   languageName: node
   linkType: hard
 

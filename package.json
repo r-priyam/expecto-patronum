@@ -48,11 +48,11 @@
 		"@sapphire/type": "^2.2.0",
 		"@sapphire/utilities": "^3.6.2",
 		"discord.js": "^13.6.0",
+		"dotenv": "^16.0.0",
 		"figlet": "^1.5.2",
 		"gradient-string": "^2.0.1",
 		"postgres": "^3.0.6",
-		"reflect-metadata": "^0.1.13",
-		"yaml": "^2.0.1"
+		"reflect-metadata": "^0.1.13"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^16.2.3",

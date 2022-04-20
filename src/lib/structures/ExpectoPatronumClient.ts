@@ -2,7 +2,7 @@ import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { Time } from '@sapphire/time-utilities';
 import { GatewayIntentBits } from 'discord-api-types/v9';
 
-import { config } from '#root/config';
+import { Config } from '#root/config';
 
 export class ExpectoPatronumClient extends SapphireClient {
 	public constructor() {
@@ -10,7 +10,7 @@ export class ExpectoPatronumClient extends SapphireClient {
 			shards: 'auto',
 			defaultPrefix: ['!', '.', '?'],
 			caseInsensitiveCommands: true,
-			logger: { level: config.development ? LogLevel.Debug : LogLevel.Info },
+			logger: { level: Config.isDevelopment ? LogLevel.Debug : LogLevel.Info },
 			intents: [
 				GatewayIntentBits.Guilds,
 				GatewayIntentBits.GuildMembers,
@@ -21,7 +21,7 @@ export class ExpectoPatronumClient extends SapphireClient {
 			presence: {
 				activities: [
 					{
-						name: config.bot.activityMessage,
+						name: Config.bot.activityMessage,
 						type: 'PLAYING'
 					}
 				]
@@ -29,7 +29,7 @@ export class ExpectoPatronumClient extends SapphireClient {
 			loadMessageCommandListeners: true,
 			loadDefaultErrorListeners: false,
 			hmr: {
-				enabled: config.development,
+				enabled: Config.isDevelopment,
 				usePolling: true,
 				// Delay hmr by 3 seconds
 				interval: Time.Second * 3
