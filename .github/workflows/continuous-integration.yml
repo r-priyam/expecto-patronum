@@ -10,6 +10,7 @@ jobs:
   Linting:
     name: Linting
     runs-on: ubuntu-latest
+    if: "!contains(needs.pre_ci.outputs.commit_message, '[skip ci]')"
     steps:
       - name: Checkout Project
         uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
@@ -29,6 +30,7 @@ jobs:
   Building:
     name: Build code
     runs-on: ubuntu-latest
+    if: "!contains(needs.pre_ci.outputs.commit_message, '[skip ci]')"
     steps:
       - name: Checkout Project
         uses: actions/checkout@dcd71f646680f2efd8db4afa5ad64fdcba30e748 # tag=v3
