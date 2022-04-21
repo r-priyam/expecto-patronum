@@ -10,7 +10,7 @@ export class ExpectoPatronumClient extends SapphireClient {
 			shards: 'auto',
 			defaultPrefix: ['!', '.', '?'],
 			caseInsensitiveCommands: true,
-			logger: { level: Config.isDevelopment ? LogLevel.Debug : LogLevel.Info },
+			logger: { level: Config.isDebug ? LogLevel.Debug : LogLevel.Info },
 			intents: [
 				GatewayIntentBits.Guilds,
 				GatewayIntentBits.GuildMembers,

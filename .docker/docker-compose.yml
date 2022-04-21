@@ -1,0 +1,47 @@
+version: '3.9'
+
+x-restart-policy: &restart_policy
+  restart: unless-stopped
+
+services:
+  postgres:
+    <<: *restart_policy
+    image: postgres:14-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=expecto_patronum
+      - POSTGRES_PASSWORD=expecto_patronum
+      - POSTGRES_DB=expecto_patronum
+    ports:
+      - '5432:5432'
+    volumes:
+      - expecto_patronum:/var/lib/postgresql/data
+    logging:
+      options:
+        max-size: '5m'
+        max-file: '3'
+    networks:
+      - expecto_patronum
+
+  bot:
+    <<: *restart_policy
+    build:
+      context: ../
+    image: ghcr.io/r-priyam/expecto-patronum:latest
+    container_name: expecto_patronum
+    env_file:
+      - ../.env
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '5'
+    networks:
+      - expecto_patronum
+    depends_on:
+      - postgres
+
+volumes:
+  expecto_patronum:
+
+networks:
+  expecto_patronum:
