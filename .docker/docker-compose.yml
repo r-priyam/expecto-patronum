@@ -52,6 +52,7 @@ services:
         max-file: '5'
     networks:
       - expecto_patronum
+    tty: true
     depends_on:
       - postgres
 
