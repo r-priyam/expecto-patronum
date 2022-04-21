@@ -6,6 +6,7 @@ import '@sapphire/plugin-logger/register';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 import type { Logger } from '@sapphire/framework';
 import { ApplicationCommandRegistries, container, Piece, RegisterBehavior } from '@sapphire/framework';
+import type { ScheduledTaskHandler } from '@sapphire/plugin-scheduled-tasks';
 import { blueBright, createColors, cyan, greenBright, redBright, yellow } from 'colorette';
 import { inspect } from 'node:util';
 import type { Sql } from 'postgres';
@@ -53,9 +54,12 @@ container.sql = postgres({
 
 // Inject quickly used container properties into pieces
 // this does - this.container.client -> this.client directly
-Object.defineProperty(Piece.prototype, 'client', { get: () => container.client });
-Object.defineProperty(Piece.prototype, 'sql', { get: () => container.sql });
-Object.defineProperty(Piece.prototype, 'logger', { get: () => container.logger });
+Object.defineProperties(Piece.prototype, {
+	client: { get: () => container.client },
+	sql: { get: () => container.sql },
+	logger: { get: () => container.logger },
+	tasks: { get: () => container.tasks }
+});
 
 declare module '@sapphire/pieces' {
 	interface Container {
@@ -66,5 +70,6 @@ declare module '@sapphire/pieces' {
 		client: ExpectoPatronumClient;
 		sql: Sql<any>;
 		logger: Logger;
+		tasks: ScheduledTaskHandler;
 	}
 }

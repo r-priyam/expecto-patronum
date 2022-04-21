@@ -24,6 +24,12 @@ export class Config extends null {
 				user: process.env.PG_USER,
 				password: process.env.PG_PASSWORD,
 				database: process.env.PG_DATABASE
+			},
+			redis: {
+				host: process.env.REDIS_HOST,
+				port: Number(process.env.REDIS_PORT),
+				password: process.env.REDIS_PASSWORD,
+				tasksDb: Number(process.env.REDIS_TASKS_DB)
 			}
 		};
 	}

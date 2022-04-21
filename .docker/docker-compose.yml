@@ -7,6 +7,7 @@ services:
   postgres:
     <<: *restart_policy
     image: postgres:14-alpine
+    container_name: postgres
     restart: unless-stopped
     environment:
       - POSTGRES_USER=expecto_patronum
@@ -20,6 +21,20 @@ services:
       options:
         max-size: '5m'
         max-file: '3'
+    networks:
+      - expecto_patronum
+
+  redis:
+    <<: *restart_policy
+    image: 'redis:6.2.6-alpine'
+    container_name: redis
+    command: 'redis-server --requirepass redis'
+    ports:
+      - '127.0.0.1:6379:6379'
+    logging:
+      options:
+        max-size: '5m'
+        max-file: '1'
     networks:
       - expecto_patronum
 

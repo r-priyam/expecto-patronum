@@ -1,4 +1,5 @@
 import { LogLevel, SapphireClient } from '@sapphire/framework';
+import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
 import { Time } from '@sapphire/time-utilities';
 import { GatewayIntentBits } from 'discord-api-types/v9';
 
@@ -33,6 +34,17 @@ export class ExpectoPatronumClient extends SapphireClient {
 				usePolling: true,
 				// Delay hmr by 3 seconds
 				interval: Time.Second * 3
+			},
+			tasks: {
+				strategy: new ScheduledTaskRedisStrategy({
+					bull: {
+						redis: {
+							password: Config.database.redis.password,
+							host: Config.database.redis.host,
+							db: Config.database.redis.tasksDb
+						}
+					}
+				})
 			}
 		});
 	}
