@@ -11,13 +11,12 @@ import { Config } from '#root/config';
 	event: Events.MessageCommandSuccess,
 	enabled: Config.isDebug
 })
-export class UserEvent extends Listener<typeof Events.MessageCommandSuccess> {
+export class MessageCommandSuccess extends Listener<typeof Events.MessageCommandSuccess> {
 	public run({ message, command }: MessageCommandSuccessPayload) {
 		const shard = this.shard(message.guild?.shardId ?? 0);
 		const commandName = this.command(command);
 		const author = this.author(message.author);
-		const sentAt = message.guild ? this.guild(message.guild) : this.direct();
-		this.logger.debug(`${shard} » ${sentAt} » ${author} » ${commandName}`);
+		this.logger.debug(`${shard} » ${this.guild(message.guild!)} » ${author} » ${commandName}`);
 	}
 
 	private shard(id: number) {
@@ -25,15 +24,11 @@ export class UserEvent extends Listener<typeof Events.MessageCommandSuccess> {
 	}
 
 	private command(command: Command) {
-		return cyan(command.name);
+		return cyan(`${command.name} [Message]`);
 	}
 
 	private author(author: User) {
 		return `${author.username}(${yellow(author.id)})`;
-	}
-
-	private direct() {
-		return cyan('Direct Messages');
 	}
 
 	private guild(guild: Guild) {

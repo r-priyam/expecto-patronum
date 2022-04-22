@@ -1,18 +1,8 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import type { ChatInputCommandDeniedPayload, MessageCommandDeniedPayload, UserError } from '@sapphire/framework';
+import type { ChatInputCommandDeniedPayload, UserError } from '@sapphire/framework';
 import { Events, Listener } from '@sapphire/framework';
 
 import { embedBuilder } from '#utils/classes/embeds';
-
-@ApplyOptions<Listener.Options>({
-	name: 'MessageCommandDenied',
-	event: Events.MessageCommandDenied
-})
-export class MessageCommandDenied extends Listener<typeof Events.MessageCommandDenied> {
-	public override async run(error: UserError, { message }: MessageCommandDeniedPayload) {
-		await message.channel.send({ embeds: [embedBuilder.error(error.message)] });
-	}
-}
 
 @ApplyOptions<Listener.Options>({
 	name: 'ChatInputCommandDenied',
