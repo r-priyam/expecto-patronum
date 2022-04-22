@@ -50,7 +50,6 @@ export class TabularData {
 	private getEntry(data: string[]) {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 		const element = data.map((element, index) => centerAlign(element, this._widths[index])).join('|');
-		console.log(element);
 		return `|${element}|`;
 	}
 }
