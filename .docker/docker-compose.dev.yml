@@ -1,46 +1,48 @@
 version: '3.9'
 
+x-logging: &logging
+  logging:
+    options:
+      max-file: '1'
+      max-size: '5m'
+
 x-restart-policy: &restart_policy
   restart: unless-stopped
 
 services:
   postgres:
+    <<: *logging
     <<: *restart_policy
-    build: ./postgresql
     container_name: postgres
+    build: ./postgresql
     environment:
       POSTGRES_USER: 'expectopatronum'
       POSTGRES_PASSWORD: 'expectopatronum'
       POSTGRES_DB: 'expectopatronum'
-    ports:
-      - '127.0.0.1:5432:5432'
+    expose:
+      - '5432'
     volumes:
       - expecto_patronum:/var/lib/postgresql/data
     networks:
       - expecto_patronum
-    logging:
-      options:
-        max-size: '5m'
-        max-file: '3'
 
   redis:
+    <<: *logging
     <<: *restart_policy
     image: 'redis:6.2.6-alpine'
     container_name: redis
-    command: 'redis-server --requirepass redis --loglevel warning'
-    ports:
-      - '127.0.0.1:6379:6379'
+    expose:
+      - '6379'
     networks:
       - expecto_patronum
-    logging:
-      options:
-        max-size: '5m'
-        max-file: '1'
 
   bot:
+    <<: *logging
     <<: *restart_policy
     image: ghcr.io/r-priyam/expecto-patronum:latest
     container_name: expecto_patronum
+    build:
+      context: ../
     env_file:
       - ../.env
     networks:
@@ -49,10 +51,6 @@ services:
       - postgres
       - redis
     tty: true
-    logging:
-      options:
-        max-size: '10m'
-        max-file: '5'
 
 volumes:
   expecto_patronum:
