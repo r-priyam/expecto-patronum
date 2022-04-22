@@ -436,6 +436,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/discord.js-utilities@npm:^4.9.5":
+  version: 4.9.5
+  resolution: "@sapphire/discord.js-utilities@npm:4.9.5"
+  dependencies:
+    "@sapphire/discord-utilities": ^2.10.3
+    "@sapphire/time-utilities": ^1.7.4
+    "@sapphire/utilities": ^3.6.2
+    tslib: ^2.3.1
+  checksum: 58e8e0c285bed4d6e02e67272425ef0313614df33aa7e87c8ee483a226c105fb497a8242780d9e1575ad4bd2ae359929fbc8c0a3bc76abcd27039f70519f7119
+  languageName: node
+  linkType: hard
+
 "@sapphire/eslint-config@npm:^4.3.4":
   version: 4.3.4
   resolution: "@sapphire/eslint-config@npm:4.3.4"
@@ -2393,7 +2405,7 @@ __metadata:
     "@mikro-orm/sql-highlighter": ^1.0.1
     "@sapphire/decorators": ^4.3.4
     "@sapphire/discord-utilities": ^2.10.3
-    "@sapphire/discord.js-utilities": ^4.9.4
+    "@sapphire/discord.js-utilities": ^4.9.5
     "@sapphire/eslint-config": ^4.3.4
     "@sapphire/framework": next
     "@sapphire/plugin-hmr": ^1.2.0
