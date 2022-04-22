@@ -56,7 +56,7 @@
 		"dotenv": "^16.0.0",
 		"figlet": "^1.5.2",
 		"gradient-string": "^2.0.1",
-		"postgres": "^3.0.6",
+		"postgres": "^3.1.0",
 		"reflect-metadata": "^0.1.13"
 	},
 	"devDependencies": {
@@ -76,7 +76,7 @@
 		"commitizen": "^4.2.4",
 		"cz-conventional-changelog": "3.3.0",
 		"discord-api-types": "^0.31.2",
-		"eslint": "^8.13.0",
+		"eslint": "^8.14.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-config-xo": "^0.40.0",
 		"eslint-config-xo-typescript": "^0.50.0",
