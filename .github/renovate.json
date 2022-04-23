@@ -1,17 +1,3 @@
 {
-	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["github>sapphiredev/readme:sapphire-renovate", ":disableDependencyDashboard"],
-	"schedule": ["at any time"],
-	"rangeStrategy": "bump",
-	"lockFileMaintenance": {
-		"enabled": true,
-		"automerge": true
-	},
-	"packageRules": [
-		{
-			"matchUpdateTypes": ["minor", "patch", "pin"],
-			"automerge": true,
-			"automergeStrategy": "squash"
-		}
-	]
+	"extends": ["github>r-priyam/configs"]
 }
