@@ -39,7 +39,6 @@ export class ExpectoPatronumClient extends SapphireClient {
 				strategy: new ScheduledTaskRedisStrategy({
 					bull: {
 						redis: {
-							password: Config.database.redis.password,
 							host: Config.database.redis.host,
 							db: Config.database.redis.tasksDb
 						}
