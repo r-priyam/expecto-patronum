@@ -1,4 +1,6 @@
+import { time, TimestampStyles } from '@discordjs/builders';
 import { ApplyOptions, RequiresClientPermissions } from '@sapphire/decorators';
+import { PaginatedMessageEmbedFields } from '@sapphire/discord.js-utilities';
 import type { ApplicationCommandRegistry, Command, UserError } from '@sapphire/framework';
 import { Args, Identifiers } from '@sapphire/framework';
 import { Duration, DurationFormatter } from '@sapphire/time-utilities';
@@ -8,6 +10,7 @@ import { PermissionFlagsBits } from 'discord-api-types/v10';
 
 import { ExpectoPatronumCommand } from '#lib/structures/ExpectoPatronumCommands';
 import { Config } from '#root/config';
+import { Colors } from '#utils/constants';
 import { isMessage } from '#utils/util';
 
 @ApplyOptions<Command.Options>({
@@ -93,8 +96,26 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 
 	// eslint-disable-next-line @typescript-eslint/member-ordering
 	@RequiresClientPermissions(PermissionFlagsBits.EmbedLinks)
-	public async list(_messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
-		// Const reminders = await this.sql<ReminderList[]>`SELECT id, message, expires FROM reminders WHERE user_id = ${messageOrInteraction.member!.id}`;
+	public async list(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
+		const reminders = await this.sql<ReminderList[]>`
+		SELECT id, message, expires FROM reminders WHERE user_id =
+		${messageOrInteraction.member!.id}`;
+
+		if (reminders.length === 0) {
+			this.userError({ message: "You don't have any active reminders" });
+		}
+
+		await new PaginatedMessageEmbedFields() //
+			.setTemplate({ title: `${messageOrInteraction.member!.displayName} Reminders`, color: Colors.Info })
+			.setItems(
+				reminders.map((reminder) => ({
+					name: `ID: ${reminder.id}`,
+					value: `In ${time(new Date(reminder.expires), TimestampStyles.RelativeTime)}, ${reminder.message}`
+				}))
+			)
+			.setItemsPerPage(10)
+			.make()
+			.run(messageOrInteraction);
 	}
 
 	public delete(_messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, _args?: Args) {
@@ -138,8 +159,8 @@ interface ReminderCommandActions {
 	list: (messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) => void;
 }
 
-// Interface ReminderList {
-// 	id: number;
-// 	message: string;
-// 	expires: Date;
-// }
+interface ReminderList {
+	id: number;
+	message: string;
+	expires: Date;
+}
