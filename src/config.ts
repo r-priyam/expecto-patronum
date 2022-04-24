@@ -27,8 +27,7 @@ export class Config extends null {
 			},
 			redis: {
 				host: process.env.REDIS_HOST,
-				port: Number(process.env.REDIS_PORT),
-				tasksDb: Number(process.env.REDIS_TASKS_DB)
+				port: Number(process.env.REDIS_PORT)
 			}
 		};
 	}
