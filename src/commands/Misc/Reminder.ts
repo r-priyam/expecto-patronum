@@ -98,7 +98,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 			this.userError({ message: `Invalid time provided, try: ${inlineCodeBlock('1h')}, ${inlineCodeBlock('2d')}.` });
 		}
 
-		const [created] = await this.sql<[{ id: number }]>`
+		const [{ id }] = await this.sql<[{ id: number }]>`
 				INSERT INTO reminders (user_id, message, expires)
 				VALUES (${messageOrInteraction.member!.id}, ${reminderMessage}, ${duration.fromNow})
 				RETURNING id`;
@@ -106,17 +106,15 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		this.tasks.create(
 			'reminder',
 			{
-				id: created.id,
+				id,
 				userId: messageOrInteraction.member!.id,
 				message: reminderMessage,
 				createdAt: new Date()
 			},
-			{ type: 'default', bullJobOptions: { jobId: `r${created.id}` }, delay: duration.offset }
+			{ type: 'default', bullJobOptions: { jobId: `r${id}` }, delay: duration.offset }
 		);
 
-		const message = `Roger that! In ${new DurationFormatter().format(duration.offset)}, ${reminderMessage}. ${inlineCodeBlock(
-			`ID ${created.id}`
-		)}`;
+		const message = `Roger that! In ${new DurationFormatter().format(duration.offset)}, ${reminderMessage}. ${inlineCodeBlock(`ID ${id}`)}`;
 		await (isMessage(messageOrInteraction) ? messageOrInteraction.reply(message) : messageOrInteraction.editReply({ content: message }));
 	}
 
