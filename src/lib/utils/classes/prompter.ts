@@ -26,7 +26,7 @@ class UserPrompter {
 	}
 
 	public async interactionPrompter(interaction: CommandInteraction<'cached'>, content: string, timeout = 60) {
-		const promptMessage = await interaction.reply({ content, components: [this.promptComponents], fetchReply: true });
+		const promptMessage = await interaction.editReply({ content, components: [this.promptComponents] });
 		try {
 			const confirmation = await this.waitForClick(promptMessage, interaction.user.id, timeout);
 			if (confirmation.customId === 'yes_button') {
@@ -42,10 +42,6 @@ class UserPrompter {
 	}
 
 	private async verifyUser(interaction: ButtonInteraction, userId: string) {
-		if (!interaction.replied) {
-			await interaction.deferUpdate();
-		}
-
 		if (interaction.user.id !== userId) {
 			await interaction.followUp({ content: "These buttons can't be controlled by you, sorry!", ephemeral: true });
 		}

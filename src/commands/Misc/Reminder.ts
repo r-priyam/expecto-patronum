@@ -10,8 +10,9 @@ import { PermissionFlagsBits } from 'discord-api-types/v10';
 
 import { ExpectoPatronumCommand } from '#lib/structures/ExpectoPatronumCommands';
 import { Config } from '#root/config';
+import { prompter } from '#utils/classes/prompter';
 import { Colors } from '#utils/constants';
-import { isMessage } from '#utils/util';
+import { isMessage, plural } from '#utils/util';
 
 @ApplyOptions<Command.Options>({
 	aliases: ['timer', 'remind'],
@@ -38,6 +39,31 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		await interaction.deferReply({ ephemeral: true });
 		const subcommand = interaction.options.getSubcommand(true) as keyof ReminderCommandActions;
 		return this[subcommand](interaction);
+	}
+
+	public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
+		registry.registerChatInputCommand(
+			(builder) =>
+				builder
+					.setName(this.name)
+					.setDescription(this.description)
+					.addSubcommand((command) =>
+						command
+							.setName('create')
+							.setDescription(this.description)
+							.addStringOption((option) => option.setName('time').setDescription('Amount of time to remind after').setRequired(true))
+							.addStringOption((option) => option.setName('message').setDescription('Message to remind for').setRequired(true))
+					)
+					.addSubcommand((command) => command.setName('clear').setDescription('Clears all reminders you have set'))
+					.addSubcommand((command) =>
+						command
+							.setName('delete')
+							.setDescription('Deletes a reminder by its id')
+							.addNumberOption((option) => option.setName('id').setDescription('Id to delete reminder with').setRequired(true))
+					)
+					.addSubcommand((command) => command.setName('list').setDescription('Shows the active reminders')),
+			{ guildIds: Config.bot.testingGuilds, idHints: [''] }
+		);
 	}
 
 	public async create(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, args?: Args) {
@@ -72,7 +98,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 			this.userError({ message: `Invalid time provided, try: ${inlineCodeBlock('1h')}, ${inlineCodeBlock('2d')}.` });
 		}
 
-		const created = await this.sql<[{ id: number }]>`
+		const [created] = await this.sql<[{ id: number }]>`
 				INSERT INTO reminders (user_id, message, expires)
 				VALUES (${messageOrInteraction.member!.id}, ${reminderMessage}, ${duration.fromNow})
 				RETURNING id`;
@@ -80,16 +106,16 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		this.tasks.create(
 			'reminder',
 			{
-				id: created[0].id,
+				id: created.id,
 				userId: messageOrInteraction.member!.id,
 				message: reminderMessage,
 				createdAt: new Date()
 			},
-			{ type: 'default', bullJobOptions: { jobId: `r${created[0].id}` }, delay: duration.offset }
+			{ type: 'default', bullJobOptions: { jobId: `r${created.id}` }, delay: duration.offset }
 		);
 
 		const message = `Roger that! In ${new DurationFormatter().format(duration.offset)}, ${reminderMessage}. ${inlineCodeBlock(
-			`ID ${created[0].id}`
+			`ID ${created.id}`
 		)}`;
 		await (isMessage(messageOrInteraction) ? messageOrInteraction.reply(message) : messageOrInteraction.editReply({ content: message }));
 	}
@@ -122,33 +148,52 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		//
 	}
 
-	public clear(_messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
-		//
+	public async clear(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
+		const [{ count: remindersCount }] = await this.sql<[{ count: number }]>`SELECT COUNT(*) FROM reminders WHERE user_id = ${
+			messageOrInteraction.member!.id
+		}`;
+
+		if (remindersCount === 0) {
+			this.userError({ message: "You don't have any active reminders" });
+		}
+
+		if (isMessage(messageOrInteraction)) {
+			const prompt = await prompter.messagePrompter(
+				messageOrInteraction,
+				`Are you sure you want to delete ${remindersCount} ${plural(remindersCount, 'reminder', 'reminders')}?`
+			);
+
+			if (prompt) {
+				await this.deleteReminders(messageOrInteraction.member!.id);
+				//
+				prompt.promptMessage.edit({
+					content: `Successfully deleted ${remindersCount} ${plural(remindersCount, 'reminder', 'reminders')}`,
+					components: []
+				});
+			}
+
+			return;
+		}
+
+		const prompt = await prompter.interactionPrompter(
+			messageOrInteraction,
+			`Are you sure you want to delete ${remindersCount} ${plural(remindersCount, 'reminder', 'reminders')}?`
+		);
+
+		if (prompt) {
+			await this.deleteReminders(messageOrInteraction.member!.id);
+			messageOrInteraction.editReply({
+				content: `Successfully deleted ${remindersCount} ${plural(remindersCount, 'reminder', 'reminders')}`,
+				components: []
+			});
+		}
 	}
 
-	public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
-		registry.registerChatInputCommand(
-			(builder) =>
-				builder
-					.setName(this.name)
-					.setDescription(this.description)
-					.addSubcommand((command) =>
-						command
-							.setName('create')
-							.setDescription(this.description)
-							.addStringOption((option) => option.setName('time').setDescription('Amount of time to remind after').setRequired(true))
-							.addStringOption((option) => option.setName('message').setDescription('Message to remind for').setRequired(true))
-					)
-					.addSubcommand((command) => command.setName('clear').setDescription('Clears all reminders you have set'))
-					.addSubcommand((command) =>
-						command
-							.setName('delete')
-							.setDescription('Deletes a reminder by its id')
-							.addNumberOption((option) => option.setName('id').setDescription('Id to delete reminder with').setRequired(true))
-					)
-					.addSubcommand((command) => command.setName('list').setDescription('Shows the active reminders')),
-			{ guildIds: Config.bot.testingGuilds, idHints: [''] }
-		);
+	private async deleteReminders(userId: string) {
+		const deleted = await this.sql<Array<{ id: number }>>`DELETE FROM reminders WHERE user_id = ${userId} RETURNING id`;
+		for (const id of deleted) {
+			await this.tasks.delete(`r${id}`);
+		}
 	}
 }
 

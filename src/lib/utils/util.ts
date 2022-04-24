@@ -11,6 +11,10 @@ export function isMessage(messageOrInteraction: Message | Interaction): messageO
 	return messageOrInteraction instanceof Message;
 }
 
+export function plural(count: number, singular: string, plural: string) {
+	return count === 1 ? singular : plural;
+}
+
 // https://github.com/skyra-project/skyra/blob/main/src/lib/util/common/promises.ts#L6
 export async function resolveOnErrorCodes<T>(promise: Promise<T>, ...codes: readonly RESTJSONErrorCodes[]) {
 	try {
