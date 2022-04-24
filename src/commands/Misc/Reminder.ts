@@ -91,7 +91,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 
 		const duration = new Duration(time);
 		if (!isNaN(duration.offset) && duration.offset) {
-			if (duration.offset <= 12) {
+			if (duration.offset <= 120000) {
 				this.userError({ message: `Time less than ${inlineCodeBlock('2 minutes')} isn't allowed` });
 			}
 		} else {
