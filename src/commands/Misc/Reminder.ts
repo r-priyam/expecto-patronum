@@ -85,8 +85,8 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 				this.userError({ message: `Please provide the message to remind for.\nExample: ${inlineCodeBlock('remind 1d about something')}` });
 			});
 		} else {
-			time = messageOrInteraction.options.getString('time')!;
-			reminderMessage = messageOrInteraction.options.getString('message')!;
+			time = messageOrInteraction.options.getString('time', true);
+			reminderMessage = messageOrInteraction.options.getString('message', true);
 		}
 
 		const duration = new Duration(time);
@@ -144,8 +144,36 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 			.run(messageOrInteraction);
 	}
 
-	public delete(_messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, _args?: Args) {
-		//
+	public async delete(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, args?: Args) {
+		let reminderId = 0;
+
+		if (isMessage(messageOrInteraction)) {
+			reminderId = await args!.pick('number').catch((error: UserError) => {
+				this.userError({
+					message:
+						error.identifier === Identifiers.ArgsMissing
+							? `Please provide the arguments in correct format.\nExample: ${inlineCodeBlock('remind 1d about something')}`
+							: `Provided time seems to invalid. Please provide the time in correct format.\nExample: ${inlineCodeBlock(
+									'1h, 1d, 1week and try and see.'
+							  )}`
+				});
+			});
+		} else {
+			reminderId = messageOrInteraction.options.getNumber('id', true);
+		}
+
+		const [{ id }] = await this.sql<[{ id?: number }]>`DELETE FROM reminders WHERE id = ${reminderId} AND user_id = ${
+			messageOrInteraction.member!.id
+		} RETURNING id`;
+
+		if (!id) {
+			this.userError({ message: 'No reminder found for the given ID.' });
+		}
+
+		this.tasks.delete(`r${id}`);
+		await (isMessage(messageOrInteraction)
+			? messageOrInteraction.reply('Successfully deleted reminder')
+			: messageOrInteraction.editReply({ content: 'Successfully deleted reminder' }));
 	}
 
 	public async clear(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
