@@ -99,9 +99,9 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		}
 
 		const [{ id }] = await this.sql<[{ id: number }]>`
-				INSERT INTO reminders (user_id, message, expires)
-				VALUES (${messageOrInteraction.member!.id}, ${reminderMessage}, ${duration.fromNow})
-				RETURNING id`;
+			INSERT INTO reminders (user_id, message, expires)
+			VALUES (${messageOrInteraction.member!.id}, ${reminderMessage}, ${duration.fromNow})
+			RETURNING id`;
 
 		this.tasks.create(
 			'reminder',
@@ -122,8 +122,10 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	@RequiresClientPermissions(PermissionFlagsBits.EmbedLinks)
 	public async list(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
 		const reminders = await this.sql<ReminderList[]>`
-		SELECT id, message, expires FROM reminders WHERE user_id =
-		${messageOrInteraction.member!.id}`;
+			SELECT id, message, expires
+			FROM reminders
+			WHERE user_id =
+				  ${messageOrInteraction.member!.id}`;
 
 		if (reminders.length === 0) {
 			this.userError({ message: "You don't have any active reminders" });
@@ -160,9 +162,11 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 			reminderId = messageOrInteraction.options.getNumber('id', true);
 		}
 
-		const [{ id }] = await this.sql<[{ id?: number }]>`DELETE FROM reminders WHERE id = ${reminderId} AND user_id = ${
-			messageOrInteraction.member!.id
-		} RETURNING id`;
+		const [{ id }] = await this.sql<[{ id?: number }]>`DELETE
+														 FROM reminders
+														 WHERE id = ${reminderId}
+														   AND user_id = ${messageOrInteraction.member!.id}
+														 RETURNING id`;
 
 		if (!id) {
 			this.userError({ message: 'No reminder found for the given ID.' });
@@ -175,9 +179,9 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	}
 
 	public async clear(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
-		const [{ count: remindersCount }] = await this.sql<[{ count: number }]>`SELECT COUNT(*) FROM reminders WHERE user_id = ${
-			messageOrInteraction.member!.id
-		}`;
+		const [{ count: remindersCount }] = await this.sql<[{ count: number }]>`SELECT COUNT(*)
+																			  FROM reminders
+																			  WHERE user_id = ${messageOrInteraction.member!.id}`;
 
 		if (remindersCount === 0) {
 			this.userError({ message: "You don't have any active reminders" });
@@ -216,7 +220,10 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	}
 
 	private async deleteReminders(userId: string) {
-		const deleted = await this.sql<Array<{ id: number }>>`DELETE FROM reminders WHERE user_id = ${userId} RETURNING id`;
+		const deleted = await this.sql<Array<{ id: number }>>`DELETE
+															  FROM reminders
+															  WHERE user_id = ${userId}
+															  RETURNING id`;
 		for (const id of deleted) {
 			await this.tasks.delete(`r${id}`);
 		}

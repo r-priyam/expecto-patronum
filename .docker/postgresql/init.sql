@@ -2,12 +2,13 @@ CREATE EXTENSION pg_trgm;
 
 SET TIME ZONE 'UTC';
 
-CREATE TABLE public.reminders (
-	id SERIAL PRIMARY KEY,
-	user_id TEXT NOT NULL,
-	message TEXT NOT NULL,
-	created TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
-	expires TIMESTAMP WITHOUT TIME ZONE NOT NULL
+CREATE TABLE public.reminders
+(
+    id      SERIAL PRIMARY KEY,
+    user_id TEXT                        NOT NULL,
+    message TEXT                        NOT NULL,
+    created TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
+    expires TIMESTAMP WITHOUT TIME ZONE NOT NULL
 );
 
 CREATE INDEX idx_reminders_expires ON reminders USING BTREE (expires ASC);
