@@ -441,6 +441,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/discord.js-utilities@npm:4.9.7":
+  version: 4.9.7
+  resolution: "@sapphire/discord.js-utilities@npm:4.9.7"
+  dependencies:
+    "@sapphire/discord-utilities": ^2.10.3
+    "@sapphire/time-utilities": ^1.7.4
+    "@sapphire/utilities": ^3.6.2
+    tslib: ^2.4.0
+  checksum: c174b512c283216c3382fea518ba01ceda5ade39cd7ae8988bc4a9bb1fe37d0a7f7b7a578cd0053c3bcf6230ede2f7cee50810f08082186b311e220117b9ec50
+  languageName: node
+  linkType: hard
+
 "@sapphire/discord.js-utilities@npm:^4.9.4":
   version: 4.9.4
   resolution: "@sapphire/discord.js-utilities@npm:4.9.4"
@@ -450,18 +462,6 @@ __metadata:
     "@sapphire/utilities": ^3.6.2
     tslib: ^2.3.1
   checksum: 2d400c9fd0ac3141ef5e8b41e6316aa2c05570bee6fcadf49d4ca78669a78104be3415a578341f45fae130a01795deb92dfe8b52018720041c1e029ac7722a7c
-  languageName: node
-  linkType: hard
-
-"@sapphire/discord.js-utilities@npm:^4.9.5":
-  version: 4.9.5
-  resolution: "@sapphire/discord.js-utilities@npm:4.9.5"
-  dependencies:
-    "@sapphire/discord-utilities": ^2.10.3
-    "@sapphire/time-utilities": ^1.7.4
-    "@sapphire/utilities": ^3.6.2
-    tslib: ^2.3.1
-  checksum: 58e8e0c285bed4d6e02e67272425ef0313614df33aa7e87c8ee483a226c105fb497a8242780d9e1575ad4bd2ae359929fbc8c0a3bc76abcd27039f70519f7119
   languageName: node
   linkType: hard
 
@@ -529,13 +529,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-scheduled-tasks@npm:^2.3.2":
-  version: 2.3.2
-  resolution: "@sapphire/plugin-scheduled-tasks@npm:2.3.2"
+"@sapphire/plugin-scheduled-tasks@npm:2.3.3":
+  version: 2.3.3
+  resolution: "@sapphire/plugin-scheduled-tasks@npm:2.3.3"
   dependencies:
-    "@sapphire/time-utilities": ^1.7.3
-    tslib: ^2.3.1
-  checksum: af641a210ca7856a0678e3de8ea3a79bb32da46bd8763cfcb4a2a2b3b93b7d119fb205a7c374e964a2e375994267cd00796272c483a02c29e7993c17dd84e168
+    "@sapphire/time-utilities": ^1.7.4
+    tslib: ^2.4.0
+  checksum: d84f6114533aeae9160ff9807ca827dac8d2927b29532ca4808e142b20ec33e7828304855df51c2611498ccc4b783bb1ac52d18b1b4b3c1faaec818dde234ab1
   languageName: node
   linkType: hard
 
@@ -2458,12 +2458,12 @@ __metadata:
     "@mikro-orm/sql-highlighter": ^1.0.1
     "@sapphire/decorators": ^4.3.4
     "@sapphire/discord-utilities": ^2.10.3
-    "@sapphire/discord.js-utilities": ^4.9.5
+    "@sapphire/discord.js-utilities": 4.9.7
     "@sapphire/eslint-config": ^4.3.4
     "@sapphire/framework": next
     "@sapphire/plugin-hmr": ^1.2.0
     "@sapphire/plugin-logger": ^2.2.1
-    "@sapphire/plugin-scheduled-tasks": ^2.3.2
+    "@sapphire/plugin-scheduled-tasks": 2.3.3
     "@sapphire/plugin-subcommands": ^2.2.0
     "@sapphire/prettier-config": ^1.4.3
     "@sapphire/stopwatch": ^1.4.1
@@ -5595,6 +5595,13 @@ __metadata:
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "tslib@npm:2.4.0"
+  checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
   languageName: node
   linkType: hard
 
