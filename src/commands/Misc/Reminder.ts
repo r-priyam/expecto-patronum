@@ -81,7 +81,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 							  )}`
 				});
 			});
-			reminderMessage = await args!.rest('string').catch((_) => {
+			reminderMessage = await args!.rest('string').catch(() => {
 				this.userError({ message: `Please provide the message to remind for.\nExample: ${inlineCodeBlock('remind 1d about something')}` });
 			});
 		} else {
