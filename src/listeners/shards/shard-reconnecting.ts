@@ -2,7 +2,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { Events, Listener } from '@sapphire/framework';
 import { yellow } from 'colorette';
 
-import { formatShardHeader } from '#root/lib/utils/formatter';
+import { formatShardHeader } from '#utils/formatter';
 
 @ApplyOptions<Listener.Options>({
 	name: 'ShardReconnecting',
