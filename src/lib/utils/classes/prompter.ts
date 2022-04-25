@@ -2,7 +2,7 @@ import { Time } from '@sapphire/time-utilities';
 import type { ButtonInteraction, CommandInteraction, Message } from 'discord.js';
 import { MessageActionRow, MessageButton } from 'discord.js';
 
-import { MiscEmotes } from '#utils/emotes';
+import { MiscEmotes } from '#utils/constants';
 
 class UserPrompter {
 	public async messagePrompter(message: Message, content: string, timeout = 60) {

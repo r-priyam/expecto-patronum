@@ -9,3 +9,8 @@ export enum Colors {
 	Warning = 0xfee75c,
 	Error = 0xed4245
 }
+
+export enum MiscEmotes {
+	Success = '<:success:959344194785271809>',
+	Error = '<:error:959359264533643274>'
+}

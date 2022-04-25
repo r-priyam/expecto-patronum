@@ -10,7 +10,7 @@ import { setTimeout as sleep } from 'node:timers/promises';
 import { inspect } from 'node:util';
 
 import { embedBuilder } from '#utils/classes/embeds';
-import { MiscEmotes } from '#utils/emotes';
+import { MiscEmotes } from '#utils/constants';
 
 @ApplyOptions<Command.Options>({
 	aliases: ['e'],

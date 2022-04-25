@@ -2,7 +2,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { Events, Listener } from '@sapphire/framework';
 import { green } from 'colorette';
 
-import { formatShardHeader } from '#utils/classes/formatter';
+import { formatShardHeader } from '#root/lib/utils/formatter';
 
 @ApplyOptions<Listener.Options>({
 	name: 'ShardReady',

@@ -3,7 +3,8 @@ import { Time } from '@sapphire/time-utilities';
 import { GatewayIntentBits } from 'discord-api-types/v9';
 
 import { Config } from '#root/config';
-import { ExpectoPatronumScheduler } from '#utils/classes/scheduler';
+
+import { ExpectoPatronumScheduler } from './ExpectoPatronumScheduler';
 
 export class ExpectoPatronumClient extends SapphireClient {
 	public constructor() {
