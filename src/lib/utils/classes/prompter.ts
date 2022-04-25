@@ -5,6 +5,23 @@ import { MessageActionRow, MessageButton } from 'discord.js';
 import { MiscEmotes } from '#utils/constants';
 
 class UserPrompter {
+	private get promptComponents() {
+		const yesButton = new MessageButton() //
+			.setCustomId('yes_button')
+			.setEmoji(MiscEmotes.Success)
+			.setStyle('PRIMARY')
+			.setLabel('Yes');
+
+		const noButton = new MessageButton() //
+			.setCustomId('no_button')
+			.setEmoji(MiscEmotes.Error)
+			.setStyle('DANGER')
+			.setLabel('No');
+
+		return new MessageActionRow() //
+			.setComponents([yesButton, noButton]);
+	}
+
 	public async messagePrompter(message: Message, content: string, timeout = 60) {
 		const promptMessage = await message.channel.send({ content, components: [this.promptComponents] });
 		try {
@@ -55,23 +72,6 @@ class UserPrompter {
 			time: Time.Second * timeout,
 			filter: async (interaction) => this.verifyUser(interaction, userId)
 		});
-	}
-
-	private get promptComponents() {
-		const yesButton = new MessageButton() //
-			.setCustomId('yes_button')
-			.setEmoji(MiscEmotes.Success)
-			.setStyle('PRIMARY')
-			.setLabel('Yes');
-
-		const noButton = new MessageButton() //
-			.setCustomId('no_button')
-			.setEmoji(MiscEmotes.Error)
-			.setStyle('DANGER')
-			.setLabel('No');
-
-		return new MessageActionRow() //
-			.setComponents([yesButton, noButton]);
 	}
 }
 
