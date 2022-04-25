@@ -1,6 +1,6 @@
+import type { RESTJSONErrorCodes } from 'discord-api-types/v10';
 import type { Interaction } from 'discord.js';
 import { DiscordAPIError, Message } from 'discord.js';
-import type { RESTJSONErrorCodes } from 'discord-api-types/v10';
 
 export function isMessage(messageOrInteraction: Message | Interaction): messageOrInteraction is Message {
 	return messageOrInteraction instanceof Message;

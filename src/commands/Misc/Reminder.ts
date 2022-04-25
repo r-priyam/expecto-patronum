@@ -5,8 +5,8 @@ import type { ApplicationCommandRegistry, Command, UserError } from '@sapphire/f
 import { Args, Identifiers } from '@sapphire/framework';
 import { Duration, DurationFormatter } from '@sapphire/time-utilities';
 import { inlineCodeBlock } from '@sapphire/utilities';
-import type { Message } from 'discord.js';
 import { PermissionFlagsBits } from 'discord-api-types/v10';
+import type { Message } from 'discord.js';
 
 import { ExpectoPatronumCommand } from '#lib/structures/ExpectoPatronumCommands';
 import { Config } from '#root/config';

@@ -2,9 +2,8 @@ import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { Time } from '@sapphire/time-utilities';
 import { GatewayIntentBits } from 'discord-api-types/v9';
 
-import { Config } from '#root/config';
-
 import { ExpectoPatronumScheduler } from './ExpectoPatronumScheduler';
+import { Config } from '#root/config';
 
 export class ExpectoPatronumClient extends SapphireClient {
 	public constructor() {
