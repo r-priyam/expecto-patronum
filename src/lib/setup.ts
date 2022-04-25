@@ -3,18 +3,17 @@ import 'reflect-metadata';
 import '@sapphire/plugin-hmr/register';
 import '@sapphire/plugin-logger/register';
 
+import { inspect } from 'node:util';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 import type { Logger } from '@sapphire/framework';
 import { ApplicationCommandRegistries, container, Piece, RegisterBehavior } from '@sapphire/framework';
 import type { ScheduledTaskHandler } from '@sapphire/plugin-scheduled-tasks';
 import { blueBright, createColors, cyan, greenBright, redBright, yellow } from 'colorette';
-import { inspect } from 'node:util';
 import type { Sql } from 'postgres';
 import postgres from 'postgres';
 
-import { Config } from '#root/config';
-
 import type { ExpectoPatronumClient } from './structures/ExpectoPatronumClient';
+import { Config } from '#root/config';
 
 // Set behavior to overwrite so that it can be overwritten by other changes
 // rather than warning in console.

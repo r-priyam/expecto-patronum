@@ -1,10 +1,10 @@
+import { inspect } from 'node:util';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { Args } from '@sapphire/framework';
 import { Command } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
 import { codeBlock } from '@sapphire/utilities';
 import type { Message } from 'discord.js';
-import { inspect } from 'node:util';
 
 import { TabularData } from '#utils/classes/table';
 
