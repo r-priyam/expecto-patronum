@@ -2,10 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-# [1.0.0]
-(https://github.com/r-priyam/expecto-patronum/tree/v1.0.0) - (2022-04-19)
+## [1.0.0](https://github.com/r-priyam/expecto-patronum/tree/v1.0.0) - (2022-04-19)
 
-## Bug Fixes 🐛
+### Bug Fixes 🐛
 
 - **deps:** Revert back typescript to `4.6.3` and remove unused dependencies ([5b277a2](https://github.com/r-priyam/expecto-patronum/commit/5b277a252f91aa1833ab90cf0175c4124e339e26))
 - **deps:** Update dependency yaml to ^2.0.1 (#37) ([dca993c](https://github.com/r-priyam/expecto-patronum/commit/dca993c32e9e428f41224d6b594b818cf1d3afd1))
@@ -24,7 +23,7 @@ All notable changes to this project will be documented in this file.
 - **deps:** Update all non-major dependencies ([5e671d8](https://github.com/r-priyam/expecto-patronum/commit/5e671d8e64281cb861897ef28029346e7df112c2))
 - **deps:** Update sapphire dependencies ([5651d7c](https://github.com/r-priyam/expecto-patronum/commit/5651d7cfe7282bcdd16e0c3d40612e98234c8f41))
 
-## Features 🎉
+### Features 🎉
 
 - **events:** Log name banner in ready event ([a266c9c](https://github.com/r-priyam/expecto-patronum/commit/a266c9cb06ba121a752f7143535243027c9b7bd2))
 - Setup husky, commitizen and lint-staged ([02b992d](https://github.com/r-priyam/expecto-patronum/commit/02b992d7de3d00534af5261401ec4d22814284f7))
@@ -47,10 +46,9 @@ All notable changes to this project will be documented in this file.
 - Prompter ([fe34a79](https://github.com/r-priyam/expecto-patronum/commit/fe34a798e2c23d8be6a31e205f610d930bc86e1d))
 - First commit ([fa8f0d9](https://github.com/r-priyam/expecto-patronum/commit/fa8f0d99a3706aefbd6f67675632714d760652bf))
 
-## Refactor 🖌️
+### Refactor 🖌️
 
 - Code changes as per xo eslint config ([9ffc733](https://github.com/r-priyam/expecto-patronum/commit/9ffc7330550f510ab2463ba400f785bd40c8a29e))
 - Use `plugin-hmr` instead of `tsup` ([1033937](https://github.com/r-priyam/expecto-patronum/commit/1033937b3398a3948f7301cebdec32c89bc369b3))
 - `NoDm` -> `GuildOnly` ([efc61ef](https://github.com/r-priyam/expecto-patronum/commit/efc61efa2094468505e3ffe6cc9efab847eb1e81))
 - Client ([4fe89be](https://github.com/r-priyam/expecto-patronum/commit/4fe89be00d7d355404f4c1c4d91f328eeed34e4c))
-
