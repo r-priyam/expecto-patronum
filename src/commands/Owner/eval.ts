@@ -1,3 +1,5 @@
+import { setTimeout as sleep } from 'node:timers/promises';
+import { inspect } from 'node:util';
 import { codeBlock } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { Args } from '@sapphire/framework';
@@ -6,8 +8,6 @@ import { Stopwatch } from '@sapphire/stopwatch';
 import { Time } from '@sapphire/time-utilities';
 import { Type } from '@sapphire/type';
 import type { Message } from 'discord.js';
-import { setTimeout as sleep } from 'node:timers/promises';
-import { inspect } from 'node:util';
 
 import { embedBuilder } from '#utils/classes/embeds';
 import { MiscEmotes } from '#utils/constants';

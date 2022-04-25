@@ -1,18 +1,25 @@
 {
 	"extends": ["@sapphire", "xo", "xo-typescript", "plugin:prettier/recommended"],
-	"plugins": ["@typescript-eslint", "prettier", "simple-import-sort", "import"],
+	"plugins": ["@typescript-eslint", "prettier", "import"],
 	"parserOptions": {
 		"project": "./tsconfig.eslint.json"
 	},
 	"rules": {
-		"new-cap": "off",
-		"curly": [2, "all"],
+		"import/order": [
+			"error",
+			{
+				"groups": ["builtin", "external", "internal", "index", "sibling", "parent"],
+				"alphabetize": {
+					"order": "asc"
+				}
+			}
+		],
 		"import/first": "error",
 		"import/no-duplicates": "error",
-		"no-await-in-loop": "off",
-		"simple-import-sort/imports": "error",
-		"simple-import-sort/exports": "error",
 		"import/newline-after-import": "error",
+		"new-cap": "off",
+		"curly": [2, "all"],
+		"no-await-in-loop": "off",
 		"@typescript-eslint/no-unsafe-call": "off",
 		"@typescript-eslint/no-unsafe-assignment": "off",
 		"@typescript-eslint/restrict-template-expressions": "off",

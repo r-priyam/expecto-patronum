@@ -1,9 +1,9 @@
+import { exec } from 'node:child_process';
 import { bold } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
 import type { Message } from 'discord.js';
-import { exec } from 'node:child_process';
 
 import { embedBuilder } from '#utils/classes/embeds';
 import { prompter } from '#utils/classes/prompter';

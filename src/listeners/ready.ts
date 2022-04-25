@@ -1,10 +1,10 @@
+import { readFile } from 'node:fs/promises';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { Store } from '@sapphire/framework';
 import { Events, Listener } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 import figlet from 'figlet';
 import gradient from 'gradient-string';
-import { readFile } from 'node:fs/promises';
 
 import { Config } from '#root/config';
 
