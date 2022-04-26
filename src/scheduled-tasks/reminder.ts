@@ -1,5 +1,6 @@
 import { time, TimestampStyles } from '@discordjs/builders';
 import { ScheduledTask } from '@sapphire/plugin-scheduled-tasks';
+import { TimerManager } from '@sapphire/time-utilities';
 import { RESTJSONErrorCodes } from 'discord-api-types/v10';
 
 import { resolveOnErrorCodes } from '#utils/util';
@@ -23,20 +24,33 @@ export class ReminderTask extends ScheduledTask {
 	}
 
 	public override async onLoad() {
+		// Check per 5 seconds if client is ready or not.
+		// sending message when bot isn't ready will error
+		if (this.client.isReady()) {
+			await this.checkMissedReminders();
+			return;
+		}
+
+		TimerManager.setTimeout(async () => {
+			await this.onLoad();
+		}, 1000);
+	}
+
+	private async checkMissedReminders() {
 		// If bot goes offline, i.e for maintenance or whatsoever then it may miss the
 		// scheduled reminders by few seconds so check for pending reminders here whenever
 		// bot starts and dispatch them.
-		const pending = await this.sql<RawReminderPayload[]>`SELECT id, user_id, message, created
+		const pending = await this.sql<RawReminderPayload[]>`SELECT id, user_id, message, created_at
 															 FROM reminders
-															 WHERE expires < (CURRENT_DATE + ${'2 days'}::interval)
-															 ORDER BY expires`;
+															 WHERE expires_at < NOW()
+															 ORDER BY expires_at`;
 		if (pending.length > 0) {
 			for (const reminder of pending) {
 				await this.run({
 					id: reminder.id,
-					userId: reminder.user_id,
+					userId: reminder.userId,
 					message: reminder.message,
-					createdAt: String(reminder.created)
+					createdAt: reminder.createdAt
 				});
 			}
 		}
@@ -45,9 +59,9 @@ export class ReminderTask extends ScheduledTask {
 
 interface RawReminderPayload {
 	id: number;
-	user_id: string;
+	userId: string;
 	message: string;
-	created: Date;
+	createdAt: string;
 }
 
 interface ReminderPayload {

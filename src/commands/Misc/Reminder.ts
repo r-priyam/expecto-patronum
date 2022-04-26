@@ -99,8 +99,8 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		}
 
 		const [{ id }] = await this.sql<[{ id: number }]>`
-			INSERT INTO reminders (user_id, message, expires)
-			VALUES (${messageOrInteraction.member!.id}, ${reminderMessage}, ${duration.fromNow})
+			INSERT INTO reminders (user_id, message, created_at, expires_at)
+			VALUES (${messageOrInteraction.member!.id}, ${reminderMessage}, ${new Date()}, ${duration.fromNow})
 			RETURNING id`;
 
 		this.tasks.create(
@@ -122,7 +122,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	@RequiresClientPermissions(PermissionFlagsBits.EmbedLinks)
 	public async list(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
 		const reminders = await this.sql<ReminderList[]>`
-			SELECT id, message, expires
+			SELECT id, message, expires_at
 			FROM reminders
 			WHERE user_id =
 				  ${messageOrInteraction.member!.id}`;
@@ -163,10 +163,10 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		}
 
 		const [{ id }] = await this.sql<[{ id?: number }]>`DELETE
-														 FROM reminders
-														 WHERE id = ${reminderId}
-														   AND user_id = ${messageOrInteraction.member!.id}
-														 RETURNING id`;
+														   FROM reminders
+														   WHERE id = ${reminderId}
+															 AND user_id = ${messageOrInteraction.member!.id}
+														   RETURNING id`;
 
 		if (!id) {
 			this.userError({ message: 'No reminder found for the given ID.' });
@@ -180,8 +180,8 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 
 	public async clear(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
 		const [{ count: remindersCount }] = await this.sql<[{ count: number }]>`SELECT COUNT(*)
-																			  FROM reminders
-																			  WHERE user_id = ${messageOrInteraction.member!.id}`;
+																				FROM reminders
+																				WHERE user_id = ${messageOrInteraction.member!.id}`;
 
 		if (remindersCount === 0) {
 			this.userError({ message: "You don't have any active reminders" });
