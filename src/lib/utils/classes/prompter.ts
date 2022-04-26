@@ -2,9 +2,26 @@ import { Time } from '@sapphire/time-utilities';
 import type { ButtonInteraction, CommandInteraction, Message } from 'discord.js';
 import { MessageActionRow, MessageButton } from 'discord.js';
 
-import { MiscEmotes } from '#utils/emotes';
+import { MiscEmotes } from '#utils/constants';
 
 class UserPrompter {
+	private get promptComponents() {
+		const yesButton = new MessageButton() //
+			.setCustomId('yes_button')
+			.setEmoji(MiscEmotes.Success)
+			.setStyle('PRIMARY')
+			.setLabel('Yes');
+
+		const noButton = new MessageButton() //
+			.setCustomId('no_button')
+			.setEmoji(MiscEmotes.Error)
+			.setStyle('DANGER')
+			.setLabel('No');
+
+		return new MessageActionRow() //
+			.setComponents([yesButton, noButton]);
+	}
+
 	public async messagePrompter(message: Message, content: string, timeout = 60) {
 		const promptMessage = await message.channel.send({ content, components: [this.promptComponents] });
 		try {
@@ -26,7 +43,7 @@ class UserPrompter {
 	}
 
 	public async interactionPrompter(interaction: CommandInteraction<'cached'>, content: string, timeout = 60) {
-		const promptMessage = await interaction.reply({ content, components: [this.promptComponents], fetchReply: true });
+		const promptMessage = await interaction.editReply({ content, components: [this.promptComponents] });
 		try {
 			const confirmation = await this.waitForClick(promptMessage, interaction.user.id, timeout);
 			if (confirmation.customId === 'yes_button') {
@@ -42,10 +59,6 @@ class UserPrompter {
 	}
 
 	private async verifyUser(interaction: ButtonInteraction, userId: string) {
-		if (!interaction.replied) {
-			await interaction.deferUpdate();
-		}
-
 		if (interaction.user.id !== userId) {
 			await interaction.followUp({ content: "These buttons can't be controlled by you, sorry!", ephemeral: true });
 		}
@@ -59,23 +72,6 @@ class UserPrompter {
 			time: Time.Second * timeout,
 			filter: async (interaction) => this.verifyUser(interaction, userId)
 		});
-	}
-
-	private get promptComponents() {
-		const yesButton = new MessageButton() //
-			.setCustomId('yes_button')
-			.setEmoji(MiscEmotes.Success)
-			.setStyle('PRIMARY')
-			.setLabel('Yes');
-
-		const noButton = new MessageButton() //
-			.setCustomId('no_button')
-			.setEmoji(MiscEmotes.Error)
-			.setStyle('DANGER')
-			.setLabel('No');
-
-		return new MessageActionRow() //
-			.setComponents([yesButton, noButton]);
 	}
 }
 

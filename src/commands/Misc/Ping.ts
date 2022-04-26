@@ -4,7 +4,7 @@ import type { Message } from 'discord.js';
 import { MessageEmbed } from 'discord.js';
 
 import { Config } from '#root/config';
-import { Colors } from '#root/lib/utils/constants';
+import { Colors } from '#utils/constants';
 
 @ApplyOptions<Command.Options>({
 	description: 'Find out if Specter is alive and processing messages',
@@ -24,6 +24,7 @@ export class PingCommand extends Command {
 	}
 
 	protected async _sharedRun(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, isMessage: boolean) {
+		console.log(messageOrInteraction.member?.id);
 		await (isMessage
 			? messageOrInteraction.reply({ embeds: [this.pingEmbed()] })
 			: messageOrInteraction.reply({

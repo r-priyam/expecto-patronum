@@ -1,4 +1,4 @@
-import { centerAlign } from '#utils/util';
+import { centerAlign } from '#utils/formatter';
 
 export class TabularData {
 	private _widths: number[] = [];

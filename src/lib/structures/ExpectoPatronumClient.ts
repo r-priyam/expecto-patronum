@@ -1,8 +1,8 @@
 import { LogLevel, SapphireClient } from '@sapphire/framework';
-import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
 import { Time } from '@sapphire/time-utilities';
 import { GatewayIntentBits } from 'discord-api-types/v9';
 
+import { ExpectoPatronumScheduler } from '#lib/structures/ExpectoPatronumScheduler';
 import { Config } from '#root/config';
 
 export class ExpectoPatronumClient extends SapphireClient {
@@ -36,12 +36,9 @@ export class ExpectoPatronumClient extends SapphireClient {
 				interval: Time.Second * 3
 			},
 			tasks: {
-				strategy: new ScheduledTaskRedisStrategy({
+				strategy: new ExpectoPatronumScheduler({
 					bull: {
-						redis: {
-							host: Config.database.redis.host,
-							db: Config.database.redis.tasksDb
-						}
+						redis: { host: Config.database.redis.host }
 					}
 				})
 			}

@@ -7,7 +7,7 @@ import type { Message } from 'discord.js';
 
 import { embedBuilder } from '#utils/classes/embeds';
 import { prompter } from '#utils/classes/prompter';
-import { MiscEmotes } from '#utils/emotes';
+import { MiscEmotes } from '#utils/constants';
 
 @ApplyOptions<Command.Options>({
 	description: 'Pulls code changes from github and reloads',
