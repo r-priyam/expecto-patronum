@@ -24,7 +24,7 @@ export class ReminderTask extends ScheduledTask {
 	}
 
 	public override async onLoad() {
-		// Check per 5 seconds if client is ready or not.
+		// Check per 1 second if client is ready or not.
 		// sending message when bot isn't ready will error
 		if (this.client.isReady()) {
 			await this.checkMissedReminders();
