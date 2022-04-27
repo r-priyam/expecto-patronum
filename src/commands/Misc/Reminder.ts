@@ -41,6 +41,19 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		return this[subcommand](interaction);
 	}
 
+	public override async contextMenuRun(interaction: Command.ContextMenuInteraction<'cached'>) {
+		await interaction.deferReply({ ephemeral: true });
+
+		const userId = interaction.options.getMessage('message', true).author.id;
+		const commandNames: Record<string, string> = { 'Reminders List': 'reminders list', 'Reminders Clear': 'reminders clear' };
+
+		if (interaction.member.id !== userId) {
+			return interaction.reply({ content: `Good try, you can't see other user ${commandNames[interaction.commandName]}!` });
+		}
+
+		return interaction.commandName === 'Reminders List' ? this.list(interaction) : this.clear(interaction);
+	}
+
 	public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
 		registry.registerChatInputCommand(
 			(builder) =>
@@ -63,6 +76,28 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 					)
 					.addSubcommand((command) => command.setName('list').setDescription('Shows the active reminders')),
 			{ guildIds: Config.bot.testingGuilds, idHints: [''] }
+		);
+
+		registry.registerContextMenuCommand(
+			{
+				name: 'Reminders List',
+				type: 'MESSAGE'
+			},
+			{
+				guildIds: Config.bot.testingGuilds,
+				idHints: ['']
+			}
+		);
+
+		registry.registerContextMenuCommand(
+			{
+				name: 'Reminders Clear',
+				type: 'MESSAGE'
+			},
+			{
+				guildIds: Config.bot.testingGuilds,
+				idHints: ['']
+			}
 		);
 	}
 
@@ -120,7 +155,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 
 	// eslint-disable-next-line @typescript-eslint/member-ordering
 	@RequiresClientPermissions(PermissionFlagsBits.EmbedLinks)
-	public async list(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
+	public async list(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'> | Command.ContextMenuInteraction<'cached'>) {
 		const reminders = await this.sql<ReminderList[]>`
 			SELECT id, message, expires_at
 			FROM reminders
@@ -136,7 +171,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 			.setItems(
 				reminders.map((reminder) => ({
 					name: `ID: ${reminder.id}`,
-					value: `In ${time(new Date(reminder.expires), TimestampStyles.RelativeTime)}, ${reminder.message}`
+					value: `${time(new Date(reminder.expiresAt), TimestampStyles.RelativeTime)}, ${reminder.message}`
 				}))
 			)
 			.setItemsPerPage(10)
@@ -178,7 +213,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 			: messageOrInteraction.editReply({ content: 'Successfully deleted reminder' }));
 	}
 
-	public async clear(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
+	public async clear(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'> | Command.ContextMenuInteraction<'cached'>) {
 		const [{ count: remindersCount }] = await this.sql<[{ count: number }]>`SELECT COUNT(*)
 																				FROM reminders
 																				WHERE user_id = ${messageOrInteraction.member!.id}`;
@@ -232,13 +267,13 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 
 interface ReminderCommandActions {
 	create: (messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, args?: Args) => void;
-	clear: (messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) => void;
+	clear: (messageOrInteraction: Message | Command.ChatInputInteraction<'cached'> | Command.ContextMenuInteraction<'cached'>) => void;
 	delete: (messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, args?: Args) => void;
-	list: (messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) => void;
+	list: (messageOrInteraction: Message | Command.ChatInputInteraction<'cached'> | Command.ContextMenuInteraction<'cached'>) => void;
 }
 
 interface ReminderList {
 	id: number;
 	message: string;
-	expires: Date;
+	expiresAt: string;
 }

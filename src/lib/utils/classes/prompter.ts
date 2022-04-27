@@ -1,5 +1,5 @@
 import { Time } from '@sapphire/time-utilities';
-import type { ButtonInteraction, CommandInteraction, Message } from 'discord.js';
+import type { ButtonInteraction, CommandInteraction, ContextMenuInteraction, Message } from 'discord.js';
 import { MessageActionRow, MessageButton } from 'discord.js';
 
 import { MiscEmotes } from '#utils/constants';
@@ -42,7 +42,7 @@ class UserPrompter {
 		}
 	}
 
-	public async interactionPrompter(interaction: CommandInteraction<'cached'>, content: string, timeout = 60) {
+	public async interactionPrompter(interaction: CommandInteraction<'cached'> | ContextMenuInteraction<'cached'>, content: string, timeout = 60) {
 		const promptMessage = await interaction.editReply({ content, components: [this.promptComponents] });
 		try {
 			const confirmation = await this.waitForClick(promptMessage, interaction.user.id, timeout);
