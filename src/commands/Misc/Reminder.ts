@@ -67,8 +67,8 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	}
 
 	public async create(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, args?: Args) {
-		let time = '';
-		let reminderMessage = '';
+		let time: string;
+		let reminderMessage: string;
 
 		if (isMessage(messageOrInteraction)) {
 			time = await args!.pick('string').catch((error: UserError) => {
@@ -145,7 +145,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	}
 
 	public async delete(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, args?: Args) {
-		let reminderId = 0;
+		let reminderId: number;
 
 		if (isMessage(messageOrInteraction)) {
 			reminderId = await args!.pick('number').catch((error: UserError) => {
@@ -212,7 +212,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 
 		if (prompt) {
 			await this.deleteReminders(messageOrInteraction.member!.id);
-			messageOrInteraction.editReply({
+			await messageOrInteraction.editReply({
 				content: `Successfully deleted ${remindersCount} ${plural(remindersCount, 'reminder', 'reminders')}`,
 				components: []
 			});

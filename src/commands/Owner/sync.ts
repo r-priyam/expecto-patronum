@@ -109,7 +109,7 @@ export class UserCommand extends Command {
 
 	private async reloadListener(key: string) {
 		try {
-			// There can be multiple listeners in a file so it becomes a bit tricky
+			// There can be multiple listeners in a file, so it becomes a bit tricky
 			// to get the listener by name so instead getting by name let's get all
 			// the listeners inside a file and reload all of them one by one.
 			let reloadedNames = '';

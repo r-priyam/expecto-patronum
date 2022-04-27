@@ -37,7 +37,7 @@ export class ReminderTask extends ScheduledTask {
 	}
 
 	private async checkMissedReminders() {
-		// If bot goes offline, i.e for maintenance or whatsoever then it may miss the
+		// If bot goes offline, i.e. for maintenance or whatsoever then it may miss the
 		// scheduled reminders by few seconds so check for pending reminders here whenever
 		// bot starts and dispatch them.
 		const pending = await this.sql<RawReminderPayload[]>`SELECT id, user_id, message, created_at

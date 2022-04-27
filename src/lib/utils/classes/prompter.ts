@@ -27,7 +27,7 @@ class UserPrompter {
 		try {
 			const confirmation = await this.waitForClick(promptMessage, message.author.id, timeout);
 			if (confirmation.customId === 'yes_button') {
-				// Return prompTmessage so that the origianl message can be edited
+				// Return prompt message so that the original message can be edited
 				// after performing any task, if any
 				return { status: true, promptMessage };
 			}

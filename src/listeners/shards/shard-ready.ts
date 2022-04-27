@@ -12,7 +12,7 @@ export class ShardReady extends Listener<typeof Events.ShardReady> {
 	public override run(id: number, unavailableGuilds: Set<string> | undefined) {
 		this.logger.info(
 			`${formatShardHeader(id, green('Ready'))}: ${
-				unavailableGuilds?.size ? `${`${unavailableGuilds?.size} unavailable guilds`}` : 'So far so good 😎'
+				unavailableGuilds?.size ? `${unavailableGuilds?.size} unavailable guilds` : 'So far so good 😎'
 			}`
 		);
 	}
