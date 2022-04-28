@@ -7,7 +7,7 @@ import { Config } from '#root/config';
 import { Colors } from '#utils/constants';
 
 @ApplyOptions<Command.Options>({
-	description: 'Find out if Specter is alive and processing messages',
+	description: 'Find out if bot is alive and processing messages',
 	chatInputCommand: {
 		register: true,
 		idHints: ['958767465750474803'],
