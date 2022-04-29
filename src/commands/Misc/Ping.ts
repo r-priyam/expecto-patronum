@@ -24,7 +24,6 @@ export class PingCommand extends Command {
 	}
 
 	protected async _sharedRun(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, isMessage: boolean) {
-		console.log(messageOrInteraction.member?.id);
 		await (isMessage
 			? messageOrInteraction.reply({ embeds: [this.pingEmbed()] })
 			: messageOrInteraction.reply({
