@@ -29,7 +29,7 @@ services:
   redis:
     <<: *logging
     <<: *restart_policy
-    image: 'redis:6.2.6-alpine'
+    image: 'redis:7.0.0-alpine'
     container_name: redis
     command: 'redis-server --requirepass redis --loglevel warning'
     ports:
