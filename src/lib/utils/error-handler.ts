@@ -1,7 +1,7 @@
 import { UserError } from '@sapphire/framework';
 import type { CommandInteraction, Message } from 'discord.js';
 
-import { embedBuilder } from '#utils/classes/embeds';
+import { embedBuilder } from '#lib/classes/embeds';
 import { isMessage } from '#utils/util';
 
 export async function errorHandler(error: Error | UserError, messageOrInteraction: Message | CommandInteraction) {

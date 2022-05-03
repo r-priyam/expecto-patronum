@@ -5,8 +5,8 @@ import { Command } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
 import type { Message } from 'discord.js';
 
-import { embedBuilder } from '#utils/classes/embeds';
-import { prompter } from '#utils/classes/prompter';
+import { embedBuilder } from '#classes/embeds';
+import { prompter } from '#classes/prompter';
 import { MiscEmotes } from '#utils/constants';
 
 @ApplyOptions<Command.Options>({

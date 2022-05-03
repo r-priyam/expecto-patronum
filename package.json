@@ -97,7 +97,8 @@
 	"imports": {
 		"#root/*": "./dist/*.js",
 		"#lib/*": "./dist/lib/*.js",
-		"#utils/*": "./dist/lib/utils/*.js"
+		"#utils/*": "./dist/lib/utils/*.js",
+		"#classes/*": "./dist/lib/classes/*.js"
 	},
 	"packageManager": "yarn@3.2.0"
 }

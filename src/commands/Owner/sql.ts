@@ -6,7 +6,7 @@ import { Stopwatch } from '@sapphire/stopwatch';
 import { codeBlock } from '@sapphire/utilities';
 import type { Message } from 'discord.js';
 
-import { TabularData } from '#utils/classes/table';
+import { TabularData } from '#classes/table';
 
 @ApplyOptions<Command.Options>({
 	description: 'Executes SQL code',

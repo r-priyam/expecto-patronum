@@ -9,7 +9,7 @@ import { Time } from '@sapphire/time-utilities';
 import { Type } from '@sapphire/type';
 import type { Message } from 'discord.js';
 
-import { embedBuilder } from '#utils/classes/embeds';
+import { embedBuilder } from '#classes/embeds';
 import { MiscEmotes } from '#utils/constants';
 
 @ApplyOptions<Command.Options>({

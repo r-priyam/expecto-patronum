@@ -8,9 +8,9 @@ import { inlineCodeBlock } from '@sapphire/utilities';
 import { PermissionFlagsBits } from 'discord-api-types/v10';
 import type { Message } from 'discord.js';
 
+import { prompter } from '#classes/prompter';
 import { ExpectoPatronumCommand } from '#lib/structures/ExpectoPatronumCommands';
 import { Config } from '#root/config';
-import { prompter } from '#utils/classes/prompter';
 import { Colors } from '#utils/constants';
 import { isMessage, plural } from '#utils/util';
 
