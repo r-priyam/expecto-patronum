@@ -3,7 +3,7 @@ import { ApplyOptions, RequiresClientPermissions } from '@sapphire/decorators';
 import { PaginatedMessageEmbedFields } from '@sapphire/discord.js-utilities';
 import type { ApplicationCommandRegistry, Command, UserError } from '@sapphire/framework';
 import { Args, Identifiers } from '@sapphire/framework';
-import { Duration, DurationFormatter } from '@sapphire/time-utilities';
+import { Duration, DurationFormatter, Time } from '@sapphire/time-utilities';
 import { inlineCodeBlock } from '@sapphire/utilities';
 import { PermissionFlagsBits } from 'discord-api-types/v10';
 import type { Message } from 'discord.js';
@@ -175,6 +175,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 				}))
 			)
 			.setItemsPerPage(10)
+			.setIdle(Time.Minute * 2)
 			.make()
 			.run(messageOrInteraction);
 	}
