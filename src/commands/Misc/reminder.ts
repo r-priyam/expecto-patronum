@@ -31,7 +31,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	});
 
 	public override async messageRun(message: Message, args: Args) {
-		const actions = String(await args.pick(this.subCommandCheck).catch(() => 'create')) as keyof ReminderCommandActions;
+		const actions = (await args.pick(this.subCommandCheck).catch(() => 'create')) as keyof ReminderCommandActions;
 		return actions === 'list' || actions === 'clear' ? this[actions](message) : this[actions](message, args);
 	}
 
@@ -125,8 +125,8 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		}
 
 		const duration = new Duration(time);
-		if (!isNaN(duration.offset) && duration.offset) {
-			if (duration.offset <= 120000) {
+		if (!Number.isNaN(duration.offset) && duration.offset) {
+			if (duration.offset <= 120_000) {
 				this.userError({ message: `Time less than ${inlineCodeBlock('2 minutes')} isn't allowed` });
 			}
 		} else {
@@ -181,22 +181,18 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	}
 
 	public async delete(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, args?: Args) {
-		let reminderId: number;
-
-		if (isMessage(messageOrInteraction)) {
-			reminderId = await args!.pick('number').catch((error: UserError) => {
-				this.userError({
-					message:
-						error.identifier === Identifiers.ArgsMissing
-							? `Please provide the arguments in correct format.\nExample: ${inlineCodeBlock('remind 1d about something')}`
-							: `Provided time seems to invalid. Please provide the time in correct format.\nExample: ${inlineCodeBlock(
-									'1h, 1d, 1week and try and see.'
-							  )}`
-				});
-			});
-		} else {
-			reminderId = messageOrInteraction.options.getNumber('id', true);
-		}
+		const reminderId = isMessage(messageOrInteraction)
+			? await args!.pick('number').catch((error: UserError) => {
+					this.userError({
+						message:
+							error.identifier === Identifiers.ArgsMissing
+								? `Please provide the arguments in correct format.\nExample: ${inlineCodeBlock('remind 1d about something')}`
+								: `Provided time seems to invalid. Please provide the time in correct format.\nExample: ${inlineCodeBlock(
+										'1h, 1d, 1week and try and see.'
+								  )}`
+					});
+			  })
+			: messageOrInteraction.options.getNumber('id', true);
 
 		const [{ id }] = await this.sql<[{ id?: number }]>`DELETE
 														   FROM reminders

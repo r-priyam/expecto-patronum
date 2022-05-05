@@ -6,7 +6,7 @@ import { isMessage } from '#utils/util';
 
 export async function errorHandler(error: Error | UserError, messageOrInteraction: Message | CommandInteraction) {
 	if (error instanceof UserError) {
-		const isEmbed = Reflect.get(Object(error.context), 'embedMessage');
+		const isEmbed = Reflect.get(new Object(error.context), 'embedMessage');
 
 		if (isMessage(messageOrInteraction)) {
 			return messageOrInteraction.channel.send(messageOrEmbed(error.message, isEmbed));

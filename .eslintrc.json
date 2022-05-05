@@ -1,9 +1,6 @@
 {
-	"extends": ["@sapphire", "xo", "xo-typescript", "plugin:prettier/recommended"],
-	"plugins": ["@typescript-eslint", "prettier", "import"],
-	"parserOptions": {
-		"project": "./tsconfig.eslint.json"
-	},
+	"extends": ["@sapphire", "plugin:unicorn/recommended"],
+	"plugins": ["prettier", "import"],
 	"rules": {
 		"import/order": [
 			"error",
@@ -14,15 +11,14 @@
 				}
 			}
 		],
+		"curly": "error",
+		"new-cap": "off",
 		"import/first": "error",
+		"no-new-object": "off",
+		"unicorn/no-null": "off",
+		"unicorn/filename-case": "off",
 		"import/no-duplicates": "error",
 		"import/newline-after-import": "error",
-		"new-cap": "off",
-		"curly": [2, "all"],
-		"no-await-in-loop": "off",
-		"@typescript-eslint/no-unsafe-call": "off",
-		"@typescript-eslint/no-unsafe-assignment": "off",
-		"@typescript-eslint/restrict-template-expressions": "off",
-		"@typescript-eslint/consistent-type-imports": ["error", { "prefer": "type-imports", "disallowTypeAnnotations": false }]
+		"unicorn/prevent-abbreviations": ["error", { "allowList": { "args": true } }]
 	}
 }

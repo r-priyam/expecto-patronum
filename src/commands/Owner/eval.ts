@@ -77,7 +77,7 @@ export class UserCommand extends Command {
 
 			// @ts-expect-error use as a variable if needed in eval
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			const msg = message;
+			const message_ = message;
 			// eslint-disable-next-line no-eval
 			result = eval(code);
 			executionTime = stopwatch.toString();

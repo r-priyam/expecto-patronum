@@ -4,10 +4,10 @@ export const rootFolder = new URL('../../../', import.meta.url);
 export const sourceFolder = new URL('src/', rootFolder);
 
 export enum Colors {
-	Info = 0x3498db,
-	Success = 0x57f287,
-	Warning = 0xfee75c,
-	Error = 0xed4245
+	Info = 3_447_003,
+	Success = 5_763_719,
+	Warning = 16_705_372,
+	Error = 15_548_997
 }
 
 export enum MiscEmotes {
