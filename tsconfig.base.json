@@ -4,6 +4,8 @@
 		"lib": ["ESNext"],
 		"target": "ESNext",
 		"module": "ESNext",
+		"declaration": false,
+		"declarationMap": false,
 		"noImplicitReturns": false,
 		"tsBuildInfoFile": "dist/.tsbuildinfo"
 	}

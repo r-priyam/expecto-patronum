@@ -5,7 +5,6 @@
 		"outDir": "../dist",
 		"rootDir": ".",
 		"baseUrl": ".",
-		"composite": true,
 		"paths": {
 			"#root/*": ["*"],
 			"#lib/*": ["lib/*"],
