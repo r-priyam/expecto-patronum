@@ -2163,9 +2163,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-commands-sync@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "discord-commands-sync@npm:1.2.2"
+"discord-commands-sync@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "discord-commands-sync@npm:1.2.3"
   dependencies:
     "@discordjs/rest": ^0.4.1
     ora: ^6.1.0
@@ -2174,7 +2174,7 @@ __metadata:
   bin:
     cj: ./dist/index.js
     discord-commands-sync: ./dist/index.js
-  checksum: 838cfb84dcf4bd3e8ee4db80070f0b2288b27d0cb34e2f9a4566bc5d7ad9dca0bb25538e764dc4ad7aa84582eba0698e21d1cf2be751e6a3cd3d876e9e46b552
+  checksum: ff207a3c205b841fa750f7c152e084f98269957889c51d603b23eb2d9f060a16f110585b42caeefe5aa7e1d02db3841d5a3ebdd8215c97da7f454f15239ac507
   languageName: node
   linkType: hard
 
@@ -2694,7 +2694,7 @@ __metadata:
     commitizen: ^4.2.4
     cz-conventional-changelog: 3.3.0
     discord-api-types: ^0.32.0
-    discord-commands-sync: ^1.2.2
+    discord-commands-sync: ^1.2.3
     discord.js: ^13.6.0
     dotenv: ^16.0.0
     eslint: ^8.14.0
