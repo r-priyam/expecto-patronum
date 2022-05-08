@@ -66,7 +66,7 @@ await i18next.use(Backend).init({
 	interpolation: {
 		escapeValue: false
 	},
-	defaultNS: 'commands',
+	defaultNS: 'default',
 	ns: namespaces,
 	preload: languages
 });
