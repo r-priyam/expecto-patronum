@@ -1,5 +1,5 @@
 {
-    "eslint.validate": ["typescript"],
+	"eslint.validate": ["typescript"],
 	"editor.tabSize": 4,
 	"editor.useTabStops": true,
 	"editor.insertSpaces": false,
@@ -13,7 +13,15 @@
 		"**/dist/": true,
 		"**/.git/": true
 	},
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    }
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"i18n-ally.localesPaths": ["src/languages"],
+	"i18n-ally.sourceLanguage": "en-US",
+	"i18n-ally.keystyle": "flat",
+	"i18n-ally.displayLanguage": "en-US",
+	"i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
+	"i18n-ally.namespace": true,
+	"i18n-ally.preferredDelimiter": ":",
+	"i18n-ally.defaultNamespace": "commands"
 }

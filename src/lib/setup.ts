@@ -3,17 +3,21 @@ import 'reflect-metadata';
 import '@sapphire/plugin-hmr/register';
 import '@sapphire/plugin-logger/register';
 
+import { fileURLToPath, URL } from 'node:url';
 import { inspect } from 'node:util';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 import type { Logger } from '@sapphire/framework';
 import { ApplicationCommandRegistries, container, Piece, RegisterBehavior } from '@sapphire/framework';
 import type { ScheduledTaskHandler } from '@sapphire/plugin-scheduled-tasks';
+import { Backend } from '@skyra/i18next-backend';
 import { blueBright, createColors, cyan, greenBright, redBright, yellow } from 'colorette';
+import i18next from 'i18next';
 import type { Sql } from 'postgres';
 import postgres from 'postgres';
 
 import type { ExpectoPatronumClient } from './structures/ExpectoPatronumClient';
 import { Config } from '#root/config';
+import { walkLanguageDirectory } from '#utils/util';
 
 // Set behavior to overwrite so that it can be overwritten by other changes
 // rather than warning in console.
@@ -49,6 +53,22 @@ container.sql = postgres({
 			parse: (isoString) => isoString
 		}
 	}
+});
+
+const { namespaces, languages } = await walkLanguageDirectory(fileURLToPath(new URL('../languages', import.meta.url)));
+
+await i18next.use(Backend).init({
+	backend: {
+		paths: [new URL('../languages/{{lng}}/{{ns}}.json', import.meta.url)]
+	},
+	fallbackLng: 'en-US',
+	initImmediate: false,
+	interpolation: {
+		escapeValue: false
+	},
+	defaultNS: 'commands',
+	ns: namespaces,
+	preload: languages
 });
 
 // Inject quickly used container properties into pieces
