@@ -55,11 +55,11 @@ container.sql = postgres({
 	}
 });
 
-const { namespaces, languages } = await walkLanguageDirectory(fileURLToPath(new URL('../languages', import.meta.url)));
+const { namespaces, languages } = await walkLanguageDirectory(fileURLToPath(new URL('../locales', import.meta.url)));
 
 await i18next.use(Backend).init({
 	backend: {
-		paths: [new URL('../languages/{{lng}}/{{ns}}.json', import.meta.url)]
+		paths: [new URL('../locales/{{lng}}/{{ns}}.json', import.meta.url)]
 	},
 	fallbackLng: 'en-US',
 	initImmediate: false,
