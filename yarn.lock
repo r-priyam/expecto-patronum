@@ -32,6 +32,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.17.2":
+  version: 7.17.9
+  resolution: "@babel/runtime@npm:7.17.9"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 4d56bdb82890f386d5a57c40ef985a0ed7f0a78f789377a2d0c3e8826819e0f7f16ba0fe906d9b2241c5f7ca56630ef0653f5bb99f03771f7b87ff8af4bf5fe3
+  languageName: node
+  linkType: hard
+
 "@commitlint/cli@npm:^16.2.4":
   version: 16.2.4
   resolution: "@commitlint/cli@npm:16.2.4"
@@ -526,6 +535,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/plugin-i18next@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "@sapphire/plugin-i18next@npm:2.5.0"
+  dependencies:
+    "@sapphire/utilities": ^3.6.2
+    "@types/i18next-fs-backend": ^1.1.2
+    chokidar: ^3.5.3
+    i18next: ^21.6.16
+    i18next-fs-backend: ^1.1.4
+    tslib: ^2.3.1
+  checksum: a51bcd8227c88f5f52e3add2dcf99bf1de1fb1a98c142aeb321d6bc86ef6d6da84c7f7d05203bf81536351d03ff57c2cd73a1e8a65b05105675383bd127feac4
+  languageName: node
+  linkType: hard
+
 "@sapphire/plugin-logger@npm:^2.2.1":
   version: 2.2.1
   resolution: "@sapphire/plugin-logger@npm:2.2.1"
@@ -706,6 +729,15 @@ __metadata:
   dependencies:
     "@types/tinycolor2": "*"
   checksum: 8bc665bcf277b4da9d30eb1dc5d83990678145700df991a24441948cb86b8e9c453cb701a370d3363dddafdd365748ef3190140601c82916ea70ee577de98dc3
+  languageName: node
+  linkType: hard
+
+"@types/i18next-fs-backend@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@types/i18next-fs-backend@npm:1.1.2"
+  dependencies:
+    i18next: ^21.0.1
+  checksum: 567ab61f65231490b272d15311e7eb127cb069743284d3e0527e7cc75671038dcb70feb5da9964b218a3bb28435365179c18bab721c94ed765f28263662e6de0
   languageName: node
   linkType: hard
 
@@ -2559,6 +2591,7 @@ __metadata:
     "@sapphire/eslint-config": ^4.3.4
     "@sapphire/framework": next
     "@sapphire/plugin-hmr": ^1.2.0
+    "@sapphire/plugin-i18next": ^2.5.0
     "@sapphire/plugin-logger": ^2.2.1
     "@sapphire/plugin-scheduled-tasks": 2.3.3
     "@sapphire/plugin-subcommands": ^2.2.0
@@ -3286,6 +3319,22 @@ __metadata:
   bin:
     husky: lib/bin.js
   checksum: c6ec4af63da2c9522da8674a20ad9b48362cc92704896cc8a58c6a2a39d797feb2b806f93fbd83a6d653fbdceb2c3b6e0b602c6b2e8565206ffc2882ef7db9e9
+  languageName: node
+  linkType: hard
+
+"i18next-fs-backend@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "i18next-fs-backend@npm:1.1.4"
+  checksum: 7da252aa618f82555a99709b0f8afed997b7b20aeb5e66c92fe13f5b676c80b8a3cad24a1e38c599c6ab6e9169c4be87268c30e48cf1965cbcc8a69ff76bd0a4
+  languageName: node
+  linkType: hard
+
+"i18next@npm:^21.0.1, i18next@npm:^21.6.16":
+  version: 21.7.1
+  resolution: "i18next@npm:21.7.1"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+  checksum: 20732b3c5b31ad0651c29fe92ba0b9d595b5ae5412f34bc4efb0a5885830e6379925debc799cca8a2dc3d0fe42609aa3678e12063a1bb7ea64add0a763feeb53
   languageName: node
   linkType: hard
 
@@ -5057,6 +5106,13 @@ __metadata:
   version: 0.1.13
   resolution: "reflect-metadata@npm:0.1.13"
   checksum: 798d379a7b6f6455501145419505c97dd11cbc23857a386add2b9ef15963ccf15a48d9d15507afe01d4cd74116df8a213247200bac00320bd7c11ddeaa5e8fb4
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.13.4":
+  version: 0.13.9
+  resolution: "regenerator-runtime@npm:0.13.9"
+  checksum: 65ed455fe5afd799e2897baf691ca21c2772e1a969d19bb0c4695757c2d96249eb74ee3553ea34a91062b2a676beedf630b4c1551cc6299afb937be1426ec55e
   languageName: node
   linkType: hard
 

@@ -9,19 +9,19 @@ import { Config } from '#root/config';
 })
 export class UserPrecondition extends AllFlowsPrecondition {
 	public async chatInputRun(interaction: CommandInteraction) {
-		return this.checkOwner(interaction.user.id);
+		return this.checkOwner(interaction.user.id, this.i18n.format(interaction.locale, 'errors:preCondition.ownerOnly'));
 	}
 
 	public async messageRun(message: Message) {
-		return this.checkOwner(message.author.id);
+		return this.checkOwner(message.author.id, this.i18n.format(message.guild?.preferredLocale ?? 'en-US', 'errors:preCondition.ownerOnly'));
 	}
 
 	public async contextMenuRun(interaction: ContextMenuInteraction) {
-		return this.checkOwner(interaction.user.id);
+		return this.checkOwner(interaction.user.id, this.i18n.format(interaction.locale, 'errors:preCondition.ownerOnly'));
 	}
 
-	private async checkOwner(userId: string) {
-		return Config.bot.owners!.includes(userId) ? this.ok() : this.error({ message: "You aren't my master 🤨" });
+	private async checkOwner(userId: string, message: string) {
+		return Config.bot.owners!.includes(userId) ? this.ok() : this.error({ message });
 	}
 }
 

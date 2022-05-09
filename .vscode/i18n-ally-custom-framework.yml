@@ -1,0 +1,11 @@
+# https://github.com/lokalise/i18n-ally/wiki/Custom-Framework
+
+languageIds:
+  - javascript
+  - typescript
+
+# An array of RegExes to find the key usage. **The key should be captured in the first match group**.
+# You should unescape RegEx strings in order to fit in the YAML file
+# To help with this, you can use https://www.freeformatter.com/json-escape.html
+usageMatchRegex:
+  - "\\bt\\(['\"`](.*?)['\"`]"

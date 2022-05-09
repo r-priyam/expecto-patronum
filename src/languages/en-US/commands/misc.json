@@ -1,6 +1,27 @@
 {
 	"ping": {
 		"title": "I am still alive! 🍺",
-		"description": "Pong! Bot Latency {{latency}}ms"
+		"message": "Pong! Websocket latency {{latency}}ms"
+	},
+	"reminder": {
+		"error": {
+			"argMissing": "Please provide the arguments in correct format.\nExample: `remind 1d about something`.",
+			"invalidTime": "Provided time seems invalid. Please provide the time in correct format.\nExample: `1h, 1d, 1week and try and see`.",
+			"messageMissing": "Please provide the message to be reminded.\nExample: `remind 1d about something`.",
+			"notAllowedTime": "Time less than 2 minutes isn't allowed.",
+			"idMissing": "Please provide the ID of the reminder to delete.\nExample: `reminder delete 1`.",
+			"noActiveReminders": "You don't have any active reminders.",
+			"noReminder": "No reminder found with the provided ID.",
+			"contextMenuBypass": "Good try! You can't run command for other users.",
+			"deleteInvalidArg": "Please provide the arguments in correct format.\nExample: `reminder delete 1`."
+		},
+		"success": {
+			"reminderAdded": "Roger that 🚨! In {{time}} I will remind you about {{message}}. `Unique ID: {{id}}`",
+			"reminderCleared": "Successfully deleted {{count}} {{word}}",
+			"reminderDeleted": "Successfully deleted reminder"
+		},
+		"util": {
+			"prompter": "Are you sure you want to delete `{{count}}` {{word}}?"
+		}
 	}
 }
