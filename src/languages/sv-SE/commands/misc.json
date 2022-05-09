@@ -1,0 +1,27 @@
+{
+	"ping": {
+		"title": "Jag lever fortfarande! 🍺",
+		"message": "Pong! Websocket-svarstid {{latency}}ms"
+	},
+	"reminder": {
+		"error": {
+			"argMissing": "Ange argumenten i rätt format.\nExempel: \"påminn 1d om något\".",
+			"invalidTime": "Förutsatt att tiden verkar ogiltig. Ange tiden i rätt format.\nExempel: \"1h, 1d, 1week och försök och se\".",
+			"messageMissing": "Vänligen ange meddelandet för att påminnas.\nExempel: \"påminn 1d om något\".",
+			"notAllowedTime": "Tid mindre än 2 minuter är inte tillåten.",
+			"idMissing": "Ange ID för påminnelsen om att radera.\nExempel: \"Påminnelse radera 1\".",
+			"noActiveReminders": "Du har inga aktiva påminnelser.",
+			"noReminder": "Ingen påminnelse hittades med det angivna ID:t.",
+			"contextMenuBypass": "Bra försök! Du kan inte köra kommandot för andra användare.",
+			"deleteInvalidArg": "Ange argumenten i rätt format.\nExempel: \"Påminnelse radera 1\"."
+		},
+		"success": {
+			"reminderAdded": "Roger det 🚨 ! I {{time}} kommer jag att påminna dig om {{message}}. \"Unikt ID: {{id}}\"",
+			"reminderCleared": "Har tagits bort {{count}} {{word}}",
+			"reminderDeleted": "Påminnelsen har tagits bort"
+		},
+		"util": {
+			"prompter": "Är du säker på att du vill ta bort '{{count}}' {{word}}?"
+		}
+	}
+}

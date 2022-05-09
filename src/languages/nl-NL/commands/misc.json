@@ -1,0 +1,27 @@
+{
+	"ping": {
+		"title": "Ik leef nog! 🍺",
+		"message": "Stank! Websocket latentie {{latency}}ms"
+	},
+	"reminder": {
+		"error": {
+			"argMissing": "Geef de argumenten in de juiste vorm.\nVoorbeeld: 'herinner 1d aan iets'.",
+			"invalidTime": "Mits de tijd ongeldig lijkt. Geef de tijd in het juiste formaat op.\nVoorbeeld: '1u, 1d, 1 week en probeer te zien'.",
+			"messageMissing": "Geef het bericht op om eraan herinnerd te worden.\nVoorbeeld: 'herinner 1d aan iets'.",
+			"notAllowedTime": "Tijd minder dan 2 minuten is niet toegestaan.",
+			"idMissing": "Geef de ID op van de herinnering om te verwijderen.\nVoorbeeld: 'reminder delete 1'.",
+			"noActiveReminders": "Je hebt geen actieve herinneringen.",
+			"noReminder": "Geen herinnering gevonden met de opgegeven ID.",
+			"contextMenuBypass": "Goed geprobeerd! U kunt geen opdracht uitvoeren voor andere gebruikers.",
+			"deleteInvalidArg": "Geef de argumenten in de juiste vorm.\nVoorbeeld: 'reminder delete 1'."
+		},
+		"success": {
+			"reminderAdded": "Roger dat 🚨 ! In {{time}} zal ik u herinneren aan {{message}}. 'Unieke ID: {{id}}'",
+			"reminderCleared": "{{count}} {{word}}met succes verwijderd",
+			"reminderDeleted": "Herinnering verwijderd"
+		},
+		"util": {
+			"prompter": "Weet u zeker dat u '{{count}}' {{word}}wilt verwijderen?"
+		}
+	}
+}

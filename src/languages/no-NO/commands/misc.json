@@ -1,0 +1,27 @@
+{
+	"ping": {
+		"title": "Jeg lever fortsatt! 🍺",
+		"message": "Stank! Ventetid for Websocket {{latency}}ms"
+	},
+	"reminder": {
+		"error": {
+			"argMissing": "Angi argumentene i riktig format.\nEksempel: 'minn 1d om noe'.",
+			"invalidTime": "Angitt tid virker ugyldig. Angi klokkeslettet i riktig format.\nEksempel: '1t, 1d, 1 uke og prøv å se'.",
+			"messageMissing": "Angi meldingen som skal minnes på det.\nEksempel: 'minn 1d om noe'.",
+			"notAllowedTime": "Tid mindre enn 2 minutter er ikke tillatt.",
+			"idMissing": "Angi IDen for påminnelsen som skal slettes.\nEksempel: 'påminnelse slett 1'.",
+			"noActiveReminders": "Du har ingen aktive påminnelser.",
+			"noReminder": "Finner ingen påminnelse med den angitte IDen.",
+			"contextMenuBypass": "Godt forsøk! Du kan ikke kjøre kommandoen for andre brukere.",
+			"deleteInvalidArg": "Angi argumentene i riktig format.\nEksempel: 'påminnelse slett 1'."
+		},
+		"success": {
+			"reminderAdded": "🚨 Oppfattet! I {{time}} vil jeg minne deg om {{message}}. Unik ID: {{id}}'",
+			"reminderCleared": "Slettet {{count}} {{word}}",
+			"reminderDeleted": "Påminnelsen er slettet"
+		},
+		"util": {
+			"prompter": "Er du sikker på at du vil slette{{count}} {{word}}?"
+		}
+	}
+}
