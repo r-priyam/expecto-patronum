@@ -1,6 +1,27 @@
 {
 	"ping": {
 		"title": "Ich lebe noch! 🍺",
-		"description": "Nochmal testen, ob das funktioniert. Stinken! Bot-Latenz {{latency}}ms"
+		"message": "Stinken! Websocket-Latenz {{latency}}ms"
+	},
+	"reminder": {
+		"error": {
+			"argMissing": "Bitte geben Sie die Argumente im richtigen Format an.\nBeispiel: \"1d an etwas erinnern\".",
+			"invalidTime": "Vorausgesetzt, die Zeit scheint ungültig zu sein. Bitte geben Sie die Uhrzeit im richtigen Format an.\nBeispiel: \"1h, 1d, 1week und try and see\".",
+			"messageMissing": "Bitte geben Sie die zu erinnernde Nachricht an.\nBeispiel: \"1d an etwas erinnern\".",
+			"notAllowedTime": "Eine Zeit von weniger als 2 Minuten ist nicht zulässig.",
+			"idMissing": "Bitte geben Sie die ID der Erinnerung zum Löschen an.\nBeispiel: 'reminder delete 1'.",
+			"noActiveReminders": "Sie haben keine aktiven Erinnerungen.",
+			"noReminder": "Keine Erinnerung mit der bereitgestellten ID gefunden.",
+			"contextMenuBypass": "Guter Versuch! Sie können keinen Befehl für andere Benutzer ausführen.",
+			"deleteInvalidArg": "Bitte geben Sie die Argumente im richtigen Format an.\nBeispiel: 'reminder delete 1'."
+		},
+		"success": {
+			"reminderAdded": "Roger das 🚨 ! In {{time}} werde ich Sie an {{message}}erinnern. 'Eindeutige ID: {{id}}'",
+			"reminderCleared": "{{count}} {{word}}erfolgreich gelöscht",
+			"reminderDeleted": "Erinnerung wurde erfolgreich gelöscht"
+		},
+		"util": {
+			"prompter": "Sind Sie sicher, dass Sie '{{count}}' {{word}}löschen möchten?"
+		}
 	}
 }
