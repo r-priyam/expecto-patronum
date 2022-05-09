@@ -1,10 +1,9 @@
 import { time, TimestampStyles } from '@discordjs/builders';
 import { ApplyOptions, RequiresClientPermissions } from '@sapphire/decorators';
 import { PaginatedMessageEmbedFields } from '@sapphire/discord.js-utilities';
-import type { ApplicationCommandRegistry, Command, UserError } from '@sapphire/framework';
-import { Args, Identifiers } from '@sapphire/framework';
+import { Args, Identifiers, Command, UserError } from '@sapphire/framework';
+import { fetchLanguage } from '@sapphire/plugin-i18next';
 import { Duration, DurationFormatter, Time } from '@sapphire/time-utilities';
-import { inlineCodeBlock } from '@sapphire/utilities';
 import { PermissionFlagsBits } from 'discord-api-types/v10';
 import type { Message } from 'discord.js';
 
@@ -45,16 +44,15 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		await interaction.deferReply({ ephemeral: true });
 
 		const userId = interaction.options.getMessage('message', true).author.id;
-		const commandNames: Record<string, string> = { 'Reminders List': 'reminders list', 'Reminders Clear': 'reminders clear' };
 
 		if (interaction.member.id !== userId) {
-			return interaction.reply({ content: `Good try, you can't see other user ${commandNames[interaction.commandName]}!` });
+			return interaction.reply({ content: this.i18n.getT(interaction.locale)('commands/misc:reminder.error.contextMenuBypass') });
 		}
 
 		return interaction.commandName === 'Reminders List' ? this.list(interaction) : this.clear(interaction);
 	}
 
-	public override registerApplicationCommands(registry: ApplicationCommandRegistry) {
+	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand(
 			(builder) =>
 				builder
@@ -104,20 +102,19 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	public async create(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, args?: Args) {
 		let time: string;
 		let reminderMessage: string;
+		const t = this.i18n.getT(await fetchLanguage(messageOrInteraction));
 
 		if (isMessage(messageOrInteraction)) {
 			time = await args!.pick('string').catch((error: UserError) => {
 				this.userError({
 					message:
 						error.identifier === Identifiers.ArgsMissing
-							? `Please provide the arguments in correct format.\nExample: ${inlineCodeBlock('remind 1d about something')}`
-							: `Provided time seems to invalid. Please provide the time in correct format.\nExample: ${inlineCodeBlock(
-									'1h, 1d, 1week and try and see.'
-							  )}`
+							? t('commands/misc:reminder.error.argMissing')
+							: t('commands/misc:reminder.error.invalidTime')
 				});
 			});
 			reminderMessage = await args!.rest('string').catch(() => {
-				this.userError({ message: `Please provide the message to remind for.\nExample: ${inlineCodeBlock('remind 1d about something')}` });
+				this.userError({ message: t('commands/misc:reminder.error.messageMissing') });
 			});
 		} else {
 			time = messageOrInteraction.options.getString('time', true);
@@ -127,10 +124,10 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 		const duration = new Duration(time);
 		if (!Number.isNaN(duration.offset) && duration.offset) {
 			if (duration.offset <= 120_000) {
-				this.userError({ message: `Time less than ${inlineCodeBlock('2 minutes')} isn't allowed` });
+				this.userError({ message: t('commands/misc:reminder.error.notAllowedTime') });
 			}
 		} else {
-			this.userError({ message: `Invalid time provided, try: ${inlineCodeBlock('1h')}, ${inlineCodeBlock('2d')}.` });
+			this.userError({ message: t('commands/misc:reminder.error.invalidTime') });
 		}
 
 		const [{ id }] = await this.sql<[{ id: number }]>`
@@ -149,13 +146,17 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 			{ type: 'default', bullJobOptions: { jobId: `r${id}` }, delay: duration.offset }
 		);
 
-		const message = `Roger that! In ${new DurationFormatter().format(duration.offset)}, ${reminderMessage}. ${inlineCodeBlock(`ID ${id}`)}`;
+		const message = t('commands/misc:reminder.success.reminderAdded', {
+			time: new DurationFormatter().format(duration.offset),
+			message: reminderMessage,
+			id
+		});
 		await (isMessage(messageOrInteraction) ? messageOrInteraction.reply(message) : messageOrInteraction.editReply({ content: message }));
 	}
 
-	// eslint-disable-next-line @typescript-eslint/member-ordering
 	@RequiresClientPermissions(PermissionFlagsBits.EmbedLinks)
 	public async list(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'> | Command.ContextMenuInteraction<'cached'>) {
+		const t = this.i18n.getT(await fetchLanguage(messageOrInteraction));
 		const reminders = await this.sql<ReminderList[]>`
 			SELECT id, message, expires_at
 			FROM reminders
@@ -163,7 +164,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 				  ${messageOrInteraction.member!.id}`;
 
 		if (reminders.length === 0) {
-			this.userError({ message: "You don't have any active reminders" });
+			this.userError({ message: t('commands/misc:reminder.error.noActiveReminders') });
 		}
 
 		await new PaginatedMessageEmbedFields() //
@@ -181,15 +182,11 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 	}
 
 	public async delete(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, args?: Args) {
+		const t = this.i18n.getT(await fetchLanguage(messageOrInteraction));
 		const reminderId = isMessage(messageOrInteraction)
-			? await args!.pick('number').catch((error: UserError) => {
+			? await args!.pick('number').catch(() => {
 					this.userError({
-						message:
-							error.identifier === Identifiers.ArgsMissing
-								? `Please provide the arguments in correct format.\nExample: ${inlineCodeBlock('remind 1d about something')}`
-								: `Provided time seems to invalid. Please provide the time in correct format.\nExample: ${inlineCodeBlock(
-										'1h, 1d, 1week and try and see.'
-								  )}`
+						message: t('commands/misc:reminder.error.deleteInvalidArg')
 					});
 			  })
 			: messageOrInteraction.options.getNumber('id', true);
@@ -201,35 +198,40 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 														   RETURNING id`;
 
 		if (!id) {
-			this.userError({ message: 'No reminder found for the given ID.' });
+			this.userError({ message: t('commands/misc:reminder.error.noReminder') });
 		}
 
 		this.tasks.delete(`r${id}`);
 		await (isMessage(messageOrInteraction)
-			? messageOrInteraction.reply('Successfully deleted reminder')
-			: messageOrInteraction.editReply({ content: 'Successfully deleted reminder' }));
+			? messageOrInteraction.reply(t('commands/misc:reminder.success.reminderDeleted'))
+			: messageOrInteraction.editReply({ content: t('commands/misc:reminder.success.reminderDeleted') }));
 	}
 
 	public async clear(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'> | Command.ContextMenuInteraction<'cached'>) {
+		const t = this.i18n.getT(await fetchLanguage(messageOrInteraction));
 		const [{ count: remindersCount }] = await this.sql<[{ count: number }]>`SELECT COUNT(*)
 																				FROM reminders
 																				WHERE user_id = ${messageOrInteraction.member!.id}`;
 
 		if (remindersCount === 0) {
-			this.userError({ message: "You don't have any active reminders" });
+			this.userError({ message: t('commands/misc:reminder.error.noActiveReminders') });
 		}
+		const word = plural(remindersCount, 'reminder', 'reminders');
 
 		if (isMessage(messageOrInteraction)) {
 			const prompt = await prompter.messagePrompter(
 				messageOrInteraction,
-				`Are you sure you want to delete ${remindersCount} ${plural(remindersCount, 'reminder', 'reminders')}?`
+				t('commands/misc:reminder.util.prompter', { count: remindersCount, word })
 			);
 
 			if (prompt) {
 				await this.deleteReminders(messageOrInteraction.member!.id);
 				//
 				prompt.promptMessage.edit({
-					content: `Successfully deleted ${remindersCount} ${plural(remindersCount, 'reminder', 'reminders')}`,
+					content: t('commands/misc:reminder.success.reminderCleared', {
+						count: remindersCount,
+						word
+					}),
 					components: []
 				});
 			}
@@ -239,13 +241,16 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 
 		const prompt = await prompter.interactionPrompter(
 			messageOrInteraction,
-			`Are you sure you want to delete ${remindersCount} ${plural(remindersCount, 'reminder', 'reminders')}?`
+			t('commands/misc:reminder.util.prompter', { count: remindersCount, word })
 		);
 
 		if (prompt) {
 			await this.deleteReminders(messageOrInteraction.member!.id);
 			await messageOrInteraction.editReply({
-				content: `Successfully deleted ${remindersCount} ${plural(remindersCount, 'reminder', 'reminders')}`,
+				content: t('commands/misc:reminder.success.reminderCleared', {
+					count: remindersCount,
+					word
+				}),
 				components: []
 			});
 		}

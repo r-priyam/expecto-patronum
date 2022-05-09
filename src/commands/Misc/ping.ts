@@ -1,10 +1,12 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
-import type { Message } from 'discord.js';
-import { MessageEmbed } from 'discord.js';
+import type { Command } from '@sapphire/framework';
+import { fetchLanguage, TFunction } from '@sapphire/plugin-i18next';
+import { MessageEmbed, Message } from 'discord.js';
 
+import { ExpectoPatronumCommand } from '#lib/structures/ExpectoPatronumCommands';
 import { Config } from '#root/config';
 import { Colors } from '#utils/constants';
+import { isMessage } from '#utils/util';
 
 @ApplyOptions<Command.Options>({
 	description: 'Find out if bot is alive and processing messages',
@@ -14,28 +16,30 @@ import { Colors } from '#utils/constants';
 		guildIds: Config.bot.testingGuilds
 	}
 })
-export class PingCommand extends Command {
+export class PingCommand extends ExpectoPatronumCommand {
 	public override async messageRun(message: Message) {
-		return this._sharedRun(message, true);
+		return this._sharedRun(message);
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputInteraction<'cached'>) {
-		return this._sharedRun(interaction, false);
+		return this._sharedRun(interaction);
 	}
 
-	protected async _sharedRun(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>, isMessage: boolean) {
-		await (isMessage
-			? messageOrInteraction.reply({ embeds: [this.pingEmbed()] })
+	protected async _sharedRun(messageOrInteraction: Message | Command.ChatInputInteraction<'cached'>) {
+		const t = this.i18n.getT(await fetchLanguage(messageOrInteraction));
+
+		await (isMessage(messageOrInteraction)
+			? messageOrInteraction.reply({ embeds: [this.pingEmbed(t)] })
 			: messageOrInteraction.reply({
-					embeds: [this.pingEmbed()],
+					embeds: [this.pingEmbed(t)],
 					ephemeral: true
 			  }));
 	}
 
-	private pingEmbed() {
+	private pingEmbed(t: TFunction) {
 		return new MessageEmbed() //
 			.setColor(Colors.Info)
-			.setTitle('I am still alive! 🍺')
-			.setDescription(`Pong! Bot Latency ${Math.round(this.client.ws.ping)}ms`);
+			.setTitle(t('commands/misc:ping.title'))
+			.setDescription(t('commands/misc:ping.message', { latency: Math.round(this.client.ws.ping) }));
 	}
 }

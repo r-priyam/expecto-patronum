@@ -8,6 +8,7 @@ import { inspect } from 'node:util';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 import type { Logger } from '@sapphire/framework';
 import { ApplicationCommandRegistries, container, Piece, RegisterBehavior } from '@sapphire/framework';
+import type { InternationalizationHandler } from '@sapphire/plugin-i18next';
 import type { ScheduledTaskHandler } from '@sapphire/plugin-scheduled-tasks';
 import { blueBright, createColors, cyan, greenBright, redBright, yellow } from 'colorette';
 import type { Sql } from 'postgres';
@@ -58,7 +59,8 @@ Object.defineProperties(Piece.prototype, {
 	client: { get: () => container.client },
 	sql: { get: () => container.sql },
 	logger: { get: () => container.logger },
-	tasks: { get: () => container.tasks }
+	tasks: { get: () => container.tasks },
+	i18n: { get: () => container.i18n }
 });
 
 declare module '@sapphire/pieces' {
@@ -71,5 +73,6 @@ declare module '@sapphire/pieces' {
 		sql: Sql<any>;
 		logger: Logger;
 		tasks: ScheduledTaskHandler;
+		i18n: InternationalizationHandler;
 	}
 }
