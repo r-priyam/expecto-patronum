@@ -4,7 +4,6 @@ import { fetchLanguage, TFunction } from '@sapphire/plugin-i18next';
 import { MessageEmbed, Message } from 'discord.js';
 
 import { ExpectoPatronumCommand } from '#lib/structures/ExpectoPatronumCommands';
-import { Config } from '#root/config';
 import { Colors } from '#utils/constants';
 import { isMessage } from '#utils/util';
 
@@ -12,8 +11,7 @@ import { isMessage } from '#utils/util';
 	description: 'Find out if bot is alive and processing messages',
 	chatInputCommand: {
 		register: true,
-		idHints: ['958767465750474803'],
-		guildIds: Config.bot.testingGuilds
+		idHints: ['958767465750474803']
 	}
 })
 export class PingCommand extends ExpectoPatronumCommand {

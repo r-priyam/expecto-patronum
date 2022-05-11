@@ -9,7 +9,6 @@ import type { Message } from 'discord.js';
 
 import { prompter } from '#classes/prompter';
 import { ExpectoPatronumCommand } from '#lib/structures/ExpectoPatronumCommands';
-import { Config } from '#root/config';
 import { Colors } from '#utils/constants';
 import { isMessage, plural } from '#utils/util';
 
@@ -73,7 +72,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 							.addNumberOption((option) => option.setName('id').setDescription('Id to delete reminder with').setRequired(true))
 					)
 					.addSubcommand((command) => command.setName('list').setDescription('Shows the active reminders')),
-			{ guildIds: Config.bot.testingGuilds, idHints: [''] }
+			{ idHints: [''] }
 		);
 
 		registry.registerContextMenuCommand(
@@ -81,10 +80,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 				name: 'Reminders List',
 				type: 'MESSAGE'
 			},
-			{
-				guildIds: Config.bot.testingGuilds,
-				idHints: ['']
-			}
+			{ idHints: [''] }
 		);
 
 		registry.registerContextMenuCommand(
@@ -92,10 +88,7 @@ export class ReminderCommand extends ExpectoPatronumCommand implements ReminderC
 				name: 'Reminders Clear',
 				type: 'MESSAGE'
 			},
-			{
-				guildIds: Config.bot.testingGuilds,
-				idHints: ['']
-			}
+			{ idHints: [''] }
 		);
 	}
 
