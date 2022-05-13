@@ -13,9 +13,7 @@ export async function errorHandler(error: Error | UserError, messageOrInteractio
 		}
 
 		if (messageOrInteraction.replied || messageOrInteraction.deferred) {
-			// Type collision
-			await messageOrInteraction.editReply(messageOrEmbed(error.message, isEmbed));
-			return;
+			return messageOrInteraction.editReply(messageOrEmbed(error.message, isEmbed));
 		}
 
 		return messageOrInteraction.reply(messageOrEmbed(error.message, isEmbed));
