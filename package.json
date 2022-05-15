@@ -64,9 +64,9 @@
 		"reflect-metadata": "^0.1.13"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^16.2.4",
+		"@commitlint/cli": "^16.3.0",
 		"@commitlint/config-conventional": "^16.2.4",
-		"@favware/cliff-jumper": "^1.7.0",
+		"@favware/cliff-jumper": "^1.8.0",
 		"@sapphire/eslint-config": "^4.3.4",
 		"@sapphire/prettier-config": "^1.4.3",
 		"@sapphire/ts-config": "^3.3.4",
@@ -100,5 +100,5 @@
 		"#utils/*": "./dist/lib/utils/*.js",
 		"#classes/*": "./dist/lib/classes/*.js"
 	},
-	"packageManager": "yarn@3.2.0"
+	"packageManager": "yarn@3.2.1"
 }
