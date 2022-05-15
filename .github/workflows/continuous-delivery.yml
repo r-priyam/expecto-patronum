@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  PublishDragonite:
+  Publish:
     name: Publish expecto patronum docker image
     runs-on: ubuntu-latest
     steps:
