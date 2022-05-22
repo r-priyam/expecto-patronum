@@ -493,6 +493,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/discord-utilities@npm:^2.11.0":
+  version: 2.11.0
+  resolution: "@sapphire/discord-utilities@npm:2.11.0"
+  dependencies:
+    twemoji-parser: ^14.0.0
+  checksum: 46eca9521ccf13a05968769840c103910941258b184c23ca603cef8c4ce45ce19ff76328e239537d0626cc661a0fcd9a21846ebe257aa9bfc6e939dbff29ccbc
+  languageName: node
+  linkType: hard
+
 "@sapphire/discord.js-utilities@npm:4.11.0":
   version: 4.11.0
   resolution: "@sapphire/discord.js-utilities@npm:4.11.0"
@@ -570,17 +579,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-i18next@npm:^2.5.0":
-  version: 2.5.0
-  resolution: "@sapphire/plugin-i18next@npm:2.5.0"
+"@sapphire/plugin-i18next@npm:^2.5.2":
+  version: 2.5.2
+  resolution: "@sapphire/plugin-i18next@npm:2.5.2"
   dependencies:
     "@sapphire/utilities": ^3.6.2
-    "@types/i18next-fs-backend": ^1.1.2
+    "@skyra/i18next-backend": ^1.0.0
     chokidar: ^3.5.3
-    i18next: ^21.6.16
-    i18next-fs-backend: ^1.1.4
-    tslib: ^2.3.1
-  checksum: a51bcd8227c88f5f52e3add2dcf99bf1de1fb1a98c142aeb321d6bc86ef6d6da84c7f7d05203bf81536351d03ff57c2cd73a1e8a65b05105675383bd127feac4
+    i18next: ^21.8.2
+    tslib: ^2.4.0
+  checksum: 239ec8db20a7b6cd9dadadc7ba3438592f578df299e32943716f65f8e9bce13e03ead8558cad337bfab5fc615595628d2bb1a9db0c626bc5187cea2dc1a4678b
   languageName: node
   linkType: hard
 
@@ -706,6 +714,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@skyra/i18next-backend@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@skyra/i18next-backend@npm:1.0.0"
+  dependencies:
+    tslib: ^2.4.0
+  checksum: ea60794b8ce67d0bba0f8fb1aa82fe3a06d1845a9a88de562beaf8869a733fbf4431ba163a84075a304830aa5610c21424dcf8a73f5234b438560b88a776295c
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -764,15 +781,6 @@ __metadata:
   dependencies:
     "@types/tinycolor2": "*"
   checksum: 8bc665bcf277b4da9d30eb1dc5d83990678145700df991a24441948cb86b8e9c453cb701a370d3363dddafdd365748ef3190140601c82916ea70ee577de98dc3
-  languageName: node
-  linkType: hard
-
-"@types/i18next-fs-backend@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@types/i18next-fs-backend@npm:1.1.2"
-  dependencies:
-    i18next: ^21.0.1
-  checksum: 567ab61f65231490b272d15311e7eb127cb069743284d3e0527e7cc75671038dcb70feb5da9964b218a3bb28435365179c18bab721c94ed765f28263662e6de0
   languageName: node
   linkType: hard
 
@@ -2790,12 +2798,12 @@ __metadata:
     "@favware/cliff-jumper": ^1.8.0
     "@mikro-orm/sql-highlighter": ^1.0.1
     "@sapphire/decorators": ^4.3.4
-    "@sapphire/discord-utilities": ^2.10.3
+    "@sapphire/discord-utilities": ^2.11.0
     "@sapphire/discord.js-utilities": 4.11.0
     "@sapphire/eslint-config": ^4.3.5
     "@sapphire/framework": next
     "@sapphire/plugin-hmr": ^1.2.0
-    "@sapphire/plugin-i18next": ^2.5.0
+    "@sapphire/plugin-i18next": ^2.5.2
     "@sapphire/plugin-logger": ^2.2.1
     "@sapphire/plugin-scheduled-tasks": 2.3.3
     "@sapphire/plugin-subcommands": ^2.2.0
@@ -3535,19 +3543,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next-fs-backend@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "i18next-fs-backend@npm:1.1.4"
-  checksum: 7da252aa618f82555a99709b0f8afed997b7b20aeb5e66c92fe13f5b676c80b8a3cad24a1e38c599c6ab6e9169c4be87268c30e48cf1965cbcc8a69ff76bd0a4
-  languageName: node
-  linkType: hard
-
-"i18next@npm:^21.0.1, i18next@npm:^21.6.16":
-  version: 21.7.1
-  resolution: "i18next@npm:21.7.1"
+"i18next@npm:^21.8.2":
+  version: 21.8.3
+  resolution: "i18next@npm:21.8.3"
   dependencies:
     "@babel/runtime": ^7.17.2
-  checksum: 20732b3c5b31ad0651c29fe92ba0b9d595b5ae5412f34bc4efb0a5885830e6379925debc799cca8a2dc3d0fe42609aa3678e12063a1bb7ea64add0a763feeb53
+  checksum: c1b6c57255befb716e0b491d50584f9d0875f3f848b4b5a192421dc6302453d73f4f646eca5526eaea3874d742c5d1ff73ceffa3bbc84a5621a4183f71952432
   languageName: node
   linkType: hard
 
