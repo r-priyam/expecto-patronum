@@ -60,11 +60,11 @@
 		"dotenv": "^16.0.1",
 		"figlet": "^1.5.2",
 		"gradient-string": "^2.0.1",
-		"postgres": "^3.2.3",
+		"postgres": "^3.2.4",
 		"reflect-metadata": "^0.1.13"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^17.0.0",
+		"@commitlint/cli": "^17.0.1",
 		"@commitlint/config-conventional": "^17.0.0",
 		"@favware/cliff-jumper": "^1.8.0",
 		"@sapphire/eslint-config": "^4.3.5",
