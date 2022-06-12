@@ -41,9 +41,9 @@
 	"dependencies": {
 		"@discordjs/builders": "^0.13.0",
 		"@mikro-orm/sql-highlighter": "^1.0.1",
-		"@sapphire/decorators": "^4.3.4",
-		"@sapphire/discord-utilities": "^2.11.1",
-		"@sapphire/discord.js-utilities": "4.11.1",
+		"@sapphire/decorators": "^4.3.5",
+		"@sapphire/discord-utilities": "^2.11.2",
+		"@sapphire/discord.js-utilities": "4.11.2",
 		"@sapphire/framework": "next",
 		"@sapphire/plugin-hmr": "^1.2.0",
 		"@sapphire/plugin-i18next": "^2.5.2",
