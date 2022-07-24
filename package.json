@@ -48,7 +48,7 @@
 		"@sapphire/plugin-hmr": "^1.2.0",
 		"@sapphire/plugin-i18next": "^2.5.2",
 		"@sapphire/plugin-logger": "^2.2.1",
-		"@sapphire/plugin-scheduled-tasks": "2.3.3",
+		"@sapphire/plugin-scheduled-tasks": "3.0.0",
 		"@sapphire/plugin-subcommands": "^2.2.0",
 		"@sapphire/stopwatch": "^1.4.1",
 		"@sapphire/time-utilities": "^1.7.4",
